@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Detail Komik - Domain Sage Mode</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/komik.css">
+</head>
+<body>
+<header>
+  <div class="logo-header">
+    <img src="assets/logo.png" alt="Logo" class="logo-bulat" />
+    <h1 class="judul-logo">DOMAIN SAGE MODE</h1>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="cari.html">Cari</a>
+  <a href="donasi.html">Dukung Kami</a>
+  <a href="bookmark&history.html">Bookmark & History</a>
+  <a href="register.html">Akun</a>
+</nav>
+
+<main>
+  <div class="detail-komik">
+    <div class="cover-container">
+      <img id="komikCover" src="" alt="Cover Komik" onerror="coverError()" />
+      <div id="coverPlaceholder" class="cover-placeholder" style="display:none;">
+        <button onclick="reloadCover()">Muat Ulang</button>
+      </div>
+    </div>
+
+    <!-- RATING -->
+    <div class="rating-container">
+      <div class="stars" id="ratingStars">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+      </div>
+      <div class="rating-info" id="ratingInfo">Belum ada rating</div>
+    </div>
+
+    <!-- Tombol Bookmark -->
+    <button id="bookmarkBtn" class="bookmark-btn">🔖 Tambah ke Bookmark</button>
+
+    <div class="info-komik">
+      <h2 id="komikJudul"></h2>
+      <p><strong>Format: </strong><span id="komikFormat"></span></p>
+      <p><strong>Genre: </strong> <span id="komikGenre"></span></p>
+      <p><strong>Author: </strong> <span id="komikAuthor"></span></p>
+      <p><strong>Artist: </strong> <span id="komikArtist"></span></p>
+      <p><strong>Status: </strong> <span id="komikStatus"></span></p>
+      <p><strong>Sinopsis: </strong><span id="komikSinopsis"></span></p>
+    </div>
+  </div>
+
+  <div class="chapter-list" id="chapterList"></div>
+  <div class="lihat-semua" id="lihatSemuaContainer" style="display:none;">
+    <button onclick="lihatSemuaChapter()">Lihat Semua Chapter</button>
+  </div>
+
+  <!-- KOMENTAR -->
+  <div class="comments-section">
+    <h3>Komentar</h3>
+    <div class="comment-form" id="commentFormContainer" style="display:none;">
+      <img id="userPhoto" src="assets/default-avatar.png" alt="User Photo">
+      <textarea id="commentInput" placeholder="Tulis komentar..."></textarea>
+      <button id="sendCommentBtn">Kirim</button>
+    </div>
+    <div id="commentsList"></div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Domain Sage Mode. 
+  Semua hak cipta komik adalah milik aslinya.</p>
+</footer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const komikId = params.get('id');
+
+  let semuaChapter = [];
+  let sudahTampilSemua = false;
+  let coverUrl = "";
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+  const ratingStars = document.querySelectorAll("#ratingStars .star");
+  const ratingInfo = document.getElementById("ratingInfo");
+  const commentsList = document.getElementById("commentsList");
+  const commentFormContainer = document.getElementById("commentFormContainer");
+  const commentInput = document.getElementById("commentInput");
+  const sendCommentBtn = document.getElementById("sendCommentBtn");
+
+  if (currentUser) {
+    commentFormContainer.style.display = "flex";
+    document.getElementById("userPhoto").src = currentUser.photo || "assets/default-avatar.png";
+  }
+
+  fetch('data/komik.json')
+  .then(res => res.json())
+  .then(data => {
+    const komik = data.find(k => k.id === komikId);
+    console.log("Comic ID:", komikId, "Found comic:", komik);
+
+    if (!komik) {
+      console.error("Komik tidak ditemukan!");
+      return;
+    }
+
+      coverUrl = komik.cover;
+      document.getElementById('komikCover').src = komik.cover;
+      document.getElementById('komikJudul').textContent = komik.judul;
+      document.getElementById('komikFormat').textContent = komik.format;
+      document.getElementById('komikGenre').textContent = komik.genre;
+      document.getElementById('komikAuthor').textContent = komik.author;
+      document.getElementById('komikArtist').textContent = komik.artist;
+      document.getElementById('komikStatus').textContent = komik.status;
+      document.getElementById('komikSinopsis').textContent = komik.sinopsis;
+
+      semuaChapter = komik.chapter;
+      tampilkanChapter(3);
+      if (semuaChapter.length > 3) {
+        document.getElementById('lihatSemuaContainer').style.display = 'block';
+      }
+
+      const bookmarkBtn = document.getElementById('bookmarkBtn');
+      let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+      const sudahBookmark = bookmarks.some(b => b.id === komikId);
+
+      if (sudahBookmark) {
+        bookmarkBtn.textContent = "✅ Sudah di Bookmark";
+      }
+
+      bookmarkBtn.addEventListener("click", () => {
+        let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+        const index = bookmarks.findIndex(b => b.id === komikId);
+
+        if (index === -1) {
+          bookmarks.push({ id: komik.id, judul: komik.judul, cover: komik.cover });
+          localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+          bookmarkBtn.textContent = "✅ Sudah di Bookmark";
+        } else {
+          bookmarks.splice(index, 1);
+          localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+          bookmarkBtn.textContent = "🔖 Tambah ke Bookmark";
+        }
+      });
+
+      loadRating();
+      loadComments();
+    });
+
+  function tampilkanChapter(jumlah) {
+    const chapterList = document.getElementById('chapterList');
+    chapterList.innerHTML = "";
+
+    const terbaru = semuaChapter
+      .map((ch, i) => ({ ...ch, index: i }))
+      .slice(-jumlah)
+      .reverse();
+
+    terbaru.forEach(ch => {
+      const a = document.createElement('a');
+      a.href = `baca.html?id=${komikId}&ch=${ch.index}`;
+      a.textContent = ch.judul;
+      chapterList.appendChild(a);
+    });
+  }
+
+  function lihatSemuaChapter() {
+    if (!sudahTampilSemua) {
+      const chapterList = document.getElementById('chapterList');
+      chapterList.innerHTML = "";
+
+      semuaChapter
+        .map((ch, i) => ({ ...ch, index: i }))
+        .slice()
+        .reverse()
+        .forEach(ch => {
+          const a = document.createElement('a');
+          a.href = `baca.html?id=${komikId}&ch=${ch.index}`;
+          a.textContent = ch.judul;
+          chapterList.appendChild(a);
+        });
+
+      document.getElementById('lihatSemuaContainer').style.display = 'none';
+      sudahTampilSemua = true;
+    }
+  }
+
+  function coverError() {
+    document.getElementById('komikCover').style.display = 'none';
+    document.getElementById('coverPlaceholder').style.display = 'flex';
+  }
+
+  function reloadCover() {
+    const cover = document.getElementById('komikCover');
+    cover.src = coverUrl + "?retry=" + new Date().getTime();
+    cover.style.display = 'block';
+    document.getElementById('coverPlaceholder').style.display = 'none';
+  }
+
+  function loadRating() {
+    const ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
+    const comicRatings = ratings[komikId] || [];
+
+    if (comicRatings.length > 0) {
+      const avg = (comicRatings.reduce((a, b) => a + b.rating, 0) / comicRatings.length).toFixed(1);
+      ratingInfo.textContent = `Rating: ${avg} / 5 (${comicRatings.length} penilaian)`;
+    } else {
+      ratingInfo.textContent = "Belum ada rating";
+    }
+
+    if (currentUser) {
+      const userRating = comicRatings.find(r => r.userId === currentUser.id);
+      highlightStars(userRating ? userRating.rating : 0);
+    }
+  }
+
+  function highlightStars(rating) {
+    ratingStars.forEach(star => {
+      star.classList.toggle("active", star.dataset.value <= rating);
+    });
+  }
+
+  if (currentUser) {
+    ratingStars.forEach(star => {
+      star.addEventListener("click", () => {
+        const value = parseInt(star.dataset.value);
+        let ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
+        if (!ratings[komikId]) ratings[komikId] = [];
+
+        const index = ratings[komikId].findIndex(r => r.userId === currentUser.id);
+        if (index === -1) {
+          ratings[komikId].push({ userId: currentUser.id, rating: value });
+        } else {
+          ratings[komikId][index].rating = value;
+        }
+
+        localStorage.setItem("ratings", JSON.stringify(ratings));
+        highlightStars(value);
+        loadRating();
+      });
+    });
+  }
+
+  function loadComments() {
+    const comments = JSON.parse(localStorage.getItem("comments") || "{}");
+    const comicComments = comments[komikId] || [];
+
+    commentsList.innerHTML = "";
+    comicComments.forEach(c => {
+      const div = document.createElement("div");
+      div.className = "comment";
+      div.innerHTML = `
+        <img src="${c.photo}" alt="avatar">
+        <div class="comment-content">
+          <strong>${c.username}</strong>
+          <p>${c.text}</p>
+        </div>
+      `;
+      commentsList.appendChild(div);
+    });
+  }
+
+  if (currentUser) {
+    sendCommentBtn.addEventListener("click", () => {
+      const text = commentInput.value.trim();
+      if (!text) return;
+
+      let comments = JSON.parse(localStorage.getItem("comments") || "{}");
+      if (!comments[komikId]) comments[komikId] = [];
+
+      comments[komikId].push({
+        userId: currentUser.id,
+        username: currentUser.username,
+        photo: currentUser.photo || "assets/default-avatar.png",
+        text
+      });
+
+      localStorage.setItem("comments", JSON.stringify(comments));
+      commentInput.value = "";
+      loadComments();
+    });
+  }
+</script>
+</body>
+</html>

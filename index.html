@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Domain Sage Mode</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/index.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-header">
+      <img src="assets/logo.png" alt="Logo" class="logo-bulat" />
+      <h1 class="judul-logo">DOMAIN SAGE MODE</h1>
+    </div>
+  </header>
+
+  <!-- UCAPAN SELAMAT DATANG -->
+  <section class="welcome-message" id="welcomeMessage">
+    <p>Memuat ucapan...</p>
+  </section>
+  
+  <!-- IKLAN ATAS -->
+  <section class="iklan-box" id="iklan-beranda-atas"></section>
+
+  <!-- KONTEN -->
+  <main>
+    <h2>Update Terbaru</h2>
+    <div class="komik-grid" id="komikList"></div>
+      <!-- IKLAN BAWAH -->
+  <section class="iklan-box" id="iklan-beranda-bawah"></section>
+  
+    <div id="pagination" class="pagination"></div>
+  </main>
+
+  <!-- NAVIGASI BAWAH -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="cari.html">Cari</a>
+    <a href="donasi.html">Dukung Kami</a>
+    <a href="bookmark&history.html">Bookmark & History</a>
+    <a href="register.html">Akun</a>
+  </nav>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
+  </footer>
+
+  <script>
+  // === UCAPAN SELAMAT DATANG ===
+  const welcomeEl = document.getElementById("welcomeMessage");
+  const lastVisit = localStorage.getItem("lastVisit");
+  const now = new Date();
+  if (lastVisit) {
+    welcomeEl.innerHTML = `<p>Selamat datang kembali di <span>Domain Sage Mode</span>! Senang melihatmu lagi.</span>Tempat baca komik bahasa indonesia terupdate</p>`;
+  } else {
+    welcomeEl.innerHTML = `<p>Selamat datang di <span>Domain Sage Mode</span>! Baca komik favoritmu dengan nyaman.</p>`;
+  }
+  localStorage.setItem("lastVisit", now.toISOString());
+
+  // === KONFIGURASI PAGINATION ===
+  const komikPerHalaman = 40;
+  let halamanSaatIni = 1;
+  let semuaKomik = [];
+
+  fetch('data/komik.json')
+    .then(res => res.json())
+    .then(data => {
+      semuaKomik = data.sort((a, b) => new Date(b.lastUpdate) - new Date(a.lastUpdate));
+      tampilkanHalaman(halamanSaatIni);
+    });
+
+  function tampilkanHalaman(halaman) {
+    const container = document.getElementById('komikList');
+    const pagination = document.getElementById('pagination');
+    container.innerHTML = "";
+    pagination.innerHTML = "";
+
+    const mulai = (halaman - 1) * komikPerHalaman;
+    const akhir = mulai + komikPerHalaman;
+    const komikHalaman = semuaKomik.slice(mulai, akhir);
+
+    const ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
+
+    komikHalaman.forEach(komik => {
+      const comicRatings = ratings[komik.id] || [];
+      let avgRating = 0;
+      if (comicRatings.length > 0) {
+        avgRating = comicRatings.reduce((a, b) => a + b.rating, 0) / comicRatings.length;
+      }
+
+      const starsDisplay = Array.from({ length: 5 })
+        .map((_, i) => `<span class="star ${i < Math.round(avgRating) ? 'filled' : ''}">★</span>`)
+        .join("");
+
+      const el = document.createElement('div');
+      el.className = 'komik-item';
+      el.innerHTML = `
+        <a href="komik.html?id=${komik.id}">
+          <img src="${komik.cover}" alt="${komik.judul}" />
+          <h3>${komik.judul}</h3>
+          <p class="rating ${avgRating === 0 ? 'empty' : ''}">${starsDisplay}</p>
+          <p class="chapter-info">${komik.chapter[komik.chapter.length - 1]?.judul || "Belum ada chapter"}</p>
+          <p class="update-info">${waktuRelatif(komik.lastUpdate)}</p>
+        </a>
+      `;
+      container.appendChild(el);
+    });
+
+    buatNavigasi(halaman);
+  }
+
+  function buatNavigasi(halaman) {
+    const pagination = document.getElementById('pagination');
+    const totalHalaman = Math.ceil(semuaKomik.length / komikPerHalaman);
+
+    const prev = document.createElement('button');
+    prev.innerText = "Sebelumnya";
+    prev.disabled = halaman === 1;
+    prev.onclick = () => { if (halamanSaatIni > 1) { halamanSaatIni--; tampilkanHalaman(halamanSaatIni); window.scrollTo(0, 0); } };
+    pagination.appendChild(prev);
+
+    if (totalHalaman <= 10) {
+      for (let i = 1; i <= totalHalaman; i++) buatTombolHalaman(i, halaman);
+    } else {
+      if (halaman <= 9) {
+        for (let i = 1; i <= 9; i++) buatTombolHalaman(i, halaman);
+        buatEllipsis();
+        buatTombolHalaman(totalHalaman, halaman);
+      } else if (halaman > 9 && halaman < totalHalaman) {
+        for (let i = 1; i <= 9; i++) buatTombolHalaman(i, halaman);
+        buatEllipsis();
+        buatTombolHalaman(totalHalaman, halaman);
+      }
+    }
+
+    const next = document.createElement('button');
+    next.innerText = "Berikutnya";
+    next.disabled = halaman === totalHalaman;
+    next.onclick = () => { if (halamanSaatIni < totalHalaman) { halamanSaatIni++; tampilkanHalaman(halamanSaatIni); window.scrollTo(0, 0); } };
+    pagination.appendChild(next);
+
+    function buatTombolHalaman(no, aktif) {
+      const btn = document.createElement('button');
+      btn.innerText = no;
+      if (no === aktif) btn.className = "active";
+      btn.onclick = () => { halamanSaatIni = no; tampilkanHalaman(halamanSaatIni); window.scrollTo(0, 0); };
+      pagination.appendChild(btn);
+    }
+
+    function buatEllipsis() {
+      const span = document.createElement('span');
+      span.innerText = "...";
+      span.className = "ellipsis";
+      pagination.appendChild(span);
+    }
+  }
+
+  function waktuRelatif(tanggalISO) {
+    const waktu = new Date(tanggalISO);
+    const sekarang = new Date();
+    const selisih = Math.floor((sekarang - waktu) / 1000);
+
+    if (selisih < 60) return `${selisih} detik yang lalu`;
+    if (selisih < 3600) return `${Math.floor(selisih / 60)} menit yang lalu`;
+    if (selisih < 86400) return `${Math.floor(selisih / 3600)} jam yang lalu`;
+    if (selisih < 604800) return `${Math.floor(selisih / 86400)} hari yang lalu`;
+
+    return waktu.toLocaleDateString("id-ID", { year: "numeric", month: "short", day: "numeric" });
+  }
+
+  // === IKLAN ===
+  function muatIklan() {
+    fetch('data/iklan.json')
+      .then(res => res.json())
+      .then(iklanData => {
+        const sekarang = new Date();
+        buatSlotIklan('iklan-beranda-atas', 'atas', iklanData, sekarang);
+        buatSlotIklan('iklan-beranda-bawah', 'bawah', iklanData, sekarang);
+      });
+  }
+
+  function buatSlotIklan(containerId, prefix, iklanData, sekarang) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+
+  for (let slotNo = 1; slotNo <= 3; slotNo++) {
+    const iklan = iklanData.find(i =>
+      i.id === `beranda-${prefix}-iklan-${slotNo}` &&
+      new Date(i.mulai) <= sekarang &&
+      new Date(i.berakhir) >= sekarang
+    );
+
+    const slot = document.createElement("div");
+    slot.className = "slot-iklan";
+    slot.dataset.tag = `${prefix}-iklan-${slotNo}`;
+
+    if (iklan) {
+      slot.innerHTML = `
+        <a href="${iklan.link}" target="_blank">
+          <img src="${iklan.gambar}" alt="Iklan ${slotNo}" 
+               onerror="tampilkanTeksIklan(this, '${slot.dataset.tag}')">
+        </a>
+      `;
+    } else {
+      slot.innerHTML = `
+        <div class="iklan-placeholder">
+          <p>Tag: ${slot.dataset.tag}</p>
+          <p>Hubungi <a href="mailto:domainmodesage@gmail.com">domainmodesage@gmail.com</a> untuk memesan tempat ini</p>
+        </div>
+      `;
+    }
+
+    container.appendChild(slot);
+  }
+}
+
+  function tampilkanTeksIklan(imgElement, tag) {
+    const parent = imgElement.closest(".slot-iklan");
+    parent.innerHTML = `
+      <div class="iklan-placeholder">
+        <p>Tag: ${tag}</p>
+        <p>Hubungi <a href="mailto:domainmodesage@gmail.com">domainmodesage@gmail.com</a> untuk memesan tempat ini</p>
+      </div>
+    `;
+  }
+
+  // Panggil saat halaman load
+  muatIklan();
+  </script>
+</body>
+</html>

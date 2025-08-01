@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Daftar / Login - Domain Sage Mode</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/auth.css">
+</head>
+<body>
+<header>
+  <div class="logo-header">
+    <img src="assets/logo.png" alt="Logo" class="logo-bulat" />
+    <h1 class="judul-logo">DOMAIN SAGE MODE</h1>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="cari.html">Cari</a>
+  <a href="donasi.html">Dukung Kami</a>
+  <a href="bookmark&history.html">Bookmark & History</a>
+  <a href="register.html" class="active">Akun</a>
+</nav>
+
+<main class="auth-container">
+  <!-- FORM LOGIN/REGISTER -->
+  <div id="authForm" class="form-box" style="display:none;">
+    <h2 id="formTitle">Buat Akun</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="authButton" onclick="register()">Daftar</button>
+    <p id="toggleForm">
+      Sudah punya akun? <a href="#" onclick="showLogin()">Login</a>
+    </p>
+  </div>
+
+  <!-- DETAIL AKUN -->
+  <div id="accountDetail" class="form-box" style="display:none;">
+    <div class="profile-container">
+      <img id="profileImage" class="profile-img" src="assets/default-avatar.png" alt="Foto Profil">
+      <input type="file" id="uploadPhoto" accept="image/*" style="display:none;" onchange="updatePhoto(event)" />
+      <button onclick="document.getElementById('uploadPhoto').click()">Ganti Foto</button>
+    </div>
+
+    <h2>Detail Akun</h2>
+    <p><strong>Nama:</strong> <span id="detailUsername"></span></p>
+    <p><strong>Email:</strong> <span id="detailEmail"></span></p>
+    <p><strong>ID:</strong> <span id="detailId"></span></p>
+
+    <button onclick="showEdit()">Edit Akun</button>
+    <button onclick="window.location.href='chat.html'">Obrolan</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- EDIT AKUN -->
+  <div id="editForm" class="form-box" style="display:none;">
+    <h2>Edit Akun</h2>
+    <input type="text" id="editUsername" placeholder="Username" />
+    <input type="email" id="editEmail" placeholder="Email" />
+    <input type="password" id="editPassword" placeholder="Password Baru (opsional)" />
+    <button onclick="updateAccount()">Simpan Perubahan</button>
+    <button onclick="cancelEdit()">Batal</button>
+  </div>
+</main>
+  <footer>
+    <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
+  </footer>
+
+<script>
+  function getUsers() {
+    return JSON.parse(localStorage.getItem("users") || "[]");
+  }
+
+  function saveUsers(users) {
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+
+  function getCurrentUser() {
+    return JSON.parse(localStorage.getItem("currentUser") || "null");
+  }
+
+  function generateUserId() {
+    const users = getUsers();
+    if (users.length === 0) return "0001";
+    const maxId = Math.max(...users.map(u => parseInt(u.id, 10)));
+    return String(maxId + 1).padStart(4, "0");
+  }
+
+  function register() {
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!username || !email || !password) {
+      alert("Semua field wajib diisi!");
+      return;
+    }
+
+    let users = getUsers();
+    if (users.find(u => u.email === email)) {
+      alert("Email sudah terdaftar!");
+      return;
+    }
+
+    const id = generateUserId();
+    const newUser = { username, email, password, photo: "assets/default-avatar.png", id, friends: [] };
+    users.push(newUser);
+    saveUsers(users);
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+    alert("Pendaftaran berhasil!");
+    loadPage();
+  }
+
+  function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (!user) {
+      alert("Email atau password salah!");
+      return;
+    }
+
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    alert("Login berhasil!");
+    loadPage();
+  }
+
+  function showLogin() {
+    document.getElementById("formTitle").textContent = "Login";
+    document.getElementById("authButton").textContent = "Login";
+    document.getElementById("authButton").onclick = login;
+    document.getElementById("username").style.display = "none";
+    document.getElementById("toggleForm").innerHTML = `Belum punya akun? <a href="#" onclick="showRegister()">Daftar</a>`;
+  }
+
+  function showRegister() {
+    document.getElementById("formTitle").textContent = "Buat Akun";
+    document.getElementById("authButton").textContent = "Daftar";
+    document.getElementById("authButton").onclick = register;
+    document.getElementById("username").style.display = "block";
+    document.getElementById("toggleForm").innerHTML = `Sudah punya akun? <a href="#" onclick="showLogin()">Login</a>`;
+  }
+
+  function logout() {
+    localStorage.removeItem("currentUser");
+    loadPage();
+  }
+
+  function showEdit() {
+    const user = getCurrentUser();
+    document.getElementById("editUsername").value = user.username;
+    document.getElementById("editEmail").value = user.email;
+    document.getElementById("editPassword").value = "";
+
+    document.getElementById("accountDetail").style.display = "none";
+    document.getElementById("editForm").style.display = "block";
+  }
+
+  function cancelEdit() {
+    document.getElementById("editForm").style.display = "none";
+    document.getElementById("accountDetail").style.display = "block";
+  }
+
+  function updateAccount() {
+    const user = getCurrentUser();
+    const newUsername = document.getElementById("editUsername").value.trim();
+    const newEmail = document.getElementById("editEmail").value.trim();
+    const newPassword = document.getElementById("editPassword").value.trim();
+
+    if (!newUsername || !newEmail) {
+      alert("Nama dan email tidak boleh kosong!");
+      return;
+    }
+
+    let users = getUsers();
+    const index = users.findIndex(u => u.email === user.email);
+
+    users[index].username = newUsername;
+    users[index].email = newEmail;
+    if (newPassword) users[index].password = newPassword;
+
+    saveUsers(users);
+    localStorage.setItem("currentUser", JSON.stringify(users[index]));
+    alert("Akun berhasil diperbarui!");
+    loadPage();
+  }
+
+  function updatePhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const base64 = e.target.result;
+      const user = getCurrentUser();
+      let users = getUsers();
+
+      const index = users.findIndex(u => u.email === user.email);
+      users[index].photo = base64;
+      saveUsers(users);
+      localStorage.setItem("currentUser", JSON.stringify(users[index]));
+
+      document.getElementById("profileImage").src = base64;
+      alert("Foto profil berhasil diubah!");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function loadPage() {
+    const currentUser = getCurrentUser();
+
+    document.getElementById("authForm").style.display = currentUser ? "none" : "block";
+    document.getElementById("accountDetail").style.display = currentUser ? "block" : "none";
+    document.getElementById("editForm").style.display = "none";
+
+    if (currentUser) {
+      document.getElementById("detailUsername").textContent = currentUser.username;
+      document.getElementById("detailEmail").textContent = currentUser.email;
+      document.getElementById("detailId").textContent = currentUser.id;
+      document.getElementById("profileImage").src = currentUser.photo || "assets/default-avatar.png";
+    } else {
+      showRegister();
+    }
+  }
+
+  loadPage();
+</script>
+</body>
+</html>

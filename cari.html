@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Cari Komik | Domain Sage Mode</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/cari.css">
+</head>
+<body>
+<header>
+  <div class="logo-header">
+    <img src="assets/logo.png" alt="Logo" class="logo-bulat" />
+    <h1 class="judul-logo">DOMAIN SAGE MODE</h1>
+  </div>
+</header>
+  
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="cari.html">Cari</a>
+  <a href="donasi.html">Dukung Kami</a>
+  <a href="bookmark&history.html">Bookmark & History</a>
+  <a href="register.html">Akun</a>
+</nav>
+
+<!-- Filter Pencarian -->
+<section class="search-container">
+  <input type="text" id="searchInput" placeholder="Masukkan judul komik..." />
+
+  <select id="formatFilter">
+    <option value="">Semua Format</option>
+    <option value="Manga">Manga</option>
+    <option value="Manhwa">Manhwa</option>
+    <option value="Manhua">Manhua</option>
+  </select>
+
+  <!-- Multi-genre filter -->
+  <div class="genre-filter">
+    <label><input type="checkbox" value="Aksi"> Aksi</label>
+    <label><input type="checkbox" value="Petualangan"> Petualangan</label>
+    <label><input type="checkbox" value="Fantasi"> Fantasi</label>
+    <label><input type="checkbox" value="Drama"> Drama</label>
+    <label><input type="checkbox" value="Harem"> Harem</label>
+    <label><input type="checkbox" value="Romance">Romance</label>
+   <label><input type="checkbox" value="Ecchi">Ecchi</label>
+  </div>
+</section>
+
+<main id="searchResults">
+  <!-- Hasil pencarian muncul di sini -->
+</main>
+
+<footer>
+  <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
+</footer>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const formatFilter = document.getElementById("formatFilter");
+  const genreCheckboxes = document.querySelectorAll(".genre-filter input[type='checkbox']");
+  const searchResults = document.getElementById("searchResults");
+
+  let allComics = [];
+  let currentPage = 1;
+  const perPage = 40;
+
+  fetch('data/komik.json')
+    .then(res => res.json())
+    .then(data => {
+      // Urutkan berdasarkan lastUpdate terbaru
+      allComics = data.sort((a, b) => new Date(b.lastUpdate) - new Date(a.lastUpdate));
+      filterComics();
+    });
+
+  function displayComics(comics) {
+    searchResults.innerHTML = "";
+    const ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
+
+    if (comics.length === 0) {
+      searchResults.innerHTML = "<p style='text-align:center;'>Tidak ada hasil ditemukan.</p>";
+      document.getElementById("pagination").innerHTML = "";
+      return;
+    }
+
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+    const paginatedComics = comics.slice(start, end);
+
+    paginatedComics.forEach(k => {
+      const card = document.createElement("div");
+      card.className = "komik-card";
+
+      const chapterTerbaru = k.chapter?.length
+        ? k.chapter[k.chapter.length - 1].judul
+        : "Belum ada chapter";
+
+      // Ambil rating rata-rata
+      const comicRatings = ratings[k.id] || [];
+      let avgRating = 0;
+      if (comicRatings.length > 0) {
+        avgRating = comicRatings.reduce((a, b) => a + b.rating, 0) / comicRatings.length;
+      }
+
+      // Buat bintang rating
+      let starsHTML = "";
+      for (let i = 1; i <= 5; i++) {
+        starsHTML += `<span class="star ${i <= avgRating ? "filled" : ""}">★</span>`;
+      }
+
+      card.innerHTML = `
+        <a href="komik.html?id=${k.id}">
+          <img src="${k.cover}" alt="${k.judul}">
+          <h3>${k.judul}</h3>
+          <p class="chapter-info">${chapterTerbaru}</p>
+          <div class="rating">
+            ${starsHTML}
+            <small>${avgRating > 0 ? avgRating.toFixed(1) : "Belum ada rating"}</small>
+          </div>
+        </a>
+      `;
+      searchResults.appendChild(card);
+    });
+
+    generatePagination(comics.length);
+  }
+
+  function generatePagination(totalComics) {
+    const pagination = document.getElementById("pagination") || createPaginationContainer();
+    pagination.innerHTML = "";
+
+    const totalPages = Math.ceil(totalComics / perPage);
+
+    // Tombol Sebelumnya
+    const prevBtn = document.createElement("button");
+    prevBtn.textContent = "Sebelumnya";
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.onclick = () => { currentPage--; filterComics(); };
+    pagination.appendChild(prevBtn);
+
+    // Nomor Halaman
+    for (let i = 1; i <= totalPages; i++) {
+      const pageBtn = document.createElement("button");
+      pageBtn.textContent = i;
+      pageBtn.className = i === currentPage ? "active" : "";
+      pageBtn.onclick = () => { currentPage = i; filterComics(); };
+      pagination.appendChild(pageBtn);
+    }
+
+    // Tombol Selanjutnya
+    const nextBtn = document.createElement("button");
+    nextBtn.textContent = "Selanjutnya";
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.onclick = () => { currentPage++; filterComics(); };
+    pagination.appendChild(nextBtn);
+  }
+
+  function createPaginationContainer() {
+    const pagination = document.createElement("div");
+    pagination.id = "pagination";
+    pagination.className = "pagination";
+    searchResults.insertAdjacentElement("afterend", pagination);
+    return pagination;
+  }
+
+  function filterComics() {
+    const keyword = searchInput.value.toLowerCase();
+    const format = formatFilter.value;
+    const selectedGenres = Array.from(genreCheckboxes)
+                                .filter(cb => cb.checked)
+                                .map(cb => cb.value);
+
+    const filtered = allComics.filter(k => {
+      const matchTitle = k.judul.toLowerCase().includes(keyword);
+      const matchFormat = !format || (k.format && k.format === format);
+      const matchGenre = selectedGenres.length === 0 || selectedGenres.every(g => k.genre.includes(g));
+      return matchTitle && matchFormat && matchGenre;
+    });
+
+    const totalPages = Math.ceil(filtered.length / perPage);
+    if (currentPage > totalPages) currentPage = totalPages || 1; // reset halaman jika filter berubah
+
+    displayComics(filtered);
+  }
+
+  searchInput.addEventListener("input", () => { currentPage = 1; filterComics(); });
+  formatFilter.addEventListener("change", () => { currentPage = 1; filterComics(); });
+  genreCheckboxes.forEach(cb => cb.addEventListener("change", () => { currentPage = 1; filterComics(); }));
+</script>
+</body>
+</html>

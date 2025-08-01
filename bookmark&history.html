@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>Bookmark & History - Domain Sage Mode</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/bookmark&history.css">
+</head>
+<body>
+  <header>
+    <div class="logo-header">
+      <img src="assets/logo.png" alt="Logo" class="logo-bulat" />
+      <h1 class="judul-logo">DOMAIN SAGE MODE</h1>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="cari.html">Cari</a>
+    <a href="donasi.html">Dukung Kami</a>
+    <a href="bookmark&history.html" class="active">Bookmark & History</a>
+    <a href="register.html">Akun</a>
+  </nav>
+
+  <div class="tabs">
+    <button id="btnBookmark" class="active" onclick="showTab('bookmark')">Bookmark</button>
+    <button id="btnHistory" onclick="showTab('history')">History</button>
+  </div>
+
+  <main>
+    <div id="bookmarkTab" class="list-komik"></div>
+    <div id="historyTab" class="list-komik" style="display:none;"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
+  </footer>
+
+  <script>
+    function showTab(tab) {
+      document.getElementById("bookmarkTab").style.display = (tab === 'bookmark') ? 'grid' : 'none';
+      document.getElementById("historyTab").style.display = (tab === 'history') ? 'grid' : 'none';
+      document.getElementById("btnBookmark").classList.toggle("active", tab === 'bookmark');
+      document.getElementById("btnHistory").classList.toggle("active", tab === 'history');
+    }
+
+    // Ambil data bookmark & history
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    const history = JSON.parse(localStorage.getItem("history") || "[]");
+
+    const renderList = (data, containerId) => {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      if (data.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>Belum ada data.</p>";
+        return;
+      }
+
+      data.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "komik-item";
+
+        const link = containerId === "bookmarkTab"
+          ? `komik.html?id=${item.id}`
+          : `baca.html?id=${item.id}&ch=${item.chapter}`;
+
+        div.innerHTML = `
+          <a href="${link}">
+            <img src="${item.cover}" alt="${item.judul}">
+            <h3>${item.judul}</h3>
+            <p>${item.chapterJudul || ''}</p>
+          </a>
+        `;
+        container.appendChild(div);
+      });
+    };
+
+    renderList(bookmarks, "bookmarkTab");
+    renderList(history, "historyTab");
+  </script>
+</body>
+</html>
