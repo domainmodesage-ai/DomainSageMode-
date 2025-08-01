@@ -1,0 +1,252 @@
+/* === Domain Sage Mode CSS === */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #111;
+  color: #f0f0f0;
+  padding-top: 40px; /* Sesuaikan tinggi header */
+  padding-bottom: 70px; /* Supaya konten tidak ketutup navbar */
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid #b00020;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.logo-bulat {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.judul-logo {
+  font-size: 0.85rem;
+  color: #ff0000;
+  margin: 0;
+  line-height: 1;
+}
+
+/* UCAPAN SELAMAT DATANG */
+.welcome-message {
+  text-align: center;
+  background-color: #111;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #b00020;
+}
+
+.welcome-message span {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* NAVIGASI BAWAH */
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #111;
+  border-top: 2px solid #b00020;
+  padding: 0.3rem 0;
+  z-index: 999;
+}
+
+nav a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 0.4rem;
+  margin: 0 4px;
+  background: #222;
+  border: 1px solid #b00020;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  background: #b00020;
+  color: #fff;
+}
+
+/* GRID KOMIK */
+.komik-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 150px)); /* ✅ Ukuran tetap */
+  gap: 1rem;
+  justify-content: center; /* ✅ Supaya rata tengah */
+  padding: 1rem;
+}
+
+.komik-item {
+  background-color: #222;
+  border: 1px solid #b00020;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.komik-item img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.komik-item h3 {
+  font-size: 0.85rem;
+  margin: 8px 0 4px;
+  min-height: 2.2em;
+  line-height: 1.1em;
+  color: #fff;
+}
+
+.komik-item p {
+  margin: 4px 0;
+  font-size: 0.75rem;
+  color: #ccc;
+  min-height: 1.2em;
+  line-height: 1.2em;
+}
+
+.chapter-info {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #ff4444;
+}
+
+.update-info {
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+/* IKLAN */
+.iklan-box {
+  display: flex;
+  flex-direction: column; 
+  gap: 0.3rem;
+  margin: 0.5rem 0;
+  padding: 0;              /* ✅ Hapus padding supaya tidak ada ruang */
+  background-color: transparent; /* ✅ Hilangkan background hitam */
+  border-radius: 0;        /* ✅ Hilangkan sudut membulat */
+}
+
+.slot-iklan {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  cursor: pointer;
+  position: relative;
+}
+
+.slot-iklan img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;       /* ✅ Hilangkan rounded supaya banner terlihat penuh */
+  display: block;
+}
+
+.slot-iklan:hover img {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+/* Placeholder jika tidak ada iklan */
+.iklan-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #2a2a2a;
+  border: 1px dashed #444;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 0.6rem;  /* ✅ Lebih kecil */
+  text-align: center;
+  line-height: 0;   /* ✅ Supaya tulisan lebih rapat */
+  padding: 0 4px;
+}
+
+.iklan-placeholder strong {
+  color: #ff4444;
+  display: block;
+  font-size: 0rem; /* ✅ Ukuran tag lebih kecil */
+  margin-bottom: 0px; /* ✅ Biar jarak dengan teks hubungi lebih dekat */
+}
+
+.iklan-placeholder a {
+  color: #ff4444;
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+
+.iklan-placeholder a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #000;
+  border-top: 2px solid #b00020;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* ✅ Hindari scroll horizontal */
+body {
+  overflow-x: hidden;
+}
+
+/* ✅ Pastikan semua elemen tidak keluar dari lebar layar */
+* {
+  box-sizing: border-box;
+}
+
+/* ✅ Perbaiki slot iklan */
+.slot-iklan {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden; /* mencegah banner keluar saat hover scale */
+}
+
+/* ✅ Batasi efek scale agar tidak membuat halaman melebar */
+.slot-iklan img:hover {
+  transform: scale(1.01); /* kecilkan sedikit efeknya */
+}
