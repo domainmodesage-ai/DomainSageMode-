@@ -1,0 +1,17 @@
+# Abaikan file sistem
+.DS_Store
+Thumbs.db
+
+# Abaikan file editor
+.vscode/
+.idea/
+
+# Abaikan file backup
+*.bak
+*.tmp
+
+# Abaikan folder node (kalau pakai npm atau build tools)
+node_modules/
+
+# Abaikan folder dist (kalau ada hasil build)
+dist/
