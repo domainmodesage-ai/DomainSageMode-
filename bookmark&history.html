@@ -4,8 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
   <title>Bookmark & History - Domain Sage Mode</title>
+  <!-- Favicon -->
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="stylesheet" href="assets/bookmark&history.css">
+  <style>
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .tabs button {
+      padding: 8px 16px;
+      border: none;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 0 4px;
+    }
+
+    .tabs button.active {
+      background: #f44336;
+    }
+
+    .list-komik {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+      padding: 10px;
+    }
+
+    .komik-item {
+      background: #222;
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: center;
+      padding: 6px;
+      position: relative;
+    }
+
+    .komik-item img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .komik-item h3 {
+      font-size: 14px;
+      margin: 4px 0;
+      color: white;
+    }
+
+    .komik-item p {
+      font-size: 12px;
+      color: #ccc;
+      margin: 2px 0;
+    }
+
+    .remove-btn {
+      background: #f44336;
+      border: none;
+      color: white;
+      padding: 2px 6px;
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .rating {
+      font-size: 12px;
+      color: gold;
+    }
+
+    .rating .star {
+      font-size: 10px;
+      color: #777;
+    }
+
+    .rating .star.filled {
+      color: gold;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -38,6 +123,9 @@
   </footer>
 
   <script>
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    const history = JSON.parse(localStorage.getItem("history") || "[]");
+
     function showTab(tab) {
       document.getElementById("bookmarkTab").style.display = (tab === 'bookmark') ? 'grid' : 'none';
       document.getElementById("historyTab").style.display = (tab === 'history') ? 'grid' : 'none';
@@ -45,39 +133,80 @@
       document.getElementById("btnHistory").classList.toggle("active", tab === 'history');
     }
 
-    // Ambil data bookmark & history
-    const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-    const history = JSON.parse(localStorage.getItem("history") || "[]");
+    // Ambil semua data komik untuk info tambahan
+    fetch("data/komik.json")
+      .then(res => res.json())
+      .then(komikData => {
+        renderList(bookmarks, "bookmarkTab", komikData);
+        renderList(history, "historyTab", komikData);
+      });
 
-    const renderList = (data, containerId) => {
+    function renderList(data, containerId, komikData) {
       const container = document.getElementById(containerId);
       container.innerHTML = "";
+      const ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
+
       if (data.length === 0) {
-        container.innerHTML = "<p style='text-align:center;'>Belum ada data.</p>";
+        container.innerHTML = "<p style='text-align:center; grid-column: 1 / -1;'>Belum ada data.</p>";
         return;
       }
 
       data.forEach(item => {
+        const komik = komikData.find(k => k.id === item.id);
+        if (!komik) return;
+
+        const comicRatings = ratings[komik.id] || [];
+        let avgRating = 0;
+        if (comicRatings.length > 0) {
+          avgRating = comicRatings.reduce((a, b) => a + b.rating, 0) / comicRatings.length;
+        }
+
+        let starsHTML = "";
+        for (let i = 1; i <= 5; i++) {
+          starsHTML += `<span class="star ${i <= avgRating ? "filled" : ""}">★</span>`;
+        }
+
         const div = document.createElement("div");
         div.className = "komik-item";
 
         const link = containerId === "bookmarkTab"
-          ? `komik.html?id=${item.id}`
-          : `baca.html?id=${item.id}&ch=${item.chapter}`;
+          ? `komik.html?id=${komik.id}`
+          : `baca.html?id=${komik.id}&ch=${item.chapter}`;
 
         div.innerHTML = `
           <a href="${link}">
-            <img src="${item.cover}" alt="${item.judul}">
-            <h3>${item.judul}</h3>
+            <img src="${komik.cover}" alt="${komik.judul}">
+            <h3>${komik.judul}</h3>
             <p>${item.chapterJudul || ''}</p>
+            <p>Update: ${komik.lastUpdate || '-'}</p>
+            <div class="rating">${starsHTML} <small>${avgRating > 0 ? avgRating.toFixed(1) : "Belum ada rating"}</small></div>
           </a>
+          <button class="remove-btn">✖</button>
         `;
+
+        div.querySelector(".remove-btn").addEventListener("click", (e) => {
+          e.preventDefault();
+          removeItem(containerId, item.id);
+        });
+
         container.appendChild(div);
       });
-    };
+    }
 
-    renderList(bookmarks, "bookmarkTab");
-    renderList(history, "historyTab");
+    function removeItem(type, id) {
+      if (type === "bookmarkTab") {
+        let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+        bookmarks = bookmarks.filter(b => b.id !== id);
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        location.reload();
+      } else {
+        let history = JSON.parse(localStorage.getItem("history") || "[]");
+        history = history.filter(h => h.id !== id);
+        localStorage.setItem("history", JSON.stringify(history));
+        location.reload();
+      }
+    }
   </script>
+  <script src="assets/seo.js"></script>
 </body>
 </html>

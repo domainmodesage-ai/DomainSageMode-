@@ -4,8 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
   <title>Detail Komik - Domain Sage Mode</title>
+  <!-- Favicon -->
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="stylesheet" href="assets/komik.css">
+  <script src="assets/seo.js"></script>
 </head>
 <body>
 <header>
@@ -76,8 +81,7 @@
 </main>
 
 <footer>
-  <p>&copy; 2025 Domain Sage Mode. 
-  Semua hak cipta komik adalah milik aslinya.</p>
+  <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
 </footer>
 
 <script>
@@ -102,55 +106,41 @@
   }
 
   fetch('data/komik.json')
-  .then(res => res.json())
-  .then(data => {
-    const komik = data.find(k => k.id === komikId);
-    console.log("Comic ID:", komikId, "Found comic:", komik);
+    .then(res => res.json())
+    .then(data => {
+      const komik = data.find(k => k.id === komikId);
 
-    if (!komik) {
-      console.error("Komik tidak ditemukan!");
-      return;
-    }
+      if (!komik) {
+        document.querySelector("main").innerHTML = "<p>Komik tidak ditemukan.</p>";
+        return;
+      }
+
+      // SEO Otomatis
+      if (typeof setDynamicSEO === "function") {
+        setDynamicSEO(komik);
+      }
 
       coverUrl = komik.cover;
       document.getElementById('komikCover').src = komik.cover;
       document.getElementById('komikJudul').textContent = komik.judul;
       document.getElementById('komikFormat').textContent = komik.format;
-      document.getElementById('komikGenre').textContent = komik.genre;
+      document.getElementById('komikGenre').textContent = Array.isArray(komik.genre) ? komik.genre.join(", ") : komik.genre;
       document.getElementById('komikAuthor').textContent = komik.author;
       document.getElementById('komikArtist').textContent = komik.artist;
-      document.getElementById('komikStatus').textContent = komik.status;
-      document.getElementById('komikSinopsis').textContent = komik.sinopsis;
+      document.getElementById('komikStatus').textContent = komik.status || "Tidak diketahui";
+      document.getElementById('komikSinopsis').textContent = komik.sinopsis || "Belum ada sinopsis.";
 
-      semuaChapter = komik.chapter;
-      tampilkanChapter(3);
-      if (semuaChapter.length > 3) {
-        document.getElementById('lihatSemuaContainer').style.display = 'block';
-      }
-
-      const bookmarkBtn = document.getElementById('bookmarkBtn');
-      let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-      const sudahBookmark = bookmarks.some(b => b.id === komikId);
-
-      if (sudahBookmark) {
-        bookmarkBtn.textContent = "✅ Sudah di Bookmark";
-      }
-
-      bookmarkBtn.addEventListener("click", () => {
-        let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
-        const index = bookmarks.findIndex(b => b.id === komikId);
-
-        if (index === -1) {
-          bookmarks.push({ id: komik.id, judul: komik.judul, cover: komik.cover });
-          localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-          bookmarkBtn.textContent = "✅ Sudah di Bookmark";
-        } else {
-          bookmarks.splice(index, 1);
-          localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-          bookmarkBtn.textContent = "🔖 Tambah ke Bookmark";
+      semuaChapter = komik.chapter || [];
+      if (semuaChapter.length > 0) {
+        tampilkanChapter(3);
+        if (semuaChapter.length > 3) {
+          document.getElementById('lihatSemuaContainer').style.display = 'block';
         }
-      });
+      } else {
+        document.getElementById("chapterList").innerHTML = "<p>Belum ada chapter.</p>";
+      }
 
+      initBookmark(komik);
       loadRating();
       loadComments();
     });
@@ -193,6 +183,31 @@
     }
   }
 
+  function initBookmark(komik) {
+    const bookmarkBtn = document.getElementById('bookmarkBtn');
+    let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    const sudahBookmark = bookmarks.some(b => b.id === komikId);
+
+    if (sudahBookmark) {
+      bookmarkBtn.textContent = "✅ Sudah di Bookmark";
+    }
+
+    bookmarkBtn.addEventListener("click", () => {
+      let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+      const index = bookmarks.findIndex(b => b.id === komikId);
+
+      if (index === -1) {
+        bookmarks.push({ id: komik.id, judul: komik.judul, cover: komik.cover });
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        bookmarkBtn.textContent = "✅ Sudah di Bookmark";
+      } else {
+        bookmarks.splice(index, 1);
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        bookmarkBtn.textContent = "🔖 Tambah ke Bookmark";
+      }
+    });
+  }
+
   function coverError() {
     document.getElementById('komikCover').style.display = 'none';
     document.getElementById('coverPlaceholder').style.display = 'flex';
@@ -219,33 +234,31 @@
     if (currentUser) {
       const userRating = comicRatings.find(r => r.userId === currentUser.id);
       highlightStars(userRating ? userRating.rating : 0);
+
+      ratingStars.forEach(star => {
+        star.addEventListener("click", () => {
+          const value = parseInt(star.dataset.value);
+          let ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
+          if (!ratings[komikId]) ratings[komikId] = [];
+
+          const index = ratings[komikId].findIndex(r => r.userId === currentUser.id);
+          if (index === -1) {
+            ratings[komikId].push({ userId: currentUser.id, rating: value });
+          } else {
+            ratings[komikId][index].rating = value;
+          }
+
+          localStorage.setItem("ratings", JSON.stringify(ratings));
+          highlightStars(value);
+          loadRating();
+        });
+      });
     }
   }
 
   function highlightStars(rating) {
     ratingStars.forEach(star => {
       star.classList.toggle("active", star.dataset.value <= rating);
-    });
-  }
-
-  if (currentUser) {
-    ratingStars.forEach(star => {
-      star.addEventListener("click", () => {
-        const value = parseInt(star.dataset.value);
-        let ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
-        if (!ratings[komikId]) ratings[komikId] = [];
-
-        const index = ratings[komikId].findIndex(r => r.userId === currentUser.id);
-        if (index === -1) {
-          ratings[komikId].push({ userId: currentUser.id, rating: value });
-        } else {
-          ratings[komikId][index].rating = value;
-        }
-
-        localStorage.setItem("ratings", JSON.stringify(ratings));
-        highlightStars(value);
-        loadRating();
-      });
     });
   }
 

@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=5, user-scalable=yes">
-  <title>Domain Sage Mode</title>
+
+<!-- Favicon -->
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+
+  <!-- SEO Dinamis -->
+  <script src="assets/seo.js"></script>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="stylesheet" href="assets/index.css">
 </head>
@@ -28,9 +36,9 @@
   <main>
     <h2>Update Terbaru</h2>
     <div class="komik-grid" id="komikList"></div>
-      <!-- IKLAN BAWAH -->
-  <section class="iklan-box" id="iklan-beranda-bawah"></section>
-  
+    
+    <!-- IKLAN BAWAH -->
+    <section class="iklan-box" id="iklan-beranda-bawah"></section>
     <div id="pagination" class="pagination"></div>
   </main>
 
@@ -49,12 +57,17 @@
   </footer>
 
   <script>
+  // === SEO OTOMATIS UNTUK BERANDA ===
+  if (typeof setDefaultSEO === "function") {
+    setDefaultSEO();
+  }
+
   // === UCAPAN SELAMAT DATANG ===
   const welcomeEl = document.getElementById("welcomeMessage");
   const lastVisit = localStorage.getItem("lastVisit");
   const now = new Date();
   if (lastVisit) {
-    welcomeEl.innerHTML = `<p>Selamat datang kembali di <span>Domain Sage Mode</span>! Senang melihatmu lagi.</span>Tempat baca komik bahasa indonesia terupdate</p>`;
+    welcomeEl.innerHTML = `<p>Selamat datang kembali di <span>Domain Sage Mode</span>! Senang melihatmu lagi. Tempat baca komik bahasa Indonesia terupdate.</p>`;
   } else {
     welcomeEl.innerHTML = `<p>Selamat datang di <span>Domain Sage Mode</span>! Baca komik favoritmu dengan nyaman.</p>`;
   }
@@ -183,39 +196,39 @@
   }
 
   function buatSlotIklan(containerId, prefix, iklanData, sekarang) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
 
-  for (let slotNo = 1; slotNo <= 3; slotNo++) {
-    const iklan = iklanData.find(i =>
-      i.id === `beranda-${prefix}-iklan-${slotNo}` &&
-      new Date(i.mulai) <= sekarang &&
-      new Date(i.berakhir) >= sekarang
-    );
+    for (let slotNo = 1; slotNo <= 3; slotNo++) {
+      const iklan = iklanData.find(i =>
+        i.id === `beranda-${prefix}-iklan-${slotNo}` &&
+        new Date(i.mulai) <= sekarang &&
+        new Date(i.berakhir) >= sekarang
+      );
 
-    const slot = document.createElement("div");
-    slot.className = "slot-iklan";
-    slot.dataset.tag = `${prefix}-iklan-${slotNo}`;
+      const slot = document.createElement("div");
+      slot.className = "slot-iklan";
+      slot.dataset.tag = `${prefix}-iklan-${slotNo}`;
 
-    if (iklan) {
-      slot.innerHTML = `
-        <a href="${iklan.link}" target="_blank">
-          <img src="${iklan.gambar}" alt="Iklan ${slotNo}" 
-               onerror="tampilkanTeksIklan(this, '${slot.dataset.tag}')">
-        </a>
-      `;
-    } else {
-      slot.innerHTML = `
-        <div class="iklan-placeholder">
-          <p>Tag: ${slot.dataset.tag}</p>
-          <p>Hubungi <a href="mailto:domainmodesage@gmail.com">domainmodesage@gmail.com</a> untuk memesan tempat ini</p>
-        </div>
-      `;
+      if (iklan) {
+        slot.innerHTML = `
+          <a href="${iklan.link}" target="_blank">
+            <img src="${iklan.gambar}" alt="Iklan ${slotNo}" 
+                 onerror="tampilkanTeksIklan(this, '${slot.dataset.tag}')">
+          </a>
+        `;
+      } else {
+        slot.innerHTML = `
+          <div class="iklan-placeholder">
+            <p>Tag: ${slot.dataset.tag}</p>
+            <p>Hubungi <a href="mailto:domainmodesage@gmail.com">domainmodesage@gmail.com</a> untuk memesan tempat ini</p>
+          </div>
+        `;
+      }
+
+      container.appendChild(slot);
     }
-
-    container.appendChild(slot);
   }
-}
 
   function tampilkanTeksIklan(imgElement, tag) {
     const parent = imgElement.closest(".slot-iklan");
@@ -227,7 +240,6 @@
     `;
   }
 
-  // Panggil saat halaman load
   muatIklan();
   </script>
 </body>

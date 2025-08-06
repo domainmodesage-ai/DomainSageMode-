@@ -4,64 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
   <title>Baca Komik - Domain Sage Mode</title>
+  <!-- Favicon -->
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="stylesheet" href="assets/baca.css">
+  <script src="assets/seo.js"></script>
   <style>
-  .image-container {
-    position: relative;
-    text-align: center;
-    margin: 0; /* Hilangkan jarak antar gambar */
-  }
+    .image-container {
+      position: relative;
+      text-align: center;
+      margin: 0;
+    }
 
-  .lazy-loading {
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-  }
+    .lazy-loading {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+    }
 
-  .progress-bar {
-    width: 80%;
-    height: 4px;
-    background: #333;
-    border-radius: 2px;
-    overflow: hidden;
-    margin: 4px 0 0;
-    display: none;
-  }
+    .progress-bar {
+      width: 80%;
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 4px 0 0;
+      display: none;
+    }
 
-  .progress-bar-fill {
-    width: 0%;
-    height: 100%;
-    background: #f44336;
-    transition: width 0.2s;
-  }
+    .progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: #f44336;
+      transition: width 0.2s;
+    }
 
-  .reload-btn {
-    background: #f44336;
-    color: #fff;
-    border: none;
-    padding: 4px 8px;
-    margin: 4px 0 0;
-    border-radius: 4px;
-    cursor: pointer;
-    display: none;
-    font-size: 12px;
-  }
+    .reload-btn {
+      background: #f44336;
+      color: #fff;
+      border: none;
+      padding: 4px 8px;
+      margin: 4px 0 0;
+      border-radius: 4px;
+      cursor: pointer;
+      display: none;
+      font-size: 12px;
+    }
 
-  .placeholder {
-    color: #888;
-    font-size: 12px;
-    margin-bottom: 4px;
-  }
+    .placeholder {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
 
-  img {
-    width: 100%;
-    display: block;
-  }
-</style>
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .chapter-dropdown {
+      margin: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -89,162 +98,187 @@
   </footer>
 
   <script>
-  const params = new URLSearchParams(window.location.search);
-  const komikId = params.get('id');
-  const chIndex = parseInt(params.get('ch')) || 0;
+    const params = new URLSearchParams(window.location.search);
+    const komikId = params.get('id');
+    const chIndex = parseInt(params.get('ch')) || 0;
 
-  fetch('data/komik.json')
-    .then(res => res.json())
-    .then(data => {
-      const komik = data.find(k => k.id === komikId);
-      if (!komik || !komik.chapter[chIndex]) return;
+    fetch('data/komik.json')
+      .then(res => res.json())
+      .then(data => {
+        const komik = data.find(k => k.id === komikId);
+        const bacaArea = document.getElementById('bacaArea');
 
-      const folder = komik.chapter[chIndex].folder;
-      const totalHalaman = komik.chapter[chIndex].total;
-      const bacaArea = document.getElementById('bacaArea');
-
-      // Dropdown daftar chapter
-      let dropdown = `
-        <div class="chapter-dropdown">
-          <select id="chapterSelect">
-            ${komik.chapter.map((c, i) =>
-              `<option value="${i}" ${i === chIndex ? "selected" : ""}>${c.judul}</option>`
-            ).join("")}
-          </select>
-        </div>
-      `;
-
-      // Placeholder gambar
-      let images = '';
-      for (let i = 1; i <= totalHalaman; i++) {
-        images += `
-          <div class="image-container lazy-loading" id="container-${i}" style="margin-bottom: 20px;">
-            <div class="placeholder" id="placeholder-${i}">Memuat...</div>
-            <div class="progress-bar" id="bar-${i}"><div class="progress-bar-fill" id="progress-${i}"></div></div>
-            <button class="reload-btn" id="reload-${i}" style="display:none;" onclick="retryImage(${i}, '${folder}/${i}')">🔄 Muat Ulang</button>
-            <img data-src="${folder}/${i}" alt="Halaman ${i}" id="img-${i}" style="display:none;" />
-          </div>
-        `;
-      }
-
-      bacaArea.innerHTML = `<h2>${komik.judul} - ${komik.chapter[chIndex].judul}</h2>${dropdown}${images}`;
-
-      const formats = ["jpg", "jpeg", "png", "gif", "webp", "avif"];
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target.querySelector('img');
-            const index = img.id.split('-')[1];
-            loadImageWithProgress(index, img.dataset.src, formats);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: "200px" });
-
-      for (let i = 1; i <= totalHalaman; i++) {
-        const container = document.getElementById(`container-${i}`);
-        observer.observe(container);
-      }
-
-      // Fungsi memuat gambar dengan progress
-      function loadImageWithProgress(i, basePath, formats, index = 0) {
-        if (index >= formats.length) {
-          imageError(i);
+        if (!komik) {
+          bacaArea.innerHTML = "<p>❌ Komik tidak ditemukan.</p>";
           return;
         }
 
-        const img = document.getElementById(`img-${i}`);
-        const placeholder = document.getElementById(`placeholder-${i}`);
-        const progressBar = document.getElementById(`bar-${i}`);
-        const progressFill = document.getElementById(`progress-${i}`);
-        const reloadBtn = document.getElementById(`reload-${i}`);
-        const container = document.getElementById(`container-${i}`);
-        const src = `${basePath}.${formats[index]}`;
+        if (!komik.chapter || !komik.chapter[chIndex]) {
+          bacaArea.innerHTML = "<p>❌ Chapter tidak ditemukan.</p>";
+          return;
+        }
 
-        reloadBtn.style.display = "none";
-        progressBar.style.display = "none";
-        progressFill.style.width = "0%";
-        placeholder.style.display = "block";
-        placeholder.textContent = `Memuat gambar ${i}...`;
+// SEO otomatis untuk chapter
+if (typeof setChapterSEO === "function") {
+  setChapterSEO(komik, komik.chapter[chIndex]);
+}
 
-        const startTime = Date.now();
+        const chapter = komik.chapter[chIndex];
+        const folder = chapter.folder;
+        const totalHalaman = chapter.total;
 
-        fetch(src)
-          .then(res => {
-            if (!res.ok) throw new Error();
-            const contentLength = res.headers.get("content-length");
-            if (!contentLength) return res.blob();
+        // Ambil history
+        let history = JSON.parse(localStorage.getItem("history") || "[]");
+        let existing = history.find(h => h.id === komikId);
 
-            const reader = res.body.getReader();
-            const total = parseInt(contentLength, 10);
-            let loaded = 0;
-            const chunks = [];
+        let lastPage = 1;
+        if (existing && existing.ch === chIndex && existing.lastPage) {
+          lastPage = existing.lastPage;
+        }
 
-            return new Response(
-              new ReadableStream({
-                async pull(controller) {
-                  const { done, value } = await reader.read();
-                  if (done) {
-                    controller.close();
-                    return;
-                  }
+        if (existing) {
+          existing.ch = chIndex;
+          existing.lastRead = new Date().toISOString();
+          existing.lastPage = lastPage;
+        } else {
+          history.push({
+            id: komikId,
+            judul: komik.judul,
+            cover: komik.cover,
+            ch: chIndex,
+            lastPage: 1,
+            lastRead: new Date().toISOString()
+          });
+        }
+        localStorage.setItem("history", JSON.stringify(history));
 
-                  if (Date.now() - startTime > 300) {
-                    progressBar.style.display = "block";
-                  }
+        // Dropdown chapter
+        let dropdown = `
+          <div class="chapter-dropdown">
+            <label for="chapterSelect">Pilih Chapter:</label>
+            <select id="chapterSelect">
+              ${komik.chapter.map((c, i) =>
+                `<option value="${i}" ${i === chIndex ? "selected" : ""}>${c.judul}</option>`
+              ).join("")}
+            </select>
+          </div>
+        `;
 
-                  chunks.push(value);
-                  loaded += value.length;
-                  if (progressBar.style.display === "block") {
-                    progressFill.style.width = `${(loaded / total) * 100}%`;
-                  }
-                  controller.enqueue(value);
-                }
-              })
-            ).blob();
-          })
-          .then(blob => {
-            img.src = URL.createObjectURL(blob);
-            img.onload = () => {
-              placeholder.style.display = "none";
-              progressBar.style.display = "none";
-              reloadBtn.style.display = "none";
-              img.style.display = "block";
-              container.style.marginBottom = "0"; // Hilangkan jarak setelah gambar berhasil dimuat
-            };
-          })
-          .catch(() => loadImageWithProgress(i, basePath, formats, index + 1));
-      }
+        // Placeholder gambar
+        let images = '';
+        for (let i = 1; i <= totalHalaman; i++) {
+          images += `
+            <div class="image-container lazy-loading" id="container-${i}">
+              <div class="placeholder" id="placeholder-${i}">Memuat...</div>
+              <div class="progress-bar" id="bar-${i}"><div class="progress-bar-fill" id="progress-${i}"></div></div>
+              <button class="reload-btn" id="reload-${i}" onclick="retryImage(${i}, '${folder}/${i}')">🔄 Muat Ulang</button>
+              <img data-src="${folder}/${i}" alt="Halaman ${i}" id="img-${i}" style="display:none;" />
+            </div>
+          `;
+        }
 
-      // Jika gambar gagal dimuat
-      function imageError(i) {
-        const placeholder = document.getElementById(`placeholder-${i}`);
-        const reloadBtn = document.getElementById(`reload-${i}`);
-        placeholder.textContent = "Gagal memuat gambar.";
-        reloadBtn.style.display = "block";
-      }
+        bacaArea.innerHTML = `<h2>${komik.judul} - ${chapter.judul}</h2>${dropdown}${images}`;
 
-      // Fungsi muat ulang manual
-      window.retryImage = function (i, path) {
-        const formats = ["jpg", "jpeg", "png", "gif", "webp", "avif"];
-        loadImageWithProgress(i, path, formats);
-      };
+        const formats = ["jpg", "jpeg", "png", "webp"];
 
-      // Navigasi chapter
-      const nav = document.getElementById('navChapter');
-      nav.innerHTML = `
-        <div class="nav-buttons">
-          <a href="${chIndex > 0 ? `baca.html?id=${komikId}&ch=${chIndex - 1}` : '#'}" class="${chIndex > 0 ? '' : 'disabled'}">&laquo; Chapter Sebelumnya</a>
-          <a href="komik.html?id=${komikId}">Daftar Chapter</a>
-          <a href="${chIndex < komik.chapter.length - 1 ? `baca.html?id=${komikId}&ch=${chIndex + 1}` : '#'}" class="${chIndex < komik.chapter.length - 1 ? '' : 'disabled'}">Chapter Berikutnya &raquo;</a>
-        </div>
-      `;
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target.querySelector('img');
+              const index = img.id.split('-')[1];
+              loadImageWithProgress(index, img.dataset.src, formats);
 
-      // Event dropdown
-      document.getElementById('chapterSelect').addEventListener('change', function () {
-        window.location.href = `baca.html?id=${komikId}&ch=${this.value}`;
+              let hist = JSON.parse(localStorage.getItem("history") || "[]");
+              let current = hist.find(h => h.id === komikId);
+              if (current) {
+                current.lastPage = parseInt(index);
+                localStorage.setItem("history", JSON.stringify(hist));
+              }
+
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "200px" });
+
+        for (let i = 1; i <= totalHalaman; i++) {
+          observer.observe(document.getElementById(`container-${i}`));
+        }
+
+        function loadImageWithProgress(i, basePath, formats, index = 0) {
+          if (index >= formats.length) {
+            imageError(i);
+            return;
+          }
+          const img = document.getElementById(`img-${i}`);
+          const placeholder = document.getElementById(`placeholder-${i}`);
+          const progressBar = document.getElementById(`bar-${i}`);
+          const progressFill = document.getElementById(`progress-${i}`);
+          const reloadBtn = document.getElementById(`reload-${i}`);
+          const src = `${basePath}.${formats[index]}`;
+
+          reloadBtn.style.display = "none";
+          progressBar.style.display = "none";
+          placeholder.textContent = `Memuat gambar ${i}...`;
+
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", src, true);
+          xhr.responseType = "blob";
+
+          xhr.onprogress = (e) => {
+            if (e.lengthComputable) {
+              progressBar.style.display = "block";
+              progressFill.style.width = `${(e.loaded / e.total) * 100}%`;
+            }
+          };
+
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              img.src = URL.createObjectURL(xhr.response);
+              img.onload = () => {
+                placeholder.style.display = "none";
+                progressBar.style.display = "none";
+                img.style.display = "block";
+              };
+            } else {
+              loadImageWithProgress(i, basePath, formats, index + 1);
+            }
+          };
+
+          xhr.onerror = () => loadImageWithProgress(i, basePath, formats, index + 1);
+          xhr.send();
+        }
+
+        function imageError(i) {
+          const placeholder = document.getElementById(`placeholder-${i}`);
+          const reloadBtn = document.getElementById(`reload-${i}`);
+          placeholder.textContent = "❌ Gagal memuat gambar.";
+          reloadBtn.style.display = "block";
+        }
+
+        window.retryImage = function (i, path) {
+          loadImageWithProgress(i, path, formats);
+        };
+
+        const nav = document.getElementById('navChapter');
+        nav.innerHTML = `
+          <div class="nav-buttons">
+            <a href="${chIndex > 0 ? `baca.html?id=${komikId}&ch=${chIndex - 1}` : '#'}" class="${chIndex > 0 ? '' : 'disabled'}">&laquo; Chapter Sebelumnya</a>
+            <a href="komik.html?id=${komikId}">Daftar Chapter</a>
+            <a href="${chIndex < komik.chapter.length - 1 ? `baca.html?id=${komikId}&ch=${chIndex + 1}` : '#'}" class="${chIndex < komik.chapter.length - 1 ? '' : 'disabled'}">Chapter Berikutnya &raquo;</a>
+          </div>
+        `;
+
+        document.getElementById('chapterSelect').addEventListener('change', function () {
+          window.location.href = `baca.html?id=${komikId}&ch=${this.value}`;
+        });
+
+        if (lastPage > 1) {
+          setTimeout(() => {
+            const target = document.getElementById(`container-${lastPage}`);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }, 500);
+        }
       });
-    });
-</script>
+  </script>
 </body>
 </html>
