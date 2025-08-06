@@ -2,12 +2,16 @@ name: Update Sitemap
 
 on:
   push:
+    branches:
+      - main
     paths:
-      - 'data/komik.json'
+      - "data/komik.json"
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -25,8 +29,8 @@ jobs:
 
       - name: Commit and push sitemap
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
           git add sitemap.xml
-          git commit -m "Update sitemap [skip ci]" || echo "No changes to commit"
+          git commit -m "Update sitemap.xml"
           git push
