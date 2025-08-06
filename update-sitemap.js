@@ -27,7 +27,7 @@ sitemap += `
 // Halaman lainnya
 const staticPages = [
   { loc: `${domain}/cari.html`, changefreq: 'weekly', priority: '0.8' },
-  { loc: `${domain}/bookmark&history.html`, changefreq: 'weekly', priority: '0.7' },
+  { loc: `${domain}/bookmark&amp;history.html`, changefreq: 'weekly', priority: '0.7' },
   { loc: `${domain}/donasi.html`, changefreq: 'monthly', priority: '0.6' },
   { loc: `${domain}/register.html`, changefreq: 'monthly', priority: '0.5' }
 ];
