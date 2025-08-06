@@ -7,6 +7,11 @@ const sitemapPath = path.join(__dirname, 'sitemap.xml');
 
 const today = new Date().toISOString().split('T')[0];
 
+// Fungsi untuk escape karakter spesial di URL
+function escapeXML(url) {
+  return url.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 // Baca file komik.json
 const komikData = JSON.parse(fs.readFileSync(komikPath, 'utf-8'));
 
@@ -24,10 +29,10 @@ sitemap += `
   </url>
 `;
 
-// Halaman lainnya
+// Halaman statis
 const staticPages = [
   { loc: `${domain}/cari.html`, changefreq: 'weekly', priority: '0.8' },
-  { loc: `${domain}/bookmark&amp;history.html`, changefreq: 'weekly', priority: '0.7' },
+  { loc: `${domain}/bookmark&history.html`, changefreq: 'weekly', priority: '0.7' },
   { loc: `${domain}/donasi.html`, changefreq: 'monthly', priority: '0.6' },
   { loc: `${domain}/register.html`, changefreq: 'monthly', priority: '0.5' }
 ];
@@ -35,7 +40,7 @@ const staticPages = [
 staticPages.forEach(page => {
   sitemap += `
   <url>
-    <loc>${page.loc}</loc>
+    <loc>${escapeXML(page.loc)}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
@@ -47,7 +52,7 @@ staticPages.forEach(page => {
 komikData.forEach(komik => {
   sitemap += `
   <url>
-    <loc>${domain}/komik.html?id=${komik.id}</loc>
+    <loc>${escapeXML(`${domain}/komik.html?id=${komik.id}`)}</loc>
     <lastmod>${komik.lastUpdate || today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
