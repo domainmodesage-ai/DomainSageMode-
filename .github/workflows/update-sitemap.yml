@@ -8,6 +8,9 @@ on:
       - "data/komik.json"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,49 +25,15 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install || true
+        run: npm install || echo "No dependencies"
 
       - name: Generate sitemap
         run: node update-sitemap.js
 
       - name: Commit and push sitemap
-        id: commit
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-
-          if [[ -n "$(git status --porcelain sitemap.xml)" ]]; then
-            git add sitemap.xml
-            git commit -m "🔄 Update sitemap.xml"
-            git push
-            echo "updated=true" >> $GITHUB_ENV
-          else
-            echo "updated=false" >> $GITHUB_ENV
-          fi
-
-      - name: Notify result
-        run: |
-          if [ "${{ env.updated }}" == "true" ]; then
-            echo "✅ Sitemap berhasil diperbarui dan di-push ke repository."
-          else
-            echo "ℹ️ Tidak ada perubahan pada sitemap.xml."
-          fi
-
-      - name: Ping Google for sitemap update
-        if: env.updated == 'true'
-        run: |
-          curl "https://www.google.com/ping?sitemap=https://domainsagemode.xyz/sitemap.xml"
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          git add sitemap.xml
+          git diff --cached --quiet || git commit -m "Update sitemap.xml"
+          git push
