@@ -13,7 +13,7 @@
     "status": "Ongoing",
     "sinopsis": "Seorang Presiden Wanita? Kalau begitu bantu aku mengelola tempat penampungan. Seorang Prajurit Pasukan Khusus Wanita? Kalau begitu datang dan jadilah kapten pengawal. Di ujung dunia, gelar seperti CEO, wanita cantik, sekretaris, ahli listrik, programmer, dan semua profesi lainnya tidak lagi berguna. Jangan takut untuk datang ke sistem penampungan bawah tanah saya- selama Anda adalah orang dan manusia yang berbakat!.",
     "cover": "assets1/komik/have/cover.jpg",
-    "lastUpdate": "2025-08-05T12:42:09.777Z",
+    "lastUpdate": "2025-08-07T16:30:33.237Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -35,9 +35,54 @@
         "total": 14
       },
       {
+        "judul": "Chapter 31",
+        "folder": "assets1/komik/have/31",
+        "total": 14
+      },
+      {
+        "judul": "Chapter 32",
+        "folder": "assets1/komik/have/32",
+        "total": 14
+      },
+      {
         "judul": "chapter 33",
         "folder": "assets1/komik/have/33",
         "total": 13
+      },
+      {
+        "judul": "chapter 34",
+        "folder": "assets1/komik/have/34",
+        "total": 17
+      },
+      {
+        "judul": "chapter 35",
+        "folder": "assets1/komik/have/35",
+        "total": 19
+      },
+      {
+        "judul": "chapter 36",
+        "folder": "assets1/komik/have/36",
+        "total": 16
+      },
+      {
+        "judul": "chapter 37",
+        "folder": "assets1/komik/have/37",
+        "total": 15
+      },
+      {
+        "judul": "chapter 38",
+        "folder": "assets1/komik/have/38",
+        "total": 17
+      },
+      {
+        "judul": "chapter 39",
+        "folder": "assets1/komik/have/39",
+        "total": 15
+      },
+      {
+        "judul": "chapter 40",
+        "folder": "assets1/komik/have/40",
+        "total": 11
       }
     ]
   },
