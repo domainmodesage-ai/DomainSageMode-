@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Halaman Utama -->
   <url>
     <loc>https://domainsagemode.xyz/</loc>
     <lastmod>2025-08-07</lastmod>
@@ -8,67 +9,72 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Halaman Pencarian -->
   <url>
     <loc>https://domainsagemode.xyz/cari.html</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
+  <!-- Halaman Bookmark & History -->
   <url>
-    <loc>https://domainsagemode.xyz/bookmark&amp;history.html</loc>
+    <loc>https://domainsagemode.xyz/bookmark-history.html</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
+  <!-- Halaman Donasi -->
   <url>
     <loc>https://domainsagemode.xyz/donasi.html</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- Halaman Akun -->
   <url>
     <loc>https://domainsagemode.xyz/register.html</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
+  <!-- Halaman Komik -->
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=have</loc>
-    <lastmod>2025-08-05T12:42:09.777Z</lastmod>
+    <lastmod>2025-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=30.isekaiharem</loc>
-    <lastmod>2025-08-05T12:42:33.018Z</lastmod>
+    <lastmod>2025-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=coliseum</loc>
-    <lastmod>2025-08-05T16:40:30.377Z</lastmod>
+    <lastmod>2025-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=roku</loc>
-    <lastmod>2025-08-06T00:52:57.785Z</lastmod>
+    <lastmod>2025-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=kankin</loc>
-    <lastmod>2025-08-06T13:44:11.131Z</lastmod>
+    <lastmod>2025-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
 </urlset>
