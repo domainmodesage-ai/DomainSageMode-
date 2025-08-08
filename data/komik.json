@@ -13,7 +13,7 @@
     "status": "Ongoing",
     "sinopsis": "Seorang Presiden Wanita? Kalau begitu bantu aku mengelola tempat penampungan. Seorang Prajurit Pasukan Khusus Wanita? Kalau begitu datang dan jadilah kapten pengawal. Di ujung dunia, gelar seperti CEO, wanita cantik, sekretaris, ahli listrik, programmer, dan semua profesi lainnya tidak lagi berguna. Jangan takut untuk datang ke sistem penampungan bawah tanah saya- selama Anda adalah orang dan manusia yang berbakat!.",
     "cover": "assets1/komik/have/cover.jpg",
-    "lastUpdate": "2025-08-07T16:30:33.237Z",
+    "lastUpdate": "2025-08-08T01:20:33.237Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -83,6 +83,11 @@
         "judul": "chapter 40",
         "folder": "assets1/komik/have/40",
         "total": 11
+      },
+      {
+        "judul": "chapter 51",
+        "folder": "assets1/komik/have/51",
+        "total": 14
       }
     ]
   },
