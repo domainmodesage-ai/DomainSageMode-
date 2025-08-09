@@ -2,8 +2,7 @@ name: Update Komik dari Google Drive
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # jalan setiap 5 menit
-  # workflow_dispatch: # dinonaktifkan, biar pure otomatis
+    - cron: "*/5 * * * *"
 
 jobs:
   sync-komik:
@@ -16,96 +15,87 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq curl unzip
+          sudo apt-get install -y jq curl
 
-      - name: Ambil daftar file Google Drive (Debug)
+      - name: Update komik.json otomatis dengan debug
+        env:
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
         run: |
-          echo "🔍 Mengambil daftar file di folder utama Google Drive..."
-          curl -s "https://www.googleapis.com/drive/v3/files?q='${{ secrets.DRIVE_FOLDER_ID }}'+in+parents&key=${{ secrets.DRIVE_API_KEY }}&fields=files(id,name,mimeType)" \
-          -o drive_files.json
-          cat drive_files.json
+          set -euo pipefail
 
-      - name: Download & Sinkronisasi Komik (Debug)
-        run: |
-          mkdir -p assets1/komik
+          KOMIK_JSON_PATH="data/komik.json"
+          TMP_JSON="tmp_komik.json"
 
-          get_folder_content () {
-            local FOLDER_ID=$1
-            local DEST_PATH=$2
+          echo "Mulai update komik.json dari Google Drive folder ID: $GDRIVE_FOLDER_ID"
 
-            echo "📂 Mengambil isi folder: $DEST_PATH"
-            curl -s "https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents&key=${{ secrets.DRIVE_API_KEY }}&fields=files(id,name,mimeType)" \
-            -o temp_list.json
-            cat temp_list.json
-
-            for row in $(jq -c '.files[]' temp_list.json); do
-              FILE_ID=$(echo $row | jq -r '.id')
-              FILE_NAME=$(echo $row | jq -r '.name')
-              FILE_TYPE=$(echo $row | jq -r '.mimeType')
-
-              if [[ "$FILE_TYPE" == "application/vnd.google-apps.folder" ]]; then
-                echo "📁 Folder ditemukan: $FILE_NAME"
-                mkdir -p "$DEST_PATH/$FILE_NAME"
-                get_folder_content "$FILE_ID" "$DEST_PATH/$FILE_NAME"
-              else
-                echo "📄 File ditemukan: $FILE_NAME (download)"
-                curl -L "https://drive.google.com/uc?export=download&id=${FILE_ID}" -o "$DEST_PATH/$FILE_NAME"
-              fi
-            done
+          # Fungsi untuk list folder di Google Drive (folder komik)
+          list_folders() {
+            curl -s "https://www.googleapis.com/drive/v3/files?q='$GDRIVE_FOLDER_ID'+in+parents+and+mimeType='application/vnd.google-apps.folder'&key=$GDRIVE_API_KEY&fields=files(id,name)"
           }
 
-          get_folder_content "${{ secrets.DRIVE_FOLDER_ID }}" "assets1/komik"
+          # Fungsi untuk list chapter (folder) dalam folder komik
+          list_chapters() {
+            local parent_id=$1
+            curl -s "https://www.googleapis.com/drive/v3/files?q='$parent_id'+in+parents+and+mimeType='application/vnd.google-apps.folder'&key=$GDRIVE_API_KEY&fields=files(id,name)"
+          }
 
-      - name: Update komik.json otomatis (Debug)
-        run: |
-          echo "🛠 Memperbarui komik.json..."
-          NOW=$(date -u +"%Y-%m-%dT%H:%M:%S.000Z")
+          # Fungsi untuk hitung gambar dalam chapter
+          count_images() {
+            local chapter_id=$1
+            # hanya hitung file gambar, abaikan folder
+            curl -s "https://www.googleapis.com/drive/v3/files?q='$chapter_id'+in+parents+and mimeType contains 'image/'&key=$GDRIVE_API_KEY&fields=files(id,name)" | jq '.files | length'
+          }
 
-          for komik_folder in assets1/komik/*; do
-            komik_id=$(basename "$komik_folder")
-            echo "🔹 Memproses komik: $komik_id"
+          # Mulai proses update
+          cp "$KOMIK_JSON_PATH" "$TMP_JSON"
 
-            if [[ ! -f "$komik_folder/cover.jpg" ]]; then
-              echo "⚠️ Komik $komik_id tidak punya cover.jpg"
+          folders_json=$(list_folders)
+          echo "Folder komik terbaca:"
+          echo "$folders_json" | jq -r '.files[].name'
+
+          # Loop tiap komik dalam komik.json
+          komik_ids=$(jq -r '.[].id' "$TMP_JSON")
+
+          for komik_id in $komik_ids; do
+            echo "Proses komik ID: $komik_id"
+
+            # Cari folder komik di Google Drive berdasarkan nama komik_id
+            folder_info=$(echo "$folders_json" | jq -r --arg NAME "$komik_id" '.files[] | select(.name == $NAME)')
+            if [ -z "$folder_info" ]; then
+              echo "⚠️ Folder komik $komik_id tidak ditemukan di Google Drive. Lewati."
               continue
             fi
 
-            chapters_json=$(jq -n '[]')
-            for chapter_folder in "$komik_folder"/*/; do
-              chapter_name=$(basename "$chapter_folder")
-              total_images=$(ls "$chapter_folder" | wc -l)
-              echo "   ➡️ Chapter: $chapter_name ($total_images gambar)"
-              chapters_json=$(echo "$chapters_json" | jq \
-                --arg judul "chapter $chapter_name" \
-                --arg folder "assets1/komik/$komik_id/$chapter_name" \
-                --argjson total $total_images \
-                '. += [{"judul": $judul, "folder": $folder, "total": $total}]')
+            folder_id=$(echo "$folder_info" | jq -r '.id')
+            echo "Folder ID Google Drive: $folder_id"
+
+            chapters_json=$(list_chapters "$folder_id")
+            echo "Daftar chapter di komik $komik_id:"
+            echo "$chapters_json" | jq -r '.files[].name'
+
+            total_images=0
+
+            # Hitung semua gambar dari tiap chapter
+            chapter_names=$(echo "$chapters_json" | jq -r '.files[].name')
+            for chapter_name in $chapter_names; do
+              chapter_id=$(echo "$chapters_json" | jq -r --arg NAME "$chapter_name" '.files[] | select(.name == $NAME) | .id')
+              count=$(count_images "$chapter_id")
+              echo "  Chapter $chapter_name: $count gambar"
+              total_images=$((total_images + count))
             done
 
-            if jq -e --arg id "$komik_id" '.[] | select(.id == $id)' komik.json > /dev/null; then
-              echo "   🔄 Update data komik di komik.json"
-              tmp=$(mktemp)
-              jq --arg id "$komik_id" \
-                 --argjson ch "$chapters_json" \
-                 --arg now "$NOW" \
-                 'map(if .id == $id then .chapter = $ch | .lastUpdate = $now else . end)' \
-                 komik.json > "$tmp" && mv "$tmp" komik.json
-            else
-              echo "   🆕 Menambahkan komik baru ke komik.json"
-              tmp=$(mktemp)
-              jq --arg id "$komik_id" \
-                 --arg cover "assets1/komik/$komik_id/cover.jpg" \
-                 --arg now "$NOW" \
-                 --argjson ch "$chapters_json" \
-                 '. += [{"id": $id, "judul": $id, "format": "Manga", "genre": [], "author": "", "artist": "", "status": "Ongoing", "sinopsis": "", "cover": $cover, "lastUpdate": $now, "chapter": $ch}]' \
-                 komik.json > "$tmp" && mv "$tmp" komik.json
-            fi
+            echo "Total gambar untuk komik $komik_id: $total_images"
+
+            # Update jumlah gambar di komik.json (field jumlah_gambar)
+            jq --arg id "$komik_id" --argjson total "$total_images" \
+              'map(if .id == $id then .jumlah_gambar = $total else . end)' \
+              "$TMP_JSON" > tmp_update.json && mv tmp_update.json "$TMP_JSON"
+
+            echo "Update komik.json selesai untuk komik $komik_id"
           done
 
-      - name: Commit & Push perubahan
-        run: |
-          git config --global user.name "Domain Sage Mode Bot"
-          git config --global user.email "bot@domainsagemode.xyz"
-          git add .
-          git commit -m "Update komik otomatis dari Google Drive" || echo "Tidak ada perubahan"
-          git push
+          # Replace file asli dengan yang sudah diperbarui
+          mv "$TMP_JSON" "$KOMIK_JSON_PATH"
+
+          echo "Selesai update komik.json otomatis dengan log debug."
