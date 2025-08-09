@@ -1,0 +1,133 @@
+name: Update Komik dari Google Drive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # setiap 10 menit
+  workflow_dispatch:
+
+jobs:
+  sync-komik:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq curl wget
+
+      - name: Sinkronisasi komik
+        env:
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          GDRIVE_API_KEY: ${{ secrets.GDRIVE_API_KEY }}
+        run: |
+          set -euo pipefail
+          
+          KOMIK_JSON_PATH="data/komik.json"
+          TMP_JSON="tmp_komik.json"
+          ASSETS_DIR="assets1/komik"
+
+          mkdir -p "$ASSETS_DIR"
+          cp "$KOMIK_JSON_PATH" "$TMP_JSON"
+
+          # Fungsi ambil list folder komik
+          list_folders() {
+            curl -s "https://www.googleapis.com/drive/v3/files?q='$GDRIVE_FOLDER_ID'+in+parents+and+mimeType='application/vnd.google-apps.folder'&key=$GDRIVE_API_KEY&fields=files(id,name)"
+          }
+
+          # Fungsi ambil isi folder
+          list_files() {
+            local parent_id=$1
+            curl -s "https://www.googleapis.com/drive/v3/files?q='$parent_id'+in+parents&key=$GDRIVE_API_KEY&fields=files(id,name,mimeType)"
+          }
+
+          echo "📂 Ambil daftar komik di Drive..."
+          folders_json=$(list_folders)
+
+          for row in $(echo "$folders_json" | jq -r '.files[] | @base64'); do
+            _jq() { echo ${row} | base64 --decode | jq -r ${1}; }
+            komik_id=$(_jq '.name')
+            komik_drive_id=$(_jq '.id')
+
+            echo "🔍 Proses komik: $komik_id"
+
+            # Cek apakah komik ini sudah ada di komik.json
+            if jq -e --arg id "$komik_id" '.[] | select(.id == $id)' "$TMP_JSON" >/dev/null; then
+              echo "✅ Komik $komik_id sudah terdaftar."
+              komik_baru=false
+            else
+              echo "🆕 Komik $komik_id belum terdaftar. Tambahkan..."
+              komik_baru=true
+            fi
+
+            # Ambil isi folder komik di Drive
+            komik_files=$(list_files "$komik_drive_id")
+
+            # Kalau komik baru → ambil komik.json & cover
+            if [ "$komik_baru" = true ]; then
+              komik_json_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="komik.json") | .id')
+              cover_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="cover.jpg") | .id')
+
+              if [ -n "$komik_json_id" ] && [ "$komik_json_id" != "null" ]; then
+                wget -q "https://drive.google.com/uc?export=download&id=$komik_json_id" -O tmp_komik.json
+                # Tambahkan ke komik.json utama
+                jq -s '.[0] + [.[1]]' "$TMP_JSON" tmp_komik.json > tmp_merge.json && mv tmp_merge.json "$TMP_JSON"
+                rm tmp_komik.json
+                echo "📄 Data komik.json ditambahkan."
+              else
+                echo "⚠️ komik.json tidak ditemukan di Drive. Lewati komik ini."
+                continue
+              fi
+
+              # Download cover.jpg wajib .jpg
+              if [ -n "$cover_id" ] && [ "$cover_id" != "null" ]; then
+                mkdir -p "$ASSETS_DIR/$komik_id"
+                wget -q "https://drive.google.com/uc?export=download&id=$cover_id" -O "$ASSETS_DIR/$komik_id/cover.jpg"
+                echo "🖼 Cover diunduh."
+              fi
+            else
+              # Komik lama → cek kalau ada cover baru
+              cover_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="cover.jpg") | .id')
+              if [ -n "$cover_id" ] && [ "$cover_id" != "null" ]; then
+                mkdir -p "$ASSETS_DIR/$komik_id"
+                wget -q "https://drive.google.com/uc?export=download&id=$cover_id" -O "$ASSETS_DIR/$komik_id/cover.jpg"
+                echo "🖼 Cover diperbarui."
+              fi
+            fi
+
+            # Ambil semua folder chapter
+            chapters=$(echo "$komik_files" | jq -r '.files[] | select(.mimeType=="application/vnd.google-apps.folder") | @base64')
+            for chap in $chapters; do
+              _cjq() { echo ${chap} | base64 --decode | jq -r ${1}; }
+              chap_name=$(_cjq '.name')
+              chap_id=$(_cjq '.id')
+
+              echo "📖 Proses chapter: $chap_name"
+              chapter_dir="$ASSETS_DIR/$komik_id/$chap_name"
+              mkdir -p "$chapter_dir"
+
+              # Ambil semua gambar (semua format)
+              images=$(list_files "$chap_id" | jq -r '.files[] | select(.mimeType | startswith("image/")) | @base64')
+              for img in $images; do
+                _ijq() { echo ${img} | base64 --decode | jq -r ${1}; }
+                img_id=$(_ijq '.id')
+                img_name=$(_ijq '.name') # Nama asli
+
+                wget -q "https://drive.google.com/uc?export=download&id=$img_id" -O "$chapter_dir/$img_name"
+              done
+              echo "✅ Chapter $chap_name selesai."
+            done
+          done
+
+          # Simpan perubahan komik.json
+          mv "$TMP_JSON" "$KOMIK_JSON_PATH"
+
+      - name: Commit & Push perubahan
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Update komik & chapter dari Google Drive" || echo "Tidak ada perubahan"
+          git push
