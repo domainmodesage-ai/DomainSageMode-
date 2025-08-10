@@ -2,7 +2,7 @@ name: Update Komik dari Google Drive
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # setiap 10 menit
+    - cron: "*/1 * * * *" # setiap 1 menit
   workflow_dispatch:
 
 permissions:
@@ -37,24 +37,20 @@ jobs:
           mkdir -p "$ASSETS_DIR"
           cp "$KOMIK_JSON_PATH" "$TMP_JSON"
 
-          list_folders() {
-            curl -s "https://www.googleapis.com/drive/v3/files?q='$GDRIVE_FOLDER_ID'+in+parents+and+mimeType='application/vnd.google-apps.folder'&key=$GDRIVE_API_KEY&fields=files(id,name)"
-          }
-
           list_files() {
             local parent_id=$1
             curl -s "https://www.googleapis.com/drive/v3/files?q='$parent_id'+in+parents&key=$GDRIVE_API_KEY&fields=files(id,name,mimeType)"
           }
 
-          echo "📂 Ambil daftar komik di Drive..."
-          folders_json=$(list_folders)
-
-          folder_count=$(echo "$folders_json" | jq '.files | length')
-          echo "📦 Ditemukan $folder_count folder komik"
+          echo "📂 Ambil daftar isi folder utama..."
+          root_contents=$(list_files "$GDRIVE_FOLDER_ID")
+          folder_count=$(echo "$root_contents" | jq '[.files[] | select(.mimeType=="application/vnd.google-apps.folder")] | length')
 
           if [ "$folder_count" -eq 0 ]; then
-            echo "⚠️ Tidak ada folder komik ditemukan."
-            exit 0
+            root_name=$(curl -s "https://www.googleapis.com/drive/v3/files/$GDRIVE_FOLDER_ID?key=$GDRIVE_API_KEY&fields=name" | jq -r '.name')
+            folders_json="{\"files\": [{\"id\": \"$GDRIVE_FOLDER_ID\", \"name\": \"$root_name\"}]}"
+          else
+            folders_json=$(echo "$root_contents" | jq '{files: [.files[] | select(.mimeType=="application/vnd.google-apps.folder")]}')
           fi
 
           for row in $(echo "$folders_json" | jq -r '.files[] | @base64'); do
@@ -63,47 +59,25 @@ jobs:
             komik_drive_id=$(_jq '.id')
 
             echo "🔍 Proses komik: $komik_id"
-
-            if jq -e --arg id "$komik_id" '.[] | select(.id == $id)' "$TMP_JSON" >/dev/null; then
-              komik_baru=false
-              echo "✅ Komik $komik_id sudah terdaftar."
-            else
-              komik_baru=true
-              echo "🆕 Komik $komik_id belum terdaftar."
-            fi
-
             komik_files=$(list_files "$komik_drive_id")
 
-            # Jika komik baru, ambil komik.json
-            if [ "$komik_baru" = true ]; then
-              komik_json_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="komik.json") | .id')
-              if [ -n "$komik_json_id" ] && [ "$komik_json_id" != "null" ]; then
-                wget -q "https://drive.google.com/uc?export=download&id=$komik_json_id" -O tmp_new.json
-                jq -s '.[0] + [.[1]]' "$TMP_JSON" tmp_new.json > tmp_merge.json && mv tmp_merge.json "$TMP_JSON"
-                rm tmp_new.json
-                echo "📄 komik.json ditambahkan."
-              else
-                echo "⚠️ komik.json tidak ditemukan, lewati komik ini."
-                continue
-              fi
-            fi
+            mkdir -p "$ASSETS_DIR/$komik_id"
 
-            # Ambil / update cover
+            # Ambil cover
             cover_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="cover.jpg") | .id')
             if [ -n "$cover_id" ] && [ "$cover_id" != "null" ]; then
-              mkdir -p "$ASSETS_DIR/$komik_id"
               wget -q "https://drive.google.com/uc?export=download&id=$cover_id" -O "$ASSETS_DIR/$komik_id/cover.jpg"
               echo "🖼 Cover disimpan."
             fi
 
-            # Proses chapter
+            # Ambil chapter
+            chapters_json=$(jq -n '[]')
             chapters=$(echo "$komik_files" | jq -r '.files[] | select(.mimeType=="application/vnd.google-apps.folder") | @base64')
             for chap in $chapters; do
               _cjq() { echo ${chap} | base64 --decode | jq -r ${1}; }
               chap_name=$(_cjq '.name')
               chap_id=$(_cjq '.id')
 
-              echo "📖 Proses chapter: $chap_name"
               chapter_dir="$ASSETS_DIR/$komik_id/$chap_name"
               mkdir -p "$chapter_dir"
 
@@ -114,8 +88,49 @@ jobs:
                 img_name=$(_ijq '.name')
                 wget -q "https://drive.google.com/uc?export=download&id=$img_id" -O "$chapter_dir/$img_name"
               done
-              echo "✅ Chapter $chap_name selesai."
+
+              total_images=$(ls "$chapter_dir" | wc -l)
+              chapters_json=$(echo "$chapters_json" | jq \
+                --arg judul "Chapter $chap_name" \
+                --arg folder "$ASSETS_DIR/$komik_id/$chap_name" \
+                --argjson total $total_images \
+                '. += [{"judul": $judul, "folder": $folder, "total": $total}]')
+              
+              echo "✅ Chapter $chap_name selesai ($total_images halaman)."
             done
+
+            # Cek apakah ada komik.json di Drive
+            drive_komik_json_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="komik.json") | .id')
+            if [ -n "$drive_komik_json_id" ] && [ "$drive_komik_json_id" != "null" ]; then
+              wget -q "https://drive.google.com/uc?export=download&id=$drive_komik_json_id" -O tmp_drive_komik.json
+              # Pakai data dari komik.json di Drive, tapi update chapter & lastUpdate
+              tmp=$(mktemp)
+              jq --argjson ch "$chapters_json" --arg now "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+                '.[0].chapter = $ch | .[0].lastUpdate = $now' tmp_drive_komik.json > tmp_final.json
+              drive_data=$(cat tmp_final.json)
+              rm tmp_drive_komik.json tmp_final.json
+            else
+              # Buat data default
+              drive_data=$(jq -n \
+                --arg id "$komik_id" \
+                --arg cover "$ASSETS_DIR/$komik_id/cover.jpg" \
+                --arg now "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+                --argjson ch "$chapters_json" \
+                '[{"id": $id, "judul": $id, "format": "Manga", "genre": [], "author": "", "artist": "", "status": "Ongoing", "sinopsis": "", "cover": $cover, "lastUpdate": $now, "chapter": $ch}]')
+            fi
+
+            # Update atau tambah ke JSON utama
+            if jq -e --arg id "$komik_id" '.[] | select(.id == $id)' "$TMP_JSON" >/dev/null; then
+              echo "🔄 Update data komik di JSON"
+              tmp=$(mktemp)
+              jq --arg id "$komik_id" --argjson newdata "$drive_data" \
+                'map(if .id == $id then $newdata[0] else . end)' \
+                "$TMP_JSON" > "$tmp" && mv "$tmp" "$TMP_JSON"
+            else
+              echo "🆕 Tambah komik baru ke JSON"
+              tmp=$(mktemp)
+              jq --argjson newdata "$drive_data" '. + $newdata' "$TMP_JSON" > "$tmp" && mv "$tmp" "$TMP_JSON"
+            fi
           done
 
           mv "$TMP_JSON" "$KOMIK_JSON_PATH"
