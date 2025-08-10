@@ -598,5 +598,70 @@
         "total": 40
       }
     ]
+  },
+  {
+    "id": "Isekai NTR",
+    "judul": "Isekai NTR ~Shinyuu no Onna wo Saikyou Skill de Otosu Houhou~",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Ecchi",
+      "Harem"
+    ],
+    "author": "Gorillan Do",
+    "artist": "Satou Kenetsu",
+    "status": "Ongoing",
+    "sinopsis": "Dunia yang menyebalkan ini hanyalah permainan sampah, dia dan aku pasti akan kabur bersama. Jadi, semua wanita menyebalkan yang mencoba memanfaatkannya hanyalah gangguan. Yang lebih buruk, sepertinya dia mulai memiliki perasaan terhadap mereka. Itu sebabnya, demi dia, aku akan memakannya dulu. Tapi, apakah kekuatan ini ...?",
+    "cover": "assets1/komik/Isekai NTR/cover.jpg",
+    "lastUpdate": "2025-08-10T02:00:57.724Z",
+    "chapter": [
+      {
+        "judul": "chapter 1.1",
+        "folder": "assets1/komik/Isekai NTR/1.1",
+        "total": 14
+      },
+      {
+        "judul": "chapter 1.2",
+        "folder": "assets1/komik/Isekai NTR/1.2",
+        "total": 16
+      },
+      {
+        "judul": "chapter 2",
+        "folder": "assets1/komik/Isekai NTR/2",
+        "total": 24
+      },
+      {
+        "judul": "chapter 3",
+        "folder": "assets1/komik/Isekai NTR/3",
+        "total": 16
+      },
+      {
+        "judul": "chapter 4",
+        "folder": "assets1/komik/Isekai NTR/4",
+        "total": 16
+      },
+      {
+        "judul": "chapter 5",
+        "folder": "assets1/komik/Isekai NTR/5",
+        "total": 16
+      },
+      {
+        "judul": "chapter 6",
+        "folder": "assets1/komik/Isekai NTR/6",
+        "total": 24
+      },
+      {
+        "judul": "chapter 7",
+        "folder": "assets1/komik/Isekai NTR/7",
+        "total": 25
+      },
+      {
+        "judul": "chapter 8",
+        "folder": "assets1/komik/Isekai NTR/8",
+        "total": 18
+      }
+    ]
   }
 ]
