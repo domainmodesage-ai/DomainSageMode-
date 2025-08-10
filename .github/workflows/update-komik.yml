@@ -39,12 +39,12 @@ jobs:
 
           list_folders() {
             local parent_id=$1
-            curl -s "https://www.googleapis.com/drive/v3/files?q='$parent_id'+in+parents+and+mimeType='application/vnd.google-apps.folder'&key=$GDRIVE_API_KEY&fields=files(id,name)"
+            curl -s "https://www.googleapis.com/drive/v3/files?q=%27${parent_id}%27+in+parents+and+mimeType=%27application/vnd.google-apps.folder%27&key=${GDRIVE_API_KEY}&fields=files(id,name)"
           }
 
           list_files() {
             local parent_id=$1
-            curl -s "https://www.googleapis.com/drive/v3/files?q='$parent_id'+in+parents&key=$GDRIVE_API_KEY&fields=files(id,name,mimeType)"
+            curl -s "https://www.googleapis.com/drive/v3/files?q=%27${parent_id}%27+in+parents&key=${GDRIVE_API_KEY}&fields=files(id,name,mimeType)"
           }
 
           echo "📂 Ambil daftar folder komik di Drive..."
@@ -65,10 +65,8 @@ jobs:
 
             echo "🔍 Proses komik: $komik_id"
 
-            # Ambil daftar file/folder dalam komik ini
             komik_files=$(list_files "$komik_drive_id")
 
-            # Deteksi apakah ada komik.json
             komik_json_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="komik.json") | .id')
             if jq -e --arg id "$komik_id" '.[] | select(.id == $id)' "$TMP_JSON" >/dev/null; then
               echo "✅ Komik $komik_id sudah terdaftar di JSON"
@@ -90,7 +88,6 @@ jobs:
               fi
             fi
 
-            # Ambil cover kalau ada
             cover_id=$(echo "$komik_files" | jq -r '.files[] | select(.name=="cover.jpg") | .id')
             if [ -n "$cover_id" ] && [ "$cover_id" != "null" ]; then
               mkdir -p "$ASSETS_DIR/$komik_id"
@@ -98,7 +95,6 @@ jobs:
               echo "🖼 Cover disimpan."
             fi
 
-            # Ambil semua folder chapter
             chapters=$(echo "$komik_files" | jq -r '.files[] | select(.mimeType=="application/vnd.google-apps.folder") | @base64')
             chapter_array=$(jq -n '[]')
 
@@ -129,7 +125,6 @@ jobs:
                 '. += [{"judul": $judul, "folder": $folder, "total": $total}]')
             done
 
-            # Update chapter di JSON utama
             tmp=$(mktemp)
             NOW=$(date -u +"%Y-%m-%dT%H:%M:%S.000Z")
             jq --arg id "$komik_id" \
