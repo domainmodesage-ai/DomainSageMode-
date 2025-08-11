@@ -24,9 +24,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install || echo "No dependencies"
-
       - name: Generate sitemap
         run: node update-sitemap.js
 
