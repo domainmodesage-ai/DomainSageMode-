@@ -1,0 +1,90 @@
+const fs = require('fs');
+const path = require('path');
+
+const domain = 'https://domainsagemode.xyz';
+const komikPath = path.join(__dirname, 'data', 'komik.json');
+const sitemapPath = path.join(__dirname, 'sitemap.xml');
+
+const today = new Date().toISOString().split('T')[0];
+
+// Escape XML
+function escapeXML(url) {
+  return url
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Convert judul ke slug
+function toSlug(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-') // ganti non-alfanumerik jadi "-"
+    .replace(/^-+|-+$/g, ''); // hapus "-" di awal/akhir
+}
+
+const komikData = JSON.parse(fs.readFileSync(komikPath, 'utf-8'));
+
+// Mulai buat sitemap
+let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+// Halaman utama
+sitemap += `
+  <url>
+    <loc>${domain}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+`;
+
+// Halaman statis
+const staticPages = [
+  { loc: `${domain}/cari.html`, changefreq: 'weekly', priority: '0.8' },
+  { loc: `${domain}/bookmark-history.html`, changefreq: 'weekly', priority: '0.7' },
+  { loc: `${domain}/donasi.html`, changefreq: 'monthly', priority: '0.6' },
+  { loc: `${domain}/register.html`, changefreq: 'monthly', priority: '0.5' }
+];
+
+staticPages.forEach(page => {
+  sitemap += `
+  <url>
+    <loc>${escapeXML(page.loc)}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>
+  `;
+});
+
+// Halaman tiap komik
+komikData.forEach(komik => {
+  const encodedId = encodeURIComponent(komik.id);
+  const slugTitle = toSlug(komik.title || komik.id);
+
+  // Versi ?id=
+  sitemap += `
+  <url>
+    <loc>${escapeXML(`${domain}/komik.html?id=${encodedId}`)}</loc>
+    <lastmod>${komik.lastUpdate || today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  `;
+
+  // Versi slug judul
+  sitemap += `
+  <url>
+    <loc>${escapeXML(`${domain}/${slugTitle}`)}</loc>
+    <lastmod>${komik.lastUpdate || today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  `;
+});
+
+sitemap += `\n</urlset>`;
+
+fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
+console.log('✅ Sitemap SEO berhasil dibuat!');
