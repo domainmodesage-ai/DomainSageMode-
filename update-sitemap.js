@@ -7,15 +7,25 @@ const sitemapPath = path.join(__dirname, 'sitemap.xml');
 
 const today = new Date().toISOString().split('T')[0];
 
-// Fungsi untuk escape karakter spesial di URL
 function escapeXML(url) {
-  return url.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return url.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
 }
 
-// Baca file komik.json
+function slugify(text) {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Ganti spasi dengan -
+    .replace(/[^\w\-]+/g, '')       // Hapus karakter non-alphanumeric
+    .replace(/\-\-+/g, '-')         // Hapus multiple -
+    .replace(/^-+/, '')             // Hapus - di awal
+    .replace(/-+$/, '');            // Hapus - di akhir
+}
+
 const komikData = JSON.parse(fs.readFileSync(komikPath, 'utf-8'));
 
-// Buat sitemap
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
@@ -48,8 +58,11 @@ staticPages.forEach(page => {
   `;
 });
 
-// Halaman tiap komik
+// Halaman tiap komik (dua versi URL)
 komikData.forEach(komik => {
+  const seoSlug = slugify(komik.judul || komik.id);
+
+  // URL lama
   sitemap += `
   <url>
     <loc>${escapeXML(`${domain}/komik.html?id=${komik.id}`)}</loc>
@@ -58,10 +71,19 @@ komikData.forEach(komik => {
     <priority>0.6</priority>
   </url>
   `;
+
+  // URL SEO baru
+  sitemap += `
+  <url>
+    <loc>${escapeXML(`${domain}/${seoSlug}`)}</loc>
+    <lastmod>${komik.lastUpdate || today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  `;
 });
 
 sitemap += `\n</urlset>`;
 
-// Simpan sitemap.xml
 fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
-console.log('✅ Sitemap berhasil diperbarui!');
+console.log('✅ Sitemap dengan URL SEO berhasil diperbarui!');
