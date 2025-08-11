@@ -39,6 +39,141 @@
         "folder": "assets1/komik/have/3",
         "total": 15
       },
+       {
+        "judul": "Chapter 4",
+        "folder": "assets1/komik/have/4",
+        "total": 13
+      },
+       {
+        "judul": "Chapter 5",
+        "folder": "assets1/komik/have/5",
+        "total": 13
+      },
+       {
+        "judul": "Chapter 6",
+        "folder": "assets1/komik/have/6",
+        "total": 18
+      },
+       {
+        "judul": "Chapter 7",
+        "folder": "assets1/komik/have/7",
+        "total": 16
+      },
+       {
+        "judul": "Chapter 8",
+        "folder": "assets1/komik/have/8",
+        "total": 15
+      },
+       {
+        "judul": "Chapter 9",
+        "folder": "assets1/komik/have/9",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 10",
+        "folder": "assets1/komik/have/10",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 11",
+        "folder": "assets1/komik/have/11",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 12",
+        "folder": "assets1/komik/have/12",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 13",
+        "folder": "assets1/komik/have/13",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 14",
+        "folder": "assets1/komik/have/14",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 15",
+        "folder": "assets1/komik/have/15",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 16",
+        "folder": "assets1/komik/have/16",
+        "total": 6
+      },
+       {
+        "judul": "Chapter 17",
+        "folder": "assets1/komik/have/17",
+        "total": 7
+      },
+       {
+        "judul": "Chapter 18",
+        "folder": "assets1/komik/have/18",
+        "total": 6
+      },
+       {
+        "judul": "Chapter 19",
+        "folder": "assets1/komik/have/19",
+        "total": 6
+      },
+       {
+        "judul": "Chapter 20",
+        "folder": "assets1/komik/have/20",
+        "total": 6
+      },
+      {
+        "judul": "Chapter 21",
+        "folder": "assets1/komik/have/21",
+        "total": 6
+      },
+      {
+        "judul": "Chapter 22",
+        "folder": "assets1/komik/have/22",
+        "total": 6
+      },
+      {
+        "judul": "Chapter 23",
+        "folder": "assets1/komik/have/23",
+        "total": 6
+      },
+      {
+        "judul": "Chapter 24",
+        "folder": "assets1/komik/have/24",
+        "total": 6
+      },
+      {
+        "judul": "Chapter 25",
+        "folder": "assets1/komik/have/25",
+        "total": 6
+      },
+      {
+        "judul": "Chapter 26",
+        "folder": "assets1/komik/have/26",
+        "total": 7
+      },
+      {
+        "judul": "Chapter 27",
+        "folder": "assets1/komik/have/27",
+        "total": 5
+      },
+      {
+        "judul": "Chapter 28",
+        "folder": "assets1/komik/have/28",
+        "total": 5
+      },
+      {
+        "judul": "Chapter 29",
+        "folder": "assets1/komik/have/29",
+        "total": 5
+      },
+      {
+        "judul": "Chapter 30",
+        "folder": "assets1/komik/have/30",
+        "total": 6
+      },
       {
         "judul": "Chapter 31",
         "folder": "assets1/komik/have/31",
@@ -620,7 +755,7 @@
     "status": "Ongoing",
     "sinopsis": "Dunia yang menyebalkan ini hanyalah permainan sampah, dia dan aku pasti akan kabur bersama. Jadi, semua wanita menyebalkan yang mencoba memanfaatkannya hanyalah gangguan. Yang lebih buruk, sepertinya dia mulai memiliki perasaan terhadap mereka. Itu sebabnya, demi dia, aku akan memakannya dulu. Tapi, apakah kekuatan ini ...?",
     "cover": "assets1/komik/Isekai NTR/cover.jpg",
-    "lastUpdate": "2025-08-11T01:22:29.826Z",
+    "lastUpdate": "2025-08-10T03:39:44.435Z",
     "chapter": [
       {
         "judul": "chapter 1.1",
@@ -716,206 +851,6 @@
         "judul": "chapter 18",
         "folder": "assets1/komik/Isekai NTR/18",
         "total": 14
-      },
-      {
-        "judul": "chapter 19",
-        "folder": "assets1/komik/Isekai NTR/19",
-        "total": 21
-      },
-      {
-        "judul": "chapter 20",
-        "folder": "assets1/komik/Isekai NTR/20",
-        "total": 12
-      },
-      {
-        "judul": "chapter 21",
-        "folder": "assets1/komik/Isekai NTR/21",
-        "total": 18
-      },
-      {
-        "judul": "chapter 22",
-        "folder": "assets1/komik/Isekai NTR/22",
-        "total": 16
-      },
-      {
-        "judul": "chapter 23",
-        "folder": "assets1/komik/Isekai NTR/23",
-        "total": 16
-      },
-      {
-        "judul": "chapter 24",
-        "folder": "assets1/komik/Isekai NTR/24",
-        "total": 15
-      },
-      {
-        "judul": "chapter 25",
-        "folder": "assets1/komik/Isekai NTR/25",
-        "total": 20
-      },
-      {
-        "judul": "chapter 26",
-        "folder": "assets1/komik/Isekai NTR/26",
-        "total": 21
-      },
-      {
-        "judul": "chapter 27",
-        "folder": "assets1/komik/Isekai NTR/27",
-        "total": 18
-      },
-      {
-        "judul": "chapter 28",
-        "folder": "assets1/komik/Isekai NTR/28",
-        "total": 20
-      },
-      {
-        "judul": "chapter 29",
-        "folder": "assets1/komik/Isekai NTR/29",
-        "total": 19
-      },
-      {
-        "judul": "chapter 30",
-        "folder": "assets1/komik/Isekai NTR/30",
-        "total": 18
-      },
-      {
-        "judul": "chapter 31",
-        "folder": "assets1/komik/Isekai NTR/31",
-        "total": 18
-      },
-      {
-        "judul": "chapter 32",
-        "folder": "assets1/komik/Isekai NTR/32",
-        "total": 18
-      },
-      {
-        "judul": "chapter 33",
-        "folder": "assets1/komik/Isekai NTR/33",
-        "total": 18
-      },
-      {
-        "judul": "chapter 34",
-        "folder": "assets1/komik/Isekai NTR/34",
-        "total": 18
-      },
-      {
-        "judul": "chapter 35",
-        "folder": "assets1/komik/Isekai NTR/35",
-        "total": 6
-      },
-      {
-        "judul": "chapter 36",
-        "folder": "assets1/komik/Isekai NTR/36",
-        "total": 7
-      },
-      {
-        "judul": "chapter 37",
-        "folder": "assets1/komik/Isekai NTR/37",
-        "total": 10
-      },
-      {
-        "judul": "chapter 38",
-        "folder": "assets1/komik/Isekai NTR/38",
-        "total": 10
-      },
-      {
-        "judul": "chapter 39",
-        "folder": "assets1/komik/Isekai NTR/39",
-        "total": 9
-      },
-      {
-        "judul": "chapter 40",
-        "folder": "assets1/komik/Isekai NTR/40",
-        "total": 10
-      },
-      {
-        "judul": "chapter 41",
-        "folder": "assets1/komik/Isekai NTR/41",
-        "total": 18
-      },
-      {
-        "judul": "chapter 42",
-        "folder": "assets1/komik/Isekai NTR/42",
-        "total": 17
-      },
-      {
-        "judul": "chapter 43",
-        "folder": "assets1/komik/Isekai NTR/43",
-        "total": 18
-      },
-      {
-        "judul": "chapter 44",
-        "folder": "assets1/komik/Isekai NTR/44",
-        "total": 17
-      },
-      {
-        "judul": "chapter 45",
-        "folder": "assets1/komik/Isekai NTR/45",
-        "total": 3
-      },
-      {
-        "judul": "chapter 46",
-        "folder": "assets1/komik/Isekai NTR/46",
-        "total": 18
-      },
-      {
-        "judul": "chapter 47",
-        "folder": "assets1/komik/Isekai NTR/47",
-        "total": 18
-      },
-      {
-        "judul": "chapter 48",
-        "folder": "assets1/komik/Isekai NTR/48",
-        "total": 18
-      },
-      {
-        "judul": "chapter 49",
-        "folder": "assets1/komik/Isekai NTR/49",
-        "total": 18
-      },
-      {
-        "judul": "chapter 50",
-        "folder": "assets1/komik/Isekai NTR/50",
-        "total": 18
-      },
-      {
-        "judul": "chapter 51",
-        "folder": "assets1/komik/Isekai NTR/51",
-        "total": 18
-      },
-      {
-        "judul": "chapter 52",
-        "folder": "assets1/komik/Isekai NTR/52",
-        "total": 18
-      },
-      {
-        "judul": "chapter 53",
-        "folder": "assets1/komik/Isekai NTR/53",
-        "total": 19
-      },
-      {
-        "judul": "chapter 54",
-        "folder": "assets1/komik/Isekai NTR/54",
-        "total": 18
-      },
-      {
-        "judul": "chapter 55",
-        "folder": "assets1/komik/Isekai NTR/55",
-        "total": 18
-      },
-      {
-        "judul": "chapter 56",
-        "folder": "assets1/komik/Isekai NTR/56",
-        "total": 18
-      },
-      {
-        "judul": "chapter 57",
-        "folder": "assets1/komik/Isekai NTR/57",
-        "total": 18
-      },
-      {
-        "judul": "chapter 58",
-        "folder": "assets1/komik/Isekai NTR/58",
-        "total": 18
       }
     ]
   },
