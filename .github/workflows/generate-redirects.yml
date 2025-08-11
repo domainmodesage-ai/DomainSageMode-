@@ -1,0 +1,39 @@
+name: Generate Redirects
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/komik.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Clear old redirects
+        run: rm -rf komik/*
+
+      - name: Generate redirects
+        run: node generate-redirects.js
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add komik/
+          git diff --cached --quiet || git commit -m "Update redirects"
+          git push
