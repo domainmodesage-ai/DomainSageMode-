@@ -8,20 +8,15 @@ const sitemapPath = path.join(__dirname, 'sitemap.xml');
 const today = new Date().toISOString().split('T')[0];
 
 function escapeXML(url) {
-  return url.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&apos;');
+  return url.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 function slugify(text) {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Ganti spasi dengan -
-    .replace(/[^\w\-]+/g, '')       // Hapus karakter non-alphanumeric
-    .replace(/\-\-+/g, '-')         // Hapus multiple -
-    .replace(/^-+/, '')             // Hapus - di awal
-    .replace(/-+$/, '');            // Hapus - di akhir
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // hapus simbol
+    .replace(/\s+/g, '-')         // spasi jadi -
+    .replace(/-+/g, '-');         // hapus -- ganda
 }
 
 const komikData = JSON.parse(fs.readFileSync(komikPath, 'utf-8'));
@@ -29,7 +24,6 @@ const komikData = JSON.parse(fs.readFileSync(komikPath, 'utf-8'));
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-// Halaman utama
 sitemap += `
   <url>
     <loc>${domain}/</loc>
@@ -39,7 +33,6 @@ sitemap += `
   </url>
 `;
 
-// Halaman statis
 const staticPages = [
   { loc: `${domain}/cari.html`, changefreq: 'weekly', priority: '0.8' },
   { loc: `${domain}/bookmark-history.html`, changefreq: 'weekly', priority: '0.7' },
@@ -58,11 +51,10 @@ staticPages.forEach(page => {
   `;
 });
 
-// Halaman tiap komik (dua versi URL)
 komikData.forEach(komik => {
-  const seoSlug = slugify(komik.judul || komik.id);
+  const slug = slugify(komik.title);
 
-  // URL lama
+  // Versi lama
   sitemap += `
   <url>
     <loc>${escapeXML(`${domain}/komik.html?id=${komik.id}`)}</loc>
@@ -72,10 +64,10 @@ komikData.forEach(komik => {
   </url>
   `;
 
-  // URL SEO baru
+  // Versi slug SEO
   sitemap += `
   <url>
-    <loc>${escapeXML(`${domain}/${seoSlug}`)}</loc>
+    <loc>${escapeXML(`${domain}/${slug}`)}</loc>
     <lastmod>${komik.lastUpdate || today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -86,4 +78,4 @@ komikData.forEach(komik => {
 sitemap += `\n</urlset>`;
 
 fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
-console.log('✅ Sitemap dengan URL SEO berhasil diperbarui!');
+console.log('✅ Sitemap berhasil diperbarui!');
