@@ -13,7 +13,7 @@
     "status": "Ongoing",
     "sinopsis": "Seorang Presiden Wanita? Kalau begitu bantu aku mengelola tempat penampungan. Seorang Prajurit Pasukan Khusus Wanita? Kalau begitu datang dan jadilah kapten pengawal. Di ujung dunia, gelar seperti CEO, wanita cantik, sekretaris, ahli listrik, programmer, dan semua profesi lainnya tidak lagi berguna. Jangan takut untuk datang ke sistem penampungan bawah tanah saya- selama Anda adalah orang dan manusia yang berbakat!.",
     "cover": "assets1/komik/have/cover.jpg",
-    "lastUpdate": "2025-08-11T09:40:43.872Z",
+    "lastUpdate": "2025-08-12T08:34:37.656Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -275,14 +275,54 @@
         "total": 6
       },
       {
-        "judul": "chapter 290",
-        "folder": "assets1/komik/have/290",
-        "total": 1
+        "judul": "chapter 61",
+        "folder": "assets1/komik/have/61",
+        "total": 13
       },
       {
-        "judul": "chapter 291",
-        "folder": "assets1/komik/have/291",
-        "total": 1
+        "judul": "chapter 62",
+        "folder": "assets1/komik/have/62",
+        "total": 13
+      },
+      {
+        "judul": "chapter 63",
+        "folder": "assets1/komik/have/63",
+        "total": 14
+      },
+      {
+        "judul": "chapter 64",
+        "folder": "assets1/komik/have/64",
+        "total": 12
+      },
+      {
+        "judul": "chapter 65",
+        "folder": "assets1/komik/have/65",
+        "total": 11
+      },
+      {
+        "judul": "chapter 66",
+        "folder": "assets1/komik/have/66",
+        "total": 12
+      },
+      {
+        "judul": "chapter 67",
+        "folder": "assets1/komik/have/67",
+        "total": 11
+      },
+      {
+        "judul": "chapter 68",
+        "folder": "assets1/komik/have/68",
+        "total": 11
+      },
+      {
+        "judul": "chapter 69",
+        "folder": "assets1/komik/have/69",
+        "total": 11
+      },
+      {
+        "judul": "chapter 70",
+        "folder": "assets1/komik/have/70",
+        "total": 12
       }
     ]
   },
