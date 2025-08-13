@@ -8,29 +8,27 @@ on:
       - "data/komik.json"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 18
 
       - name: Generate sitemap.xml
-        run: node update-sitemap.js
+        run: |
+          node update-sitemap.js
 
-      - name: Commit and push sitemap.xml
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add sitemap.xml
-          git commit -m "Update sitemap.xml"
+          git commit -m "Update sitemap.xml [skip ci]" || echo "No changes to commit"
           git push
