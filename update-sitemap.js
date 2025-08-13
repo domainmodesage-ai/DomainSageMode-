@@ -1,81 +1,57 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const domain = 'https://domainsagemode.xyz';
-const komikPath = path.join(__dirname, 'data', 'komik.json');
-const sitemapPath = path.join(__dirname, 'sitemap.xml');
+const BASE_URL = "https://domainsagemode.xyz";
+const OUTPUT_FILE = "sitemap.xml";
 
-const today = new Date().toISOString().split('T')[0];
+function getAllFiles(dirPath, arrayOfFiles) {
+  const files = fs.readdirSync(dirPath);
 
-function escapeXML(url) {
-  return url.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  arrayOfFiles = arrayOfFiles || [];
+
+  files.forEach(function (file) {
+    const fullPath = path.join(dirPath, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
+    } else {
+      arrayOfFiles.push(fullPath.replace(/\\/g, "/"));
+    }
+  });
+
+  return arrayOfFiles;
 }
 
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '') // hapus simbol
-    .replace(/\s+/g, '-')         // spasi jadi -
-    .replace(/-+/g, '-');         // hapus -- ganda
-}
+function generateSitemap() {
+  const allFiles = getAllFiles(".")
+    .filter(file => !file.includes("node_modules"))
+    .filter(file => !file.startsWith("./.git"))
+    .filter(file => !file.startsWith("./.github"))
+    .filter(file => !file.includes("update-sitemap.js")) // biar gak masuk
+    .filter(file =>
+      /\.(html|png|jpg|jpeg|webp|js|css)$/i.test(file) // file yang mau dimasukkan
+    );
 
-const komikData = JSON.parse(fs.readFileSync(komikPath, 'utf-8'));
+  let urls = allFiles.map(file => {
+    let relativePath = file.replace("./", "");
+    return `${BASE_URL}/${relativePath}`;
+  });
 
-let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-
-sitemap += `
-  <url>
-    <loc>${domain}/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-`;
-
-const staticPages = [
-  { loc: `${domain}/cari.html`, changefreq: 'weekly', priority: '0.8' },
-  { loc: `${domain}/bookmark-history.html`, changefreq: 'weekly', priority: '0.7' },
-  { loc: `${domain}/donasi.html`, changefreq: 'monthly', priority: '0.6' },
-  { loc: `${domain}/register.html`, changefreq: 'monthly', priority: '0.5' }
-];
-
-staticPages.forEach(page => {
-  sitemap += `
-  <url>
-    <loc>${escapeXML(page.loc)}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>
-  `;
-});
-
-komikData.forEach(komik => {
-  const slug = slugify(komik.title);
-
-  // Versi lama
-  sitemap += `
-  <url>
-    <loc>${escapeXML(`${domain}/komik.html?id=${komik.id}`)}</loc>
-    <lastmod>${komik.lastUpdate || today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  `;
-
-  // Versi slug SEO
-  sitemap += `
-  <url>
-    <loc>${escapeXML(`${domain}/${slug}`)}</loc>
-    <lastmod>${komik.lastUpdate || today}</lastmod>
+  const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(url => {
+    return `  <url>
+    <loc>${url}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  `;
-});
+  </url>`;
+  })
+  .join("\n")}
+</urlset>`;
 
-sitemap += `\n</urlset>`;
+  fs.writeFileSync(OUTPUT_FILE, sitemapContent, "utf8");
+  console.log(`✅ Sitemap generated: ${OUTPUT_FILE}`);
+}
 
-fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
-console.log('✅ Sitemap berhasil diperbarui!');
+generateSitemap();
