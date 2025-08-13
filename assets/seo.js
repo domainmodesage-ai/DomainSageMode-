@@ -119,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
       url: "https://domainsagemode.xyz/cari.html"
     });
   }
-  else if (path.endsWith("bookmark&history.html")) {
+  else if (path.endsWith("bookmark-history.html")) {
     setPageSEO({
-      title: "Bookmark & History - Domain Sage Mode",
+      title: "Bookmark - History - Domain Sage Mode",
       description: "Lihat daftar komik yang sudah kamu bookmark dan riwayat bacaanmu di Domain Sage Mode.",
-      url: "https://domainsagemode.xyz/bookmark&history.html"
+      url: "https://domainsagemode.xyz/bookmark-history.html"
     });
   }
 });
