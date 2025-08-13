@@ -1,0 +1,32 @@
+[
+{
+    "id": "30.isekaiharem",
+    "judul": "Koushaku Chakunan Koushoku Monogatari ~Isekai Harem Eiyuu Senki~",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Petualangan",
+      "Harem",
+      "Isekai",
+      "Fantasy"
+    ],
+    "author": "AL",
+    "artist": "GEN",
+    "status": "Ongoing",
+    "sinopsis": "Seorang pekerja kantoran Jepang bereinkarnasi di dunia lain dengan pedang dan sihir. Ia bereinkarnasi ke dalam keluarga bangsawan yang berkuasa. Suatu hari, ketika ia berusia dua belas tahun, ia tiba-tiba dipanggil oleh ayahnya.Aku tidak peduli apakah itu perempuan di kota atau pembantu di rumah kita, belajarlah tentang perempuan. Setelah mendapat izin dari ayahnya, ia menggunakan kekuatannya sebagai seorang bangsawan untuk mendapatkan apa yang diinginkannya dari perempuan.",
+    "cover": "assets1/komik/30.isekaiharem/cover.jpg",
+    "lastUpdate": "2025-08-05T12:42:33.018Z",
+    "chapter": [
+      {
+        "judul": "chapter 1",
+        "folder": "assets1/komik/30.isekaiharem/chapter1",
+        "total": 19
+      },
+      {
+        "judul": "chapter 2",
+        "folder": "assets1/komik/30.isekaiharem/chapter2",
+        "total": 10
+      }
+    ]
+  }
+  ]
