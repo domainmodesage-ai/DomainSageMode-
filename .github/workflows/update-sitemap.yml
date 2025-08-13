@@ -4,11 +4,17 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "data/komik.json"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -16,15 +22,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "20"
 
-      - name: Generate sitemap
+      - name: Generate sitemap.xml
         run: node update-sitemap.js
 
-      - name: Commit and push sitemap
+      - name: Commit and push sitemap.xml
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add sitemap.xml
-          git commit -m "Update sitemap" || echo "No changes to commit"
+          git commit -m "Update sitemap.xml"
           git push
