@@ -17,7 +17,8 @@ function generateSitemap() {
     "cari.html",
     "bookmark-history.html",
     "donasi.html",
-    "register.html"
+    "register.html",
+    "chat.html"
   ];
   staticPages.forEach(page => {
     urls.push({
