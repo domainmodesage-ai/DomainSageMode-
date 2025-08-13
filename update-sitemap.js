@@ -10,13 +10,14 @@ function generateSitemap() {
 
   const urls = [];
 
-  // Halaman statis
+  // Halaman statis utama
   const staticPages = [
     "",
     "index.html",
     "cari.html",
-    "bookmark.html",
-    "history.html"
+    "donasi.html",
+    "bookmark-history.html",
+    "register.html"
   ];
   staticPages.forEach(page => {
     urls.push({
@@ -38,25 +39,23 @@ function generateSitemap() {
     // Halaman setiap chapter
     komik.chapter.forEach((chap, index) => {
       urls.push({
-        loc: `${baseUrl}/baca.html?komik_id=${komik.id}&chapter=${index}`,
+        loc: `${baseUrl}/baca.html?id=${komik.id}&ch=${index}`,
         lastmod: komik.lastUpdate || new Date().toISOString(),
         priority: 0.8
       });
     });
   });
 
-  // Buat XML
+  // Buat XML sitemap
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
-  .map(
-    url => `
+  .map(url => `
   <url>
     <loc>${url.loc}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <priority>${url.priority}</priority>
-  </url>`
-  )
+  </url>`)
   .join("")}
 </urlset>`;
 
