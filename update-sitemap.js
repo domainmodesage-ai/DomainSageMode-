@@ -10,19 +10,20 @@ function generateSitemap() {
 
   const urls = [];
 
-  // Halaman statis utama
+  // Halaman statis
   const staticPages = [
     "",
     "index.html",
     "cari.html",
-    "donasi.html",
     "bookmark-history.html",
+    "donasi.html",
     "register.html"
   ];
   staticPages.forEach(page => {
     urls.push({
       loc: `${baseUrl}/${page}`,
       lastmod: new Date().toISOString(),
+      changefreq: "daily",
       priority: 1.0
     });
   });
@@ -33,7 +34,8 @@ function generateSitemap() {
     urls.push({
       loc: `${baseUrl}/komik.html?id=${komik.id}`,
       lastmod: komik.lastUpdate || new Date().toISOString(),
-      priority: 0.9
+      changefreq: "weekly",
+      priority: 0.8
     });
 
     // Halaman setiap chapter
@@ -41,22 +43,26 @@ function generateSitemap() {
       urls.push({
         loc: `${baseUrl}/baca.html?id=${komik.id}&ch=${index}`,
         lastmod: komik.lastUpdate || new Date().toISOString(),
-        priority: 0.8
+        changefreq: "weekly",
+        priority: 0.7
       });
     });
   });
 
-  // Buat XML sitemap
+  // Buat XML
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
-  .map(url => `
+    .map(
+      url => `
   <url>
     <loc>${url.loc}</loc>
     <lastmod>${url.lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-  </url>`)
-  .join("")}
+  </url>`
+    )
+    .join("")}
 </urlset>`;
 
   fs.writeFileSync(sitemapPath, xml.trim());
