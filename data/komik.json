@@ -1198,7 +1198,7 @@
     ],
     "author": "bihyeon,maeng ju-gyeong",
     "artist": "bihyeon,maeng ju-gyeong",
-     "status": "Ongoing",
+    "status": "Ongoing",
     "sinopsis": "Suatu hari, kiamat tiba-tiba datang. Makhluk yang berada di sudut rumah tidak dapat meninggalkan sudut rumah itu. Kamu harus bertahan hidup untuk menyelamatkan keluargamu.",
     "cover": "assets1/komik/The-Ultimate-Shut-In/cover.jpg",
     "lastUpdate": "2025-08-12T15:34:10.509Z",
@@ -1226,10 +1226,10 @@
     ],
     "author": "记忆的海",
     "artist": "记忆的海",
-     "status": "Ongoing",
+    "status": "Ongoing",
     "sinopsis": "Dunia sedang memasuki zaman es, dan 95% umat manusia musnah! Dalam kehidupan sebelumnya, pahlawan kita Zhang Yi dibunuh secara tragis oleh orang-orang yang dia bantu, berkat kebaikan hatinya. Tapi jangan takut, karena Zhang Yi telah terlahir kembali dan sekarang memiliki kekuatan luar biasa – manipulasi ruang! Dia menjadi gila karena menimbun perbekalan untuk kiamat es dan siap menguasai gurun beku! Dia bersumpah untuk melepaskan rasa sakit seratus kali lipat pada orang-orang yang menyakitinya di masa lalu!",
     "cover": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/cover.jpg",
-    "lastUpdate": "2025-08-12T17:17:36.065Z",
+    "lastUpdate": "2025-08-13T01:21:19.753Z",
     "chapter": [
       {
         "judul": "chapter 1",
@@ -1245,6 +1245,91 @@
         "judul": "chapter 3",
         "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/3",
         "total": 5
+      },
+      {
+        "judul": "chapter 4",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/4",
+        "total": 10
+      },
+      {
+        "judul": "chapter 5",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/5",
+        "total": 12
+      },
+      {
+        "judul": "chapter 6",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/6",
+        "total": 2
+      },
+      {
+        "judul": "chapter 7",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/7",
+        "total": 8
+      },
+      {
+        "judul": "chapter 8",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/8",
+        "total": 8
+      },
+      {
+        "judul": "chapter 9",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/9",
+        "total": 8
+      },
+      {
+        "judul": "chapter 10",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/10",
+        "total": 8
+      },
+      {
+        "judul": "chapter 11",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/11",
+        "total": 8
+      },
+      {
+        "judul": "chapter 12",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/12",
+        "total": 6
+      },
+      {
+        "judul": "chapter 13",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/13",
+        "total": 8
+      },
+      {
+        "judul": "chapter 14",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/14",
+        "total": 10
+      },
+      {
+        "judul": "chapter 15",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/15",
+        "total": 8
+      },
+      {
+        "judul": "chapter 16",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/16",
+        "total": 8
+      },
+      {
+        "judul": "chapter 17",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/17",
+        "total": 9
+      },
+      {
+        "judul": "chapter 18",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/18",
+        "total": 8
+      },
+      {
+        "judul": "chapter 19",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/19",
+        "total": 9
+      },
+      {
+        "judul": "chapter 20",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/20",
+        "total": 8
       }
     ]
   }
