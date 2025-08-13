@@ -9,17 +9,17 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Contoh halaman komik -->
+  <!-- Halaman komik -->
   <url>
-    <loc>https://domainsagemode.xyz/komik/have</loc>
+    <loc>https://domainsagemode.xyz/komik.html?id=have</loc>
     <lastmod>2025-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Contoh halaman chapter -->
+  <!-- Halaman chapter -->
   <url>
-    <loc>https://domainsagemode.xyz/komik/have/chapter-1</loc>
+    <loc>https://domainsagemode.xyz/baca.html?id=have&ch=0</loc>
     <lastmod>2025-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
