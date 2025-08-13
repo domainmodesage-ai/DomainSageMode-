@@ -101,6 +101,12 @@ function setPageSEO({ title, description, url }) {
   });
 }
 
+
+function setChapterSEO(komik, chapter) {
+  if (typeof setDynamicSEO === "function") {
+    setDynamicSEO(komik, chapter);
+  }
+}
 // Deteksi halaman otomatis
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname;
