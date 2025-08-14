@@ -1,0 +1,160 @@
+[
+{
+    "id": "kankin",
+    "judul": "Kankin Ou",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Ecchi",
+      "Harem"
+    ],
+    "author": "MASAI",
+    "artist": "Ashimoto Yoika",
+    "status": "Ongoing",
+    "sinopsis": "Seorang gadis yang menyebut dirinya iblis muncul di hadapan seorang siswa pemalu bernama Fumio Kijima. Gadis itu mengaku sebagai gadis kampanye dari dunia iblis dan dia memberinya kemampuan untuk \"memanggil kamar\" dari udara tipis. Awalnya dia tidak menyalahgunakan kekuatannya dan menggunakannya sebagai kemampuan yang nyaman dalam kehidupan sehari-harinya. Tetapi suatu hari dia diganggu oleh teman-teman sekelasnya dengan dalih yang tidak adil dan dibuat menderita. Di masa lalu dia akan berkubang dalam kesengsaraan dan menangis sampai tertidur, tetapi sekarang dia memiliki kekuatan untuk dipanggil. \"Aku akan membuat mereka menyesal!\" Menggunakan kekuatannya untuk memanggil \"kamarnya\", ia memulai era kurungan dan cuci otak untuk mencapai tujuannya.",
+    "cover": "assets1/komik/kankin/cover.jpg",
+    "lastUpdate": "2025-08-06T13:44:11.131Z",
+    "chapter": [
+      {
+        "judul": "chapter 1",
+        "folder": "assets1/komik/kankin/1",
+        "total": 34
+      },
+      {
+        "judul": "chapter 2",
+        "folder": "assets1/komik/kankin/2",
+        "total": 30
+      },
+      {
+        "judul": "chapter 3",
+        "folder": "assets1/komik/kankin/3",
+        "total": 30
+      },
+      {
+        "judul": "chapter 4",
+        "folder": "assets1/komik/kankin/4",
+        "total": 32
+      },
+      {
+        "judul": "chapter 5",
+        "folder": "assets1/komik/kankin/5",
+        "total": 29
+      },
+      {
+        "judul": "chapter 6",
+        "folder": "assets1/komik/kankin/6",
+        "total": 34
+      },
+      {
+        "judul": "chapter 7",
+        "folder": "assets1/komik/kankin/7",
+        "total": 24
+      },
+      {
+        "judul": "chapter 8",
+        "folder": "assets1/komik/kankin/8",
+        "total": 26
+      },
+      {
+        "judul": "chapter 9",
+        "folder": "assets1/komik/kankin/9",
+        "total": 25
+      },
+      {
+        "judul": "chapter 10",
+        "folder": "assets1/komik/kankin/10",
+        "total": 34
+      },
+      {
+        "judul": "chapter 11",
+        "folder": "assets1/komik/kankin/11",
+        "total": 36
+      },
+      {
+        "judul": "chapter 12",
+        "folder": "assets1/komik/kankin/12",
+        "total": 40
+      },
+      {
+        "judul": "chapter 13",
+        "folder": "assets1/komik/kankin/13",
+        "total": 36
+      },
+      {
+        "judul": "chapter 14",
+        "folder": "assets1/komik/kankin/14",
+        "total": 38
+      },
+      {
+        "judul": "chapter 15",
+        "folder": "assets1/komik/kankin/15",
+        "total": 30
+      },
+      {
+        "judul": "chapter 16",
+        "folder": "assets1/komik/kankin/16",
+        "total": 43
+      },
+      {
+        "judul": "chapter 17",
+        "folder": "assets1/komik/kankin/17",
+        "total": 45
+      },
+      {
+        "judul": "chapter 18",
+        "folder": "assets1/komik/kankin/18",
+        "total": 40
+      },
+      {
+        "judul": "chapter 19",
+        "folder": "assets1/komik/kankin/19",
+        "total": 38
+      },
+      {
+        "judul": "chapter 20",
+        "folder": "assets1/komik/kankin/20",
+        "total": 43
+      },
+      {
+        "judul": "chapter 21",
+        "folder": "assets1/komik/kankin/21",
+        "total": 44
+      },
+      {
+        "judul": "chapter 22",
+        "folder": "assets1/komik/kankin/22",
+        "total": 32
+      },
+      {
+        "judul": "chapter 23",
+        "folder": "assets1/komik/kankin/23",
+        "total": 40
+      },
+      {
+        "judul": "chapter 24",
+        "folder": "assets1/komik/kankin/24",
+        "total": 31
+      },
+      {
+        "judul": "chapter 25",
+        "folder": "assets1/komik/kankin/25",
+        "total": 30
+      },
+      {
+        "judul": "chapter 26",
+        "folder": "assets1/komik/kankin/26",
+        "total": 20
+      },
+      {
+        "judul": "chapter 27",
+        "folder": "assets1/komik/kankin/27",
+        "total": 37
+      },
+      {
+        "judul": "chapter 28",
+        "folder": "assets1/komik/kankin/28",
+        "total": 39
+      }
+    ]
+  }
+]
