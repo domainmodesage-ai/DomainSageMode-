@@ -1,0 +1,29 @@
+[
+{
+    "id": "The-Ultimate-Shut-In",
+    "judul": "The Ultimate Shut-In",
+    "format": "Manhwa",
+    "genre": [
+      "Fantasy",
+      "Drama"
+    ],
+    "author": "bihyeon,maeng ju-gyeong",
+    "artist": "bihyeon,maeng ju-gyeong",
+    "status": "Ongoing",
+    "sinopsis": "Suatu hari, kiamat tiba-tiba datang. Makhluk yang berada di sudut rumah tidak dapat meninggalkan sudut rumah itu. Kamu harus bertahan hidup untuk menyelamatkan keluargamu.",
+    "cover": "assets1/komik/The-Ultimate-Shut-In/cover.jpg",
+    "lastUpdate": "2025-08-12T15:34:10.509Z",
+    "chapter": [
+      {
+        "judul": "chapter 1",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/1",
+        "total": 16
+      },
+      {
+        "judul": "chapter 2",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/2",
+        "total": 17
+      }
+    ]
+  }
+]
