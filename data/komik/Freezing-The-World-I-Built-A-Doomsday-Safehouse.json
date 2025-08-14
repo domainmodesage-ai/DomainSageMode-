@@ -1,5 +1,5 @@
 [
-{
+  {
     "id": "Freezing-The-World-I-Built-A-Doomsday-Safehouse",
     "judul": "Freezing The World: I Built A Doomsday Safehouse",
     "format": "Manhua",
@@ -13,7 +13,7 @@
     "status": "Ongoing",
     "sinopsis": "Dunia sedang memasuki zaman es, dan 95% umat manusia musnah! Dalam kehidupan sebelumnya, pahlawan kita Zhang Yi dibunuh secara tragis oleh orang-orang yang dia bantu, berkat kebaikan hatinya. Tapi jangan takut, karena Zhang Yi telah terlahir kembali dan sekarang memiliki kekuatan luar biasa – manipulasi ruang! Dia menjadi gila karena menimbun perbekalan untuk kiamat es dan siap menguasai gurun beku! Dia bersumpah untuk melepaskan rasa sakit seratus kali lipat pada orang-orang yang menyakitinya di masa lalu!",
     "cover": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/cover.jpg",
-    "lastUpdate": "2025-08-13T02:54:49.563Z",
+    "lastUpdate": "2025-08-14T03:36:38.297Z",
     "chapter": [
       {
         "judul": "chapter 1",
@@ -163,6 +163,56 @@
       {
         "judul": "chapter 30",
         "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/30",
+        "total": 8
+      },
+      {
+        "judul": "chapter 31",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/31",
+        "total": 8
+      },
+      {
+        "judul": "chapter 32",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/32",
+        "total": 8
+      },
+      {
+        "judul": "chapter 33",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/33",
+        "total": 6
+      },
+      {
+        "judul": "chapter 34",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/34",
+        "total": 8
+      },
+      {
+        "judul": "chapter 35",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/35",
+        "total": 6
+      },
+      {
+        "judul": "chapter 36",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/36",
+        "total": 8
+      },
+      {
+        "judul": "chapter 37",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/37",
+        "total": 8
+      },
+      {
+        "judul": "chapter 38",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/38",
+        "total": 8
+      },
+      {
+        "judul": "chapter 39",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/39",
+        "total": 7
+      },
+      {
+        "judul": "chapter 40",
+        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/40",
         "total": 8
       }
     ]
