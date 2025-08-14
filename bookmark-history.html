@@ -171,8 +171,8 @@
         div.className = "komik-item";
 
         const link = containerId === "bookmarkTab"
-          ? `komik.html?id=${komik.id}`
-          : `baca.html?id=${komik.id}&ch=${item.chapter}`;
+  ? `komik.html?id=${komik.id}`
+  : `baca.html?id=${komik.id}&ch=${item.ch}`;
 
         div.innerHTML = `
           <a href="${link}">
