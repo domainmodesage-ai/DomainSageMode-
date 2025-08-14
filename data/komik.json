@@ -937,5 +937,27 @@
         "total": 8
       }
     ]
+  },
+  {
+    "id": "i-m-a-super-rich-guy",
+    "judul": "I’m a Super Rich Guy, So It’s Reasonable For Me to Be a Scumbag",
+    "format": "Manga",
+    "genre": [
+      "Drama",
+      "Harem",
+      "Fantasy"
+    ],
+    "author": "番茄小说, 鱼山成神",
+    "artist": "春日文化",
+    "sinopsis": "Jiang Cheng",
+    "cover": "assets1/komik/i-m-a-super-rich-guy/cover.jpg",
+    "lastUpdate": "2025-08-14T16:38:37.072Z",
+    "chapter": [
+      {
+        "judul": "chapter 5",
+        "folder": "assets1/komik/i-m-a-super-rich-guy/5",
+        "total": 12
+      }
+    ]
   }
 ]
