@@ -137,7 +137,6 @@ if (typeof setChapterSEO === "function") {
         }
 
         if (existing) {
-        if (existing) {
   existing.ch = chIndex;
   existing.chapterJudul = komik.chapter[chIndex].judul; // <--- tambahkan ini
   existing.lastRead = new Date().toISOString();
@@ -152,8 +151,8 @@ if (typeof setChapterSEO === "function") {
     lastPage: 1,
     lastRead: new Date().toISOString()
   });
-        }
-        localStorage.setItem("history", JSON.stringify(history));
+}
+localStorage.setItem("history", JSON.stringify(history));
 
         // Dropdown chapter
         let dropdown = `
