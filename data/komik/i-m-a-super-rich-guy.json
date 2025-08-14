@@ -1,0 +1,45 @@
+[
+  {
+    "id": "i-m-a-super-rich-guy",
+    "judul": "I’m a Super Rich Guy, So It’s Reasonable For Me to Be a Scumbag",
+    "format": "Manhua",
+    "genre": [
+      "Drama",
+      "Harem",
+      "Fantasy"
+    ],
+    "author": "番茄小说, 鱼山成神",
+    "artist": "春日文化",
+    "status": "Ongoing",
+    "sinopsis": "Jiang Cheng terbangun dan mendapati dirinya telah terlahir kembali! Ia juga terikat pada God-Tier Tycoon System yang memberinya uang setiap detik dunia berjalan. Setelah ia terlahir kembali, siapa yang peduli dengan aturan-aturan lama itu! Ia akan hidup untuk saat ini dan menikmati hidup sepenuhnya.",
+    "cover": "assets1/komik/i-m-a-super-rich-guy/cover.jpg",
+    "lastUpdate": "2025-08-14T16:29:48.930Z",
+    "chapter": [
+      {
+        "judul": "Chapter 1",
+        "folder": "assets1/komik/i-m-a-super-rich-guy/1",
+        "total": 28
+      },
+      {
+        "judul": "chapter 2",
+        "folder": "assets1/komik/i-m-a-super-rich-guy/2",
+        "total": 23
+      },
+      {
+        "judul": "chapter 3",
+        "folder": "assets1/komik/i-m-a-super-rich-guy/3",
+        "total": 12
+      },
+      {
+        "judul": "chapter 4",
+        "folder": "assets1/komik/i-m-a-super-rich-guy/4",
+        "total": 12
+      },
+      {
+        "judul": "chapter 5",
+        "folder": "assets1/komik/i-m-a-super-rich-guy/5",
+        "total": 12
+      }
+    ]
+  }
+]
