@@ -1,0 +1,56 @@
+[
+{
+    "id": "roku",
+    "judul": "Isekai Koushoku Musou Roku ~Isekai Tensei no Chie to Chikara wo, Tada Hitasura ×××× Suru Tame ni Tsukau~",
+    "format": "Manga",
+    "genre": [
+      "Aksi",
+      "Petualangan",
+      "Fantasi",
+      "Harem"
+    ],
+    "author": "Ikuhito",
+    "artist": "Ohana-chan",
+    "status": "Ongoing",
+    "sinopsis": "Seorang pria yang telah bereinkarnasi di dunia lain memperoleh panggilan master tongkat di dunia baru! Namun, kemampuan itu tidak digunakan untuk mengalahkan musuh, atau untuk mendapatkan kekuatan, melainkan untuk ngentot dengan gadis-gadis cantik yang terus muncul! ",
+    "cover": "assets1/komik/roku/cover.jpg",
+    "lastUpdate": "2025-08-06T00:52:57.785Z",
+    "chapter": [
+      {
+        "judul": "Chapter 42",
+        "folder": "assets1/komik/roku/42",
+        "total": 14
+      },
+      {
+        "judul": "Chapter 43",
+        "folder": "assets1/komik/roku/43",
+        "total": 18
+      },
+      {
+        "judul": "Chapter 44",
+        "folder": "assets1/komik/roku/44",
+        "total": 18
+      },
+      {
+        "judul": "Chapter 45",
+        "folder": "assets1/komik/roku/45",
+        "total": 20
+      },
+      {
+        "judul": "Chapter 46",
+        "folder": "assets1/komik/roku/46",
+        "total": 17
+      },
+      {
+        "judul": "Chapter 47",
+        "folder": "assets1/komik/roku/47",
+        "total": 18
+      },
+      {
+        "judul": "chapter 48",
+        "folder": "assets1/komik/roku/48",
+        "total": 18
+      }
+    ]
+  }
+]
