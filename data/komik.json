@@ -317,7 +317,13 @@
     "artist": "Reiha",
     "sinopsis": "Suatu hari",
     "cover": "assets1/komik/cheat-skill-shihai-otsukatte-isekai-harem/cover.jpg",
-    "lastUpdate": "2025-08-15T06:56:56.007Z",
-    "chapter": []
+    "lastUpdate": "2025-08-15T07:02:02.174Z",
+    "chapter": [
+      {
+        "judul": "chapter 16",
+        "folder": "assets1/komik/cheat-skill-shihai-otsukatte-isekai-harem/16",
+        "total": 25
+      }
+    ]
   }
 ]
