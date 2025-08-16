@@ -2,6 +2,7 @@
   {
     "id": "have",
     "judul": "I Have An Apocalyptic Dungeon",
+    "format": "Manhua",
     "genre": [
       "Aksi",
       "Petualangan",
@@ -19,6 +20,7 @@
   {
     "id": "30.isekaiharem",
     "judul": "Koushaku Chakunan Koushoku Monogatari ~Isekai Harem Eiyuu Senki~",
+    "format": "Manga",
     "genre": [
       "Action",
       "Petualangan",
@@ -38,6 +40,7 @@
   {
     "id": "coliseum",
     "judul": "Reincarnation Coliseum: The Weakest Skill Conquers the Strongest Women and Creates a Harem",
+    "format": "Manga",
     "genre": [
       "Action",
       "Fantasy",
@@ -56,6 +59,7 @@
   {
     "id": "roku",
     "judul": "Isekai Koushoku Musou Roku ~Isekai Tensei no Chie to Chikara wo, Tada Hitasura ×××× Suru Tame ni Tsukau~",
+    "format": "Manga",
     "genre": [
       "Aksi",
       "Petualangan",
@@ -74,6 +78,7 @@
   {
     "id": "kankin",
     "judul": "Kankin Ou",
+    "format": "Manga",
     "genre": [
       "Action",
       "Ecchi",
@@ -91,6 +96,7 @@
   {
     "id": "s rank",
     "judul": "The S-Rank Hunter’s Healing Life with Monsters",
+    "format": "Manhwa",
     "genre": [
       "Action",
       "Fantasy",
@@ -108,6 +114,7 @@
   {
     "id": "Isekai NTR",
     "judul": "Isekai NTR ~Shinyuu no Onna wo Saikyou Skill de Otosu Houhou~",
+    "format": "Manga",
     "genre": [
       "Action",
       "Adventure",
@@ -127,6 +134,7 @@
   {
     "id": "Demonic Sect Master",
     "judul": "The Demonic Sect Master’s Secret Apprentice",
+    "format": "Manhua",
     "genre": [
       "Action",
       "Ecchi",
@@ -145,6 +153,7 @@
   {
     "id": "The-Ultimate-Shut-In",
     "judul": "The Ultimate Shut-In",
+    "format": "Manhwa",
     "genre": [
       "Fantasy",
       "Drama"
@@ -161,6 +170,7 @@
   {
     "id": "Freezing-The-World-I-Built-A-Doomsday-Safehouse",
     "judul": "Freezing The World: I Built A Doomsday Safehouse",
+    "format": "Manhua",
     "genre": [
       "Action",
       "Drama",
@@ -179,6 +189,7 @@
   {
     "id": "i-m-a-super-rich-guy",
     "judul": "I’m a Super Rich Guy, So It’s Reasonable For Me to Be a Scumbag",
+    "format": "Manhua",
     "genre": [
       "Drama",
       "Harem",
@@ -196,6 +207,7 @@
   {
     "id": "cheat-skill-shihai-otsukatte-isekai-harem",
     "judul": "Cheat Skill “Shihai” Otsukatte Isekai Harem!",
+    "format": "Manga",
     "genre": [
       "Action",
       "Adventure",
