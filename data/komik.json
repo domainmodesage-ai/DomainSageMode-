@@ -2,6 +2,11 @@
   {
     "id": "have",
     "judul": "I Have An Apocalyptic Dungeon",
+    "genre": [
+      "Aksi",
+      "Petualangan",
+      "Harem"
+    ],
     "cover": "assets1/komik/have/cover.jpg",
     "lastUpdate": "2025-08-16T03:27:34.272Z",
     "rating": {
