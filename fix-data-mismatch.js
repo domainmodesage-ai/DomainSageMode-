@@ -13,18 +13,17 @@ mainData = mainData.map(item => {
 
   if (fs.existsSync(komikPath)) {
     const komikDetail = JSON.parse(fs.readFileSync(komikPath, "utf-8"));
-
-    // ambil semua chapter dari JSON individual
     const chapters = komikDetail.chapters || [];
     const totalChapters = chapters.length;
+    const latestChapter = totalChapters > 0 ? chapters[chapters.length - 1].judul : `chapter ${totalChapters}`;
 
-    if (totalChapters > 0) {
+    // hanya update jika ada perubahan chapter atau chapter terakhir
+    if (item.totalChapters !== totalChapters || item.latestChapter !== latestChapter) {
       item.totalChapters = totalChapters;
-      item.latestChapter = chapters[chapters.length - 1].judul || `chapter ${totalChapters}`;
+      item.latestChapter = latestChapter;
+      item.lastUpdate = new Date().toISOString();
     }
 
-    // update tanggal terakhir
-    item.lastUpdate = new Date().toISOString();
   } else {
     console.warn(`⚠️ File tidak ditemukan: ${komikPath}`);
   }
