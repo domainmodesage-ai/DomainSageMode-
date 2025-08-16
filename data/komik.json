@@ -213,5 +213,19 @@
     },
     "latestChapter": "chapter 16",
     "totalChapters": 25
+  },
+  {
+    "id": "yuusha-sama-wa-houshuu-ni-hitozuma",
+    "judul": "Yuusha-sama wa Houshuu ni Hitozuma o go Kiboudesu",
+    "format": "Manga",
+    "genre": ["Action", "Adventure", "Fantasy", "Harem", "Ecchi"],
+"cover": "assets1/komik/yuusha-sama-wa-houshuu-ni-hitozuma/cover.jpg",
+    "lastUpdate": "2025-08-16T06:27:32.265Z",
+"rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "chapter 25",
+    "totalChapters": 39
   }
 ]
