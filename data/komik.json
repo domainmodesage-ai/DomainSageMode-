@@ -8,7 +8,7 @@
       "Harem"
     ],
     "cover": "assets1/komik/have/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.477Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -27,7 +27,7 @@
       "Fantasy"
     ],
     "cover": "assets1/komik/30.isekaiharem/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.477Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -45,7 +45,7 @@
       "Ecchi"
     ],
     "cover": "assets1/komik/coliseum/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.477Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -63,7 +63,7 @@
       "Harem"
     ],
     "cover": "assets1/komik/roku/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -80,7 +80,7 @@
       "Harem"
     ],
     "cover": "assets1/komik/kankin/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -97,7 +97,7 @@
       "Adventure"
     ],
     "cover": "assets1/komik/s rank/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -116,7 +116,7 @@
       "Harem"
     ],
     "cover": "assets1/komik/Isekai NTR/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -134,7 +134,7 @@
       "Fantasy"
     ],
     "cover": "assets1/komik/Demonic Sect Master/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.964Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -150,7 +150,7 @@
       "Drama"
     ],
     "cover": "assets1/komik/The-Ultimate-Shut-In/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.965Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -168,7 +168,7 @@
       "Harem"
     ],
     "cover": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.965Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -185,7 +185,7 @@
       "Fantasy"
     ],
     "cover": "assets1/komik/i-m-a-super-rich-guy/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.965Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -206,7 +206,7 @@
       "Comedy"
     ],
     "cover": "assets1/komik/cheat-skill-shihai-otsukatte-isekai-harem/cover.jpg",
-    "lastUpdate": "2025-08-16T06:36:00.965Z",
+    "lastUpdate": "2025-08-16T06:40:50.478Z",
     "rating": {
       "total": 0,
       "count": 0
@@ -218,10 +218,16 @@
     "id": "yuusha-sama-wa-houshuu-ni-hitozuma",
     "judul": "Yuusha-sama wa Houshuu ni Hitozuma o go Kiboudesu",
     "format": "Manga",
-    "genre": ["Action", "Adventure", "Fantasy", "Harem", "Ecchi"],
-"cover": "assets1/komik/yuusha-sama-wa-houshuu-ni-hitozuma/cover.jpg",
-    "lastUpdate": "2025-08-16T06:27:32.265Z",
-"rating": {
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Harem",
+      "Ecchi"
+    ],
+    "cover": "assets1/komik/yuusha-sama-wa-houshuu-ni-hitozuma/cover.jpg",
+    "lastUpdate": "2025-08-16T06:40:50.479Z",
+    "rating": {
       "total": 0,
       "count": 0
     },
