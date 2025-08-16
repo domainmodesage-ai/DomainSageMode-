@@ -124,12 +124,33 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Cari komik bahasa Indonesia terbaru di Domain Sage Mode dengan cepat dan mudah.",
       url: "https://domainsagemode.xyz/cari.html"
     });
+    }
+  else if (path.endsWith("donasi.html")) {
+    setPageSEO({
+      title: "Dukung kami - Domain Sage Mode",
+      description: "Ayo dungkung kami dan vote di Domain Sage Mode agar kami semangat update komiknya.",
+      url: "https://domainsagemode.xyz/donasi.html"
+    });
   }
   else if (path.endsWith("bookmark-history.html")) {
     setPageSEO({
       title: "Bookmark - History - Domain Sage Mode",
       description: "Lihat daftar komik yang sudah kamu bookmark dan riwayat bacaanmu di Domain Sage Mode.",
       url: "https://domainsagemode.xyz/bookmark-history.html"
+    });
+    }
+  else if (path.endsWith("register.html")) {
+    setPageSEO({
+      title: "Akun - Domain Sage Mode",
+      description: "Login dan daftar di Domain Sage Mode.",
+      url: "https://domainsagemode.xyz/register.html"
+    });
+    }
+  else if (path.endsWith("chat.html")) {
+    setPageSEO({
+      title: "Obrolan - Domain Sage Mode",
+      description: "Mau request komik atau update komen di chat global Domain Sage Mode.",
+      url: "https://domainsagemode.xyz/chat.html"
     });
   }
 });
