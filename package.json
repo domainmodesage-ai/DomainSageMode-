@@ -1,0 +1,8 @@
+{
+  "name": "domain-sage-mode",
+  "version": "1.0.0",
+  "scripts": {
+    "fix": "node fix-data-mismatch.js"
+  },
+  "dependencies": {}
+}
