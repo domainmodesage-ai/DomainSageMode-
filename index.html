@@ -115,8 +115,8 @@
           <img src="${komik.cover}" alt="${komik.judul}" />
           <h3>${komik.judul}</h3>
           <p class="rating ${avgRating === 0 ? 'empty' : ''}">${starsDisplay}</p>
-          <p class="chapter-info">${komik.chapter[komik.chapter.length - 1]?.judul || "Belum ada chapter"}</p>
-          <p class="update-info">${waktuRelatif(komik.lastUpdate)}</p>
+<p class="chapter-info">${komik.latestChapter || "Belum ada chapter"}</p>
+<p class="update-info">${waktuRelatif(komik.lastUpdate)}</p>
         </a>
       `;
       container.appendChild(el);
