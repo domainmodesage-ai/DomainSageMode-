@@ -145,6 +145,10 @@
   {
     "id": "The-Ultimate-Shut-In",
     "judul": "The Ultimate Shut-In",
+    "genre": [
+      "Fantasy",
+      "Drama"
+    ],
     "cover": "assets1/komik/The-Ultimate-Shut-In/cover.jpg",
     "lastUpdate": "2025-08-16T05:51:18.436Z",
     "rating": {
