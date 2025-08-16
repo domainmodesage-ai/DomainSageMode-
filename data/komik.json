@@ -91,6 +91,11 @@
   {
     "id": "s rank",
     "judul": "The S-Rank Hunter’s Healing Life with Monsters",
+    "genre": [
+      "Action",
+      "Fantasy",
+      "Adventure"
+    ],
     "cover": "assets1/komik/s rank/cover.jpg",
     "lastUpdate": "2025-08-16T05:51:18.433Z",
     "rating": {
