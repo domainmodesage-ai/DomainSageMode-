@@ -39,15 +39,15 @@ function generateSitemap() {
       priority: 0.8
     });
 
-    // Halaman setiap chapter
-    komik.chapter.forEach((chap, index) => {
+    // Halaman setiap chapter (loop pakai totalChapter)
+    for (let i = 0; i < (komik.totalChapter || 0); i++) {
       urls.push({
-        loc: `${baseUrl}/baca.html?id=${komik.id}&ch=${index}`,
+        loc: `${baseUrl}/baca.html?id=${komik.id}&ch=${i}`,
         lastmod: komik.lastUpdate || new Date().toISOString(),
         changefreq: "weekly",
         priority: 0.7
       });
-    });
+    }
   });
 
   // Buat XML
