@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - "data/komik/**"
       - "data/komik.json"
   workflow_dispatch:
 
@@ -21,14 +22,19 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix komik.json
+        run: npm run fix
+
       - name: Generate sitemap.xml
-        run: |
-          node update-sitemap.js
+        run: node update-sitemap.js
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git commit -m "Update sitemap.xml [skip ci]" || echo "No changes to commit"
+          git add data/komik.json sitemap.xml
+          git commit -m "Auto update komik.json & sitemap.xml [skip ci]" || echo "No changes to commit"
           git push
