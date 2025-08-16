@@ -74,6 +74,11 @@
   {
     "id": "kankin",
     "judul": "Kankin Ou",
+    "genre": [
+      "Action",
+      "Ecchi",
+      "Harem"
+    ],
     "cover": "assets1/komik/kankin/cover.jpg",
     "lastUpdate": "2025-08-16T05:51:18.433Z",
     "rating": {
