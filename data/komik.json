@@ -2,328 +2,145 @@
   {
     "id": "have",
     "judul": "I Have An Apocalyptic Dungeon",
-    "format": "Manhua",
-    "genre": [
-      "Aksi",
-      "Petualangan",
-      "Harem"
-    ],
-    "author": "Jajoong",
-    "artist": "-",
-    "status": "Ongoing",
-    "sinopsis": "Seorang Presiden Wanita? Kalau begitu bantu aku mengelola tempat penampungan. Seorang Prajurit Pasukan Khusus Wanita? Kalau begitu datang dan jadilah kapten pengawal. Di ujung dunia, gelar seperti CEO, wanita cantik, sekretaris, ahli listrik, programmer, dan semua profesi lainnya tidak lagi berguna. Jangan takut untuk datang ke sistem penampungan bawah tanah saya- selama Anda adalah orang dan manusia yang berbakat!.",
     "cover": "assets1/komik/have/cover.jpg",
     "lastUpdate": "2025-08-14T09:57:32.795Z",
     "rating": {
       "total": 0,
       "count": 0
     },
-    "chapter": [
-      {
-        "judul": "chapter 75",
-        "folder": "assets1/komik/have/75",
-        "total": 8
-      }
-    ]
-  },
+        "latestChapter": "chapter 75",
+        "totalChapters": 8
+      },
   {
     "id": "30.isekaiharem",
     "judul": "Koushaku Chakunan Koushoku Monogatari ~Isekai Harem Eiyuu Senki~",
-    "format": "Manga",
-    "genre": [
-      "Action",
-      "Petualangan",
-      "Harem",
-      "Isekai",
-      "Fantasy"
-    ],
-    "author": "AL",
-    "artist": "GEN",
-    "status": "Ongoing",
-    "sinopsis": "Seorang pekerja kantoran Jepang bereinkarnasi di dunia lain dengan pedang dan sihir. Ia bereinkarnasi ke dalam keluarga bangsawan yang berkuasa. Suatu hari, ketika ia berusia dua belas tahun, ia tiba-tiba dipanggil oleh ayahnya.Aku tidak peduli apakah itu perempuan di kota atau pembantu di rumah kita, belajarlah tentang perempuan. Setelah mendapat izin dari ayahnya, ia menggunakan kekuatannya sebagai seorang bangsawan untuk mendapatkan apa yang diinginkannya dari perempuan.",
     "cover": "assets1/komik/30.isekaiharem/cover.jpg",
     "lastUpdate": "2025-08-05T12:42:33.018Z",
-    "chapter": [
-      {
-        "judul": "chapter 1",
-        "folder": "assets1/komik/30.isekaiharem/chapter1",
-        "total": 19
+"rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 2",
+        "totalChapters": 10
       },
-      {
-        "judul": "chapter 2",
-        "folder": "assets1/komik/30.isekaiharem/chapter2",
-        "total": 10
-      }
-    ]
-  },
   {
     "id": "coliseum",
     "judul": "Reincarnation Coliseum: The Weakest Skill Conquers the Strongest Women and Creates a Harem",
-    "format": "Manga",
-    "genre": [
-      "Action",
-      "Fantasy",
-      "Harem",
-      "Ecchi"
-    ],
-    "author": "Harawata Saizou",
-    "artist": "Zunta",
-    "sinopsis": "Siswa sekolah menengah Kouji Mikagami, memiliki nilai pelajaran biasa dan kemampuan atletik biasa, tapi \"dia tidak banyak kalah\" dalam bermain game, entah kenapa saat bermain game dia tiba-tiba dipanggil ke dunia lain. Sebuah cerita yang dimulai dengan apa yang terjadi. Meskipun mengkonsumsi 1.000 batu ajaib tingkat tinggi untuk melakukan pemanggilan, fakta bahwa ia hanya memiliki \"Skill Copy\" kemampuan terlemah membuat marah pendeta, dan akhirnya Mikagami dijadikan budak gladiator di Colosseum. Mikagami yang kesal dengan situasi yang tiba-tiba menyadari bahwa situasinya seperti dalam game, dan dengan kemampuan terlemahnya dia akan membuat budak harem di dunia lain.",
     "cover": "assets1/komik/coliseum/cover.jpg",
     "lastUpdate": "2025-08-15T02:28:52.522Z",
-    "chapter": [
-      {
-        "judul": "chapter 29",
-        "folder": "assets1/komik/coliseum/29",
-        "total": 31
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 29",
+        "totalChapters": 31
+      },
   {
     "id": "roku",
     "judul": "Isekai Koushoku Musou Roku ~Isekai Tensei no Chie to Chikara wo, Tada Hitasura ×××× Suru Tame ni Tsukau~",
-    "format": "Manga",
-    "genre": [
-      "Aksi",
-      "Petualangan",
-      "Fantasi",
-      "Harem"
-    ],
-    "author": "Ikuhito",
-    "artist": "Ohana-chan",
-    "status": "Ongoing",
-    "sinopsis": "Seorang pria yang telah bereinkarnasi di dunia lain memperoleh panggilan master tongkat di dunia baru! Namun, kemampuan itu tidak digunakan untuk mengalahkan musuh, atau untuk mendapatkan kekuatan, melainkan untuk ngentot dengan gadis-gadis cantik yang terus muncul! ",
     "cover": "assets1/komik/roku/cover.jpg",
     "lastUpdate": "2025-08-15T06:57:34.919Z",
-    "chapter": [
-      {
-        "judul": "chapter 48",
-        "folder": "assets1/komik/roku/48",
-        "total": 18
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 48",
+        "totalChapters": 18
+      },
   {
     "id": "kankin",
     "judul": "Kankin Ou",
-    "format": "Manga",
-    "genre": [
-      "Action",
-      "Ecchi",
-      "Harem"
-    ],
-    "author": "MASAI",
-    "artist": "Ashimoto Yoika",
-    "status": "Ongoing",
-    "sinopsis": "Seorang gadis yang menyebut dirinya iblis muncul di hadapan seorang siswa pemalu bernama Fumio Kijima. Gadis itu mengaku sebagai gadis kampanye dari dunia iblis dan dia memberinya kemampuan untuk \"memanggil kamar\" dari udara tipis. Awalnya dia tidak menyalahgunakan kekuatannya dan menggunakannya sebagai kemampuan yang nyaman dalam kehidupan sehari-harinya. Tetapi suatu hari dia diganggu oleh teman-teman sekelasnya dengan dalih yang tidak adil dan dibuat menderita. Di masa lalu dia akan berkubang dalam kesengsaraan dan menangis sampai tertidur, tetapi sekarang dia memiliki kekuatan untuk dipanggil. \"Aku akan membuat mereka menyesal!\" Menggunakan kekuatannya untuk memanggil \"kamarnya\", ia memulai era kurungan dan cuci otak untuk mencapai tujuannya.",
     "cover": "assets1/komik/kankin/cover.jpg",
     "lastUpdate": "2025-08-15T06:57:27.745Z",
-    "chapter": [
-      {
-        "judul": "chapter 28",
-        "folder": "assets1/komik/kankin/28",
-        "total": 39
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 28",
+        "totalChapters": 39
+      },
   {
     "id": "s rank",
     "judul": "The S-Rank Hunter’s Healing Life with Monsters",
-    "format": "Manhwa",
-    "genre": [
-      "Action",
-      "Fantasy",
-      "Adventure"
-    ],
-    "author": "Dagi205 (다기205), Team The Zeke",
-    "artist": "Son I-do (손이도)",
-    "status": "Ongoing",
-    "sinopsis": "Selama puluhan tahun, aku hanyalah seorang Pemburu Chimera yang tak berakal—senjata yang ditempa dan dibuang. Namun, setelah mati di kedalaman gerbang yang dipenuhi monster, aku terbangun... sebagai manusia.\n\nSekarang, sebagai Cheon Dowoon, saya hanya menginginkan kedamaian—hidup yang tenang, secangkir teh hangat, dan bebas dari omong kosong setan.\n\nSayangnya takdir punya rencana lain.\n\nPertama, seekor anjing neraka yang tersesat menggali kebunku. Lalu, seekor binatang bayangan yang sinis mulai tidur siang di berandaku. Yang terburuk? \"Kenalan-kenalan\" lamaku terus bermunculan—ada yang meminta bantuan, yang lain... meminta kepalaku.\n\nBalas dendam? Bertahan hidup?\nKumohon. Aku mau pakai celana dulu.\n\n—Kehidupan kedua yang “menenangkan” bagi seorang mantan mesin pembunuh dimulai… di halaman depan yang pada dasarnya adalah tempat penitipan monster.",
     "cover": "assets1/komik/s rank/cover.jpg",
     "lastUpdate": "2025-08-15T06:57:44.181Z",
-    "chapter": [
-      {
-        "judul": "chapter 7",
-        "folder": "assets1/komik/s rank/7",
-        "total": 40
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 7",
+        "totalChapters": 40
+      },
   {
     "id": "Isekai NTR",
     "judul": "Isekai NTR ~Shinyuu no Onna wo Saikyou Skill de Otosu Houhou~",
-    "format": "Manga",
-    "genre": [
-      "Action",
-      "Adventure",
-      "Fantasy",
-      "Ecchi",
-      "Harem"
-    ],
-    "author": "Gorillan Do",
-    "artist": "Satou Kenetsu",
-    "status": "Ongoing",
-    "sinopsis": "Dunia yang menyebalkan ini hanyalah permainan sampah, dia dan aku pasti akan kabur bersama. Jadi, semua wanita menyebalkan yang mencoba memanfaatkannya hanyalah gangguan. Yang lebih buruk, sepertinya dia mulai memiliki perasaan terhadap mereka. Itu sebabnya, demi dia, aku akan memakannya dulu. Tapi, apakah kekuatan ini ...?",
     "cover": "assets1/komik/Isekai NTR/cover.jpg",
     "lastUpdate": "2025-08-15T06:58:31.944Z",
-    "chapter": [
-      {
-        "judul": "chapter 58",
-        "folder": "assets1/komik/Isekai NTR/58",
-        "total": 18
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 58",
+        "totalChapters": 18
+      },
   {
     "id": "Demonic Sect Master's",
     "judul": "The Demonic Sect Master’s Secret Apprentice",
-    "format": "Manhua",
-    "genre": [
-      "Action",
-      "Ecchi",
-      "Drama",
-      "Fantasy"
-    ],
-    "author": "人加可以",
-    "artist": "人加可以",
-    "status": "Ongoing",
-    "sinopsis": "He Yun, yang dijual ke Istana Iblis Jiuyou saat kecil, selamat berkat sifatnya yang 'rajin dan patuh'—dan juga seorang juru masak yang hebat. Namun, di suatu hari yang tenang dan tanpa kejadian apa pun, Pemimpin Sekte Iblis tiba-tiba ehem ehem membawanya dengan paksa!",
     "cover": "assets1/komik/Demonic Sect Master/cover.jpg",
     "lastUpdate": "2025-08-10T14:38:44.309Z",
-    "chapter": [
-      {
-        "judul": "chapter 1",
-        "folder": "assets1/komik/Demonic Sect Master/1",
-        "total": 8
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 8",
+        "totalChapters": 6
       },
-      {
-        "judul": "chapter 2",
-        "folder": "assets1/komik/Demonic Sect Master/2",
-        "total": 12
-      },
-      {
-        "judul": "chapter 3",
-        "folder": "assets1/komik/Demonic Sect Master/3",
-        "total": 10
-      },
-      {
-        "judul": "chapter 4",
-        "folder": "assets1/komik/Demonic Sect Master/4",
-        "total": 11
-      },
-      {
-        "judul": "chapter 5",
-        "folder": "assets1/komik/Demonic Sect Master/5",
-        "total": 8
-      },
-      {
-        "judul": "chapter 6",
-        "folder": "assets1/komik/Demonic Sect Master/6",
-        "total": 8
-      },
-      {
-        "judul": "chapter 7",
-        "folder": "assets1/komik/Demonic Sect Master/7",
-        "total": 8
-      },
-      {
-        "judul": "chapter 8",
-        "folder": "assets1/komik/Demonic Sect Master/8",
-        "total": 6
-      }
-    ]
-  },
   {
     "id": "The-Ultimate-Shut-In",
     "judul": "The Ultimate Shut-In",
-    "format": "Manhwa",
-    "genre": [
-      "Fantasy",
-      "Drama"
-    ],
-    "author": "bihyeon,maeng ju-gyeong",
-    "artist": "bihyeon,maeng ju-gyeong",
-    "status": "Ongoing",
-    "sinopsis": "Suatu hari, kiamat tiba-tiba datang. Makhluk yang berada di sudut rumah tidak dapat meninggalkan sudut rumah itu. Kamu harus bertahan hidup untuk menyelamatkan keluargamu.",
     "cover": "assets1/komik/The-Ultimate-Shut-In/cover.jpg",
     "lastUpdate": "2025-08-15T06:58:38.901Z",
-    "chapter": [
-      {
-        "judul": "chapter 2",
-        "folder": "assets1/komik/The-Ultimate-Shut-In/2",
-        "total": 17
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 2",
+        "totalChapters": 17
+      },
   {
     "id": "Freezing-The-World-I-Built-A-Doomsday-Safehouse",
     "judul": "Freezing The World: I Built A Doomsday Safehouse",
-    "format": "Manhua",
-    "genre": [
-      "Action",
-      "Drama",
-      "Fantasy"
-    ],
-    "author": "记忆的海",
-    "artist": "记忆的海",
-    "status": "Ongoing",
-    "sinopsis": "Dunia sedang memasuki zaman es, dan 95% umat manusia musnah! Dalam kehidupan sebelumnya, pahlawan kita Zhang Yi dibunuh secara tragis oleh orang-orang yang dia bantu, berkat kebaikan hatinya. Tapi jangan takut, karena Zhang Yi telah terlahir kembali dan sekarang memiliki kekuatan luar biasa – manipulasi ruang! Dia menjadi gila karena menimbun perbekalan untuk kiamat es dan siap menguasai gurun beku! Dia bersumpah untuk melepaskan rasa sakit seratus kali lipat pada orang-orang yang menyakitinya di masa lalu!",
     "cover": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/cover.jpg",
     "lastUpdate": "2025-08-14T03:41:53.161Z",
-    "chapter": [
-      {
-        "judul": "chapter 40",
-        "folder": "assets1/komik/Freezing-The-World-I-Built-A-Doomsday-Safehouse/40",
-        "total": 8
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 40",
+        "totalChapters": 8
+      },
   {
     "id": "i-m-a-super-rich-guy",
     "judul": "I’m a Super Rich Guy, So It’s Reasonable For Me to Be a Scumbag",
-    "format": "Manga",
-    "genre": [
-      "Drama",
-      "Harem",
-      "Fantasy"
-    ],
-    "author": "番茄小说, 鱼山成神",
-    "artist": "春日文化",
-    "sinopsis": "Jiang Cheng",
     "cover": "assets1/komik/i-m-a-super-rich-guy/cover.jpg",
     "lastUpdate": "2025-08-14T16:38:37.072Z",
-    "chapter": [
-      {
-        "judul": "chapter 5",
-        "folder": "assets1/komik/i-m-a-super-rich-guy/5",
-        "total": 12
-      }
-    ]
-  },
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 5",
+        "totalChapters": 12
+      },
   {
     "id": "cheat-skill-shihai-otsukatte-isekai-harem",
     "judul": "Cheat Skill “Shihai” Otsukatte Isekai Harem!",
-    "format": "Manga",
-    "genre": [
-      "Action",
-      "Adventure",
-      "Fantasy",
-      "Harem",
-      "Ecchi",
-      "Comedy",
-      "Isekai"
-    ],
-    "author": "Kt60",
-    "artist": "Reiha",
-    "sinopsis": "Suatu hari",
     "cover": "assets1/komik/cheat-skill-shihai-otsukatte-isekai-harem/cover.jpg",
     "lastUpdate": "2025-08-15T07:02:02.174Z",
-    "chapter": [
-      {
-        "judul": "chapter 16",
-        "folder": "assets1/komik/cheat-skill-shihai-otsukatte-isekai-harem/16",
-        "total": 25
-      }
-    ]
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+        "latestChapter": "chapter 16",
+        "totalChapters": 25
   }
 ]
