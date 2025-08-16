@@ -56,6 +56,12 @@
   {
     "id": "roku",
     "judul": "Isekai Koushoku Musou Roku ~Isekai Tensei no Chie to Chikara wo, Tada Hitasura ×××× Suru Tame ni Tsukau~",
+    "genre": [
+      "Aksi",
+      "Petualangan",
+      "Fantasi",
+      "Harem"
+    ],
     "cover": "assets1/komik/roku/cover.jpg",
     "lastUpdate": "2025-08-16T05:51:18.432Z",
     "rating": {
