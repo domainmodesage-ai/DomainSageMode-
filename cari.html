@@ -211,7 +211,7 @@
         <a href="komik.html?id=${k.id}">
           <img src="${k.cover}" alt="${k.judul}">
           <h3>${k.judul}</h3>
-          <p class="chapter-info">${komik.latestChapter || "Belum ada chapter"}</p>
+          <p class="chapter-info">${latestChapter}</p>
           <div class="rating">
             ${starsHTML}
             <small>${avgRating > 0 ? avgRating.toFixed(1) : "Belum ada rating"}</small>
