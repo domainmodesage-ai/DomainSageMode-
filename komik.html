@@ -146,41 +146,71 @@
     });
 
   function tampilkanChapter(jumlah) {
-    const chapterList = document.getElementById('chapterList');
-    chapterList.innerHTML = "";
+  const chapterList = document.getElementById('chapterList');
+  chapterList.innerHTML = "";
 
-    const terbaru = semuaChapter
-      .map((ch, i) => ({ ...ch, index: i }))
-      .slice(-jumlah)
-      .reverse();
+  const terbaru = semuaChapter
+    .map((ch, i) => ({ ...ch, index: i }))
+    .slice(-jumlah)
+    .reverse();
 
-    terbaru.forEach(ch => {
-      const a = document.createElement('a');
-      a.href = `baca.html?id=${komikId}&ch=${ch.index}`;
-      a.textContent = ch.judul;
-      chapterList.appendChild(a);
+  let readChapters = JSON.parse(localStorage.getItem("readChapters") || "[]");
+
+  terbaru.forEach(ch => {
+    const a = document.createElement('a');
+    a.href = `baca.html?id=${komikId}&ch=${ch.index}`;
+    a.textContent = ch.judul;
+
+    // Tandai kalau sudah dibaca
+    if (readChapters.includes(`${komikId}-${ch.index}`)) {
+      a.classList.add("chapter-read");
+    }
+
+    // Event klik → simpan ke localStorage
+    a.addEventListener("click", () => {
+      if (!readChapters.includes(`${komikId}-${ch.index}`)) {
+        readChapters.push(`${komikId}-${ch.index}`);
+        localStorage.setItem("readChapters", JSON.stringify(readChapters));
+      }
     });
+
+    chapterList.appendChild(a);
+  });
   }
 
   function lihatSemuaChapter() {
-    if (!sudahTampilSemua) {
-      const chapterList = document.getElementById('chapterList');
-      chapterList.innerHTML = "";
+  function lihatSemuaChapter() {
+  if (!sudahTampilSemua) {
+    const chapterList = document.getElementById('chapterList');
+    chapterList.innerHTML = "";
 
-      semuaChapter
-        .map((ch, i) => ({ ...ch, index: i }))
-        .slice()
-        .reverse()
-        .forEach(ch => {
-          const a = document.createElement('a');
-          a.href = `baca.html?id=${komikId}&ch=${ch.index}`;
-          a.textContent = ch.judul;
-          chapterList.appendChild(a);
+    semuaChapter
+      .map((ch, i) => ({ ...ch, index: i }))
+      .slice()
+      .reverse()
+      .forEach(ch => {
+        const a = document.createElement('a');
+        a.href = `baca.html?id=${komikId}&ch=${ch.index}`;
+        a.textContent = ch.judul;
+
+        let readChapters = JSON.parse(localStorage.getItem("readChapters") || "[]");
+        if (readChapters.includes(`${komikId}-${ch.index}`)) {
+          a.classList.add("chapter-read");
+        }
+
+        a.addEventListener("click", () => {
+          if (!readChapters.includes(`${komikId}-${ch.index}`)) {
+            readChapters.push(`${komikId}-${ch.index}`);
+            localStorage.setItem("readChapters", JSON.stringify(readChapters));
+          }
         });
 
-      document.getElementById('lihatSemuaContainer').style.display = 'none';
-      sudahTampilSemua = true;
-    }
+        chapterList.appendChild(a);
+      });
+
+    document.getElementById('lihatSemuaContainer').style.display = 'none';
+    sudahTampilSemua = true;
+  }
   }
 
   function initBookmark(komik) {
