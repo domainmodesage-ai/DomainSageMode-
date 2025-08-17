@@ -104,3 +104,21 @@
   background: #ff0000;   /* merah terang saat hover */
   transform: scale(1.05); /* sedikit membesar */
 }
+
+/* === Override supaya link chapter terlihat tombol === */
+.chapter-info .chapter-link {
+  display: inline-block;
+  padding: 3px 8px;
+  background: #b30000;
+  color: #fff !important; /* paksa override warna dari style.css */
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none !important; /* pastikan underline hilang */
+  transition: 0.2s;
+}
+
+.chapter-info .chapter-link:hover {
+  background: #ff0000;
+  transform: scale(1.05);
+  }
