@@ -98,33 +98,43 @@
     const ratings = JSON.parse(localStorage.getItem("ratings") || "{}");
 
     komikHalaman.forEach(komik => {
-      const comicRatings = ratings[komik.id] || [];
-      let avgRating = 0;
-      if (comicRatings.length > 0) {
-        avgRating = comicRatings.reduce((a, b) => a + b.rating, 0) / comicRatings.length;
-      }
+  const comicRatings = ratings[komik.id] || [];
+  let avgRating = 0;
+  if (comicRatings.length > 0) {
+    avgRating = comicRatings.reduce((a, b) => a + b.rating, 0) / comicRatings.length;
+  }
 
-      const starsDisplay = Array.from({ length: 5 })
-        .map((_, i) => `<span class="star ${i < Math.round(avgRating) ? 'filled' : ''}">★</span>`)
-        .join("");
+  const starsDisplay = Array.from({ length: 5 })
+    .map((_, i) => `<span class="star ${i < Math.round(avgRating) ? 'filled' : ''}">★</span>`)
+    .join("");
 
-      const el = document.createElement('div');
-      el.className = 'komik-item';
+  const el = document.createElement('div');
+  el.className = 'komik-item';
+
+  // 🔥 Ambil data detail dari individual.json
+  fetch(`data/individual/${komik.id}.json`)
+    .then(res => res.json())
+    .then(detail => {
+      const lastIndex = detail[0].chapter.length - 1;
+      const lastChapter = detail[0].chapter[lastIndex];
+
       el.innerHTML = `
-  <a href="komik.html?id=${komik.id}">
-    <img src="${komik.cover}" alt="${komik.judul}" />
-    <h3>${komik.judul}</h3>
-    <p class="rating ${avgRating === 0 ? 'empty' : ''}">${starsDisplay}</p>
-  </a>
-  <p class="chapter-info">
-  <a href="baca.html?id=${komik.id}&ch=${komik.latestChapter || 1}">
-    ${komik.latestChapter || "Belum ada"}
-  </a>
-</p>
-  <p class="update-info">${waktuRelatif(komik.lastUpdate)}</p>
-`;
-      container.appendChild(el);
+        <a href="komik.html?id=${komik.id}">
+          <img src="${komik.cover}" alt="${komik.judul}" />
+          <h3>${komik.judul}</h3>
+          <p class="rating ${avgRating === 0 ? 'empty' : ''}">${starsDisplay}</p>
+        </a>
+        <p class="chapter-info">
+          <a href="baca.html?id=${komik.id}&ch=${lastIndex}">
+            ${lastChapter.judul}
+          </a>
+        </p>
+        <p class="update-info">${waktuRelatif(komik.lastUpdate)}</p>
+      `;
     });
+
+  container.appendChild(el);
+});
 
     buatNavigasi(halaman);
   }
