@@ -15,37 +15,42 @@ const files = fs.readdirSync(komikFolder).filter(f => f.endsWith(".json"));
 
 files.forEach(file => {
   const komikPath = path.join(komikFolder, file);
-  const komikDetail = JSON.parse(fs.readFileSync(komikPath, "utf-8"));
-  const chapters = komikDetail.chapters || [];
-  const totalChapters = chapters.length;
-  const latestChapter = totalChapters > 0 ? chapters[chapters.length - 1].judul : `chapter ${totalChapters}`;
-  const id = path.basename(file, ".json");
+  const komikDetailArray = JSON.parse(fs.readFileSync(komikPath, "utf-8"));
 
-  if (mainMap.has(id)) {
-    // komik sudah ada di komik.json
-    const item = mainMap.get(id);
-    if (item.totalChapters !== totalChapters || item.latestChapter !== latestChapter) {
-      item.totalChapters = totalChapters;
-      item.latestChapter = latestChapter;
-      item.lastUpdate = new Date().toISOString();
+  // JSON individual kamu berbentuk array
+  komikDetailArray.forEach(komikDetail => {
+    const chapters = komikDetail.chapter || [];
+    const totalChapters = chapters.length;
+    const latestChapter = totalChapters > 0 ? chapters[chapters.length - 1].judul : `chapter ${totalChapters}`;
+    const id = komikDetail.id;
+
+    if (mainMap.has(id)) {
+      // komik sudah ada di komik.json
+      const item = mainMap.get(id);
+      if (item.totalChapters !== totalChapters || item.latestChapter !== latestChapter) {
+        item.totalChapters = totalChapters;
+        item.latestChapter = latestChapter;
+        item.lastUpdate = new Date().toISOString();
+        console.log(`♻️ Komik diperbarui: ${id}`);
+      }
+    } else {
+      // komik baru, tambahkan ke mainData
+      const newItem = {
+        id,
+        judul: komikDetail.judul || id,
+        format: komikDetail.format || "Unknown",
+        genre: komikDetail.genre || [],
+        cover: komikDetail.cover || "",
+        lastUpdate: new Date().toISOString(),
+        rating: { total: 0, count: 0 },
+        latestChapter,
+        totalChapters
+      };
+      mainData.push(newItem);
+      mainMap.set(id, newItem);
+      console.log(`➕ Komik baru ditambahkan: ${id}`);
     }
-  } else {
-    // komik baru, tambahkan ke mainData
-    const newItem = {
-      id,
-      judul: komikDetail.judul || id,
-      format: komikDetail.format || "Unknown",
-      genre: komikDetail.genre || [],
-      cover: komikDetail.cover || "",
-      lastUpdate: new Date().toISOString(),
-      rating: { total: 0, count: 0 },
-      latestChapter,
-      totalChapters
-    };
-    mainData.push(newItem);
-    mainMap.set(id, newItem);
-    console.log(`➕ Komik baru ditambahkan: ${id}`);
-  }
+  });
 });
 
 // simpan ulang komik.json
