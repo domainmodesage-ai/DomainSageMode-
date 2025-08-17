@@ -23,7 +23,22 @@
         "judul": "Chapter 2",
         "folder": "assets1/komik/The-Ultimate-Shut-In/2",
         "total": 17
-      }
+      },
+      {
+        "judul": "Chapter 3",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/3",
+        "total": 16
+      },
+        {
+        "judul": "Chapter 4",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/4",
+        "total": 19
+        },
+        {
+        "judul": "Chapter 5",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/5",
+        "total": 12
+        }
     ]
   }
 ]
