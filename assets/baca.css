@@ -198,3 +198,18 @@
   margin: 0;
   color: #ddd;
 }
+
+/* Transisi halus */
+header, nav {
+  transition: transform 0.3s ease;
+}
+
+/* Header sembunyi ke atas */
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* Navbar sembunyi ke bawah */
+.navbar-hidden {
+  transform: translateY(100%);
+}
