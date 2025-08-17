@@ -110,6 +110,10 @@
   transform: translateX(4px);
 }
 
+.chapter-read {
+  color: #777 !important;   /* abu-abu */
+}
+
 /* Tombol Lihat Semua Chapter */
 .lihat-semua {
   text-align: center;
