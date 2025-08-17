@@ -3,43 +3,43 @@
 
   <url>
     <loc>https://domainsagemode.xyz/</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/index.html</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/cari.html</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/bookmark-history.html</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/donasi.html</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/register.html</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/chat.html</loc>
-    <lastmod>2025-08-17T00:35:43.279Z</lastmod>
+    <lastmod>2025-08-17T00:59:29.724Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
@@ -118,6 +118,12 @@
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=yuusha-sama-wa-houshuu-ni-hitozuma</loc>
     <lastmod>2025-08-17T00:35:43.227Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://domainsagemode.xyz/komik.html?id=yuru-fuwa-noka-no-moji-bake-skill</loc>
+    <lastmod>2025-08-17T00:59:29.671Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

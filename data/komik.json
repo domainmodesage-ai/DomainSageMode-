@@ -245,5 +245,24 @@
     },
     "latestChapter": "chapter 25",
     "totalChapters": 25
+  },
+  {
+    "id": "yuru-fuwa-noka-no-moji-bake-skill",
+    "judul": "Yurufuwa Nouka no Mojibake Skill ~Isekai de Katarogu Tsuuhan Yattemasu~",
+    "format": "Manga",
+    "genre": [
+      "Harem",
+      "Fantasy",
+      "Ecchi",
+      "Comedy"
+    ],
+    "cover": "assets1/komik/yuru-fuwa-noka-no-moji-bake-skill/cover.jpg",
+    "lastUpdate": "2025-08-17T00:59:29.671Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 27",
+    "totalChapters": 28
   }
 ]
