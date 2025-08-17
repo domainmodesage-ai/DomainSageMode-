@@ -7,28 +7,45 @@ const komikFolder = path.join(__dirname, "data", "komik");   // folder JSON indi
 // baca data utama
 let mainData = JSON.parse(fs.readFileSync(mainFile, "utf-8"));
 
-// update tiap item di komik.json
-mainData = mainData.map(item => {
-  const komikPath = path.join(komikFolder, `${item.id}.json`);
+// buat Map cepat untuk cek id
+const mainMap = new Map(mainData.map(item => [item.id, item]));
 
-  if (fs.existsSync(komikPath)) {
-    const komikDetail = JSON.parse(fs.readFileSync(komikPath, "utf-8"));
-    const chapters = komikDetail.chapters || [];
-    const totalChapters = chapters.length;
-    const latestChapter = totalChapters > 0 ? chapters[chapters.length - 1].judul : `chapter ${totalChapters}`;
+// baca semua file JSON di folder komik
+const files = fs.readdirSync(komikFolder).filter(f => f.endsWith(".json"));
 
-    // hanya update jika ada perubahan chapter atau chapter terakhir
+files.forEach(file => {
+  const komikPath = path.join(komikFolder, file);
+  const komikDetail = JSON.parse(fs.readFileSync(komikPath, "utf-8"));
+  const chapters = komikDetail.chapters || [];
+  const totalChapters = chapters.length;
+  const latestChapter = totalChapters > 0 ? chapters[chapters.length - 1].judul : `chapter ${totalChapters}`;
+  const id = path.basename(file, ".json");
+
+  if (mainMap.has(id)) {
+    // komik sudah ada di komik.json
+    const item = mainMap.get(id);
     if (item.totalChapters !== totalChapters || item.latestChapter !== latestChapter) {
       item.totalChapters = totalChapters;
       item.latestChapter = latestChapter;
       item.lastUpdate = new Date().toISOString();
     }
-
   } else {
-    console.warn(`⚠️ File tidak ditemukan: ${komikPath}`);
+    // komik baru, tambahkan ke mainData
+    const newItem = {
+      id,
+      judul: komikDetail.judul || id,
+      format: komikDetail.format || "Unknown",
+      genre: komikDetail.genre || [],
+      cover: komikDetail.cover || "",
+      lastUpdate: new Date().toISOString(),
+      rating: { total: 0, count: 0 },
+      latestChapter,
+      totalChapters
+    };
+    mainData.push(newItem);
+    mainMap.set(id, newItem);
+    console.log(`➕ Komik baru ditambahkan: ${id}`);
   }
-
-  return item;
 });
 
 // simpan ulang komik.json
