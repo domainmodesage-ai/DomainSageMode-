@@ -125,10 +125,10 @@ fetch(`data/komik/${komik.id}.json`)
         <p class="rating ${avgRating === 0 ? 'empty' : ''}">${starsDisplay}</p>
       </a>
       <p class="chapter-info">
-        <a href="baca.html?id=${komik.id}&ch=${lastIndex}">
-          ${lastChapter.judul}
-        </a>
-      </p>
+  <a href="baca.html?id=${komik.id}&ch=${lastIndex}" class="chapter-link">
+    ${lastChapter.judul}
+  </a>
+</p>
       <p class="update-info">${waktuRelatif(komik.lastUpdate)}</p>
     `;
   });
