@@ -63,6 +63,19 @@
     </div>
   </div>
 
+  <!-- Fitur Cari Chapter -->
+<div class="search-chapter" style="margin: 15px 0; text-align: center;">
+  <input type="number" id="chapterInput" placeholder="Masukkan nomor chapter..." 
+         style="padding: 8px; border: 1px solid #b00020; border-radius: 5px; width: 70%;">
+  <button onclick="searchChapter()" 
+          style="padding: 8px 15px; margin-left: 5px; background: #b00020; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Cari
+  </button>
+</div>
+
+<!-- Hasil pencarian chapter -->
+<div id="chapterResult" style="margin-top: 15px; text-align: center;"></div>
+
   <div class="chapter-list" id="chapterList"></div>
   <div class="lihat-semua" id="lihatSemuaContainer" style="display:none;">
     <button onclick="lihatSemuaChapter()">Lihat Semua Chapter</button>
@@ -329,6 +342,45 @@
       commentInput.value = "";
       loadComments();
     });
+  }
+
+  function searchChapter() {
+  const input = document.getElementById("chapterInput").value.trim();
+  const result = document.getElementById("chapterResult");
+  result.innerHTML = ""; // reset hasil lama
+
+  if (!input) {
+    alert("Masukkan nomor chapter dulu!");
+    return;
+  }
+
+  // cari berdasarkan judul chapter (misalnya "Chapter 50")
+  const target = semuaChapter.find((ch, i) => {
+    return ch.judul.toLowerCase() === "chapter " + input.toLowerCase();
+  });
+
+  if (target) {
+    // dapatkan index chapter di array
+    const index = semuaChapter.indexOf(target);
+
+    // buat tombol hasil
+    const a = document.createElement("a");
+    a.href = `baca.html?id=${komikId}&ch=${index}`;
+    a.textContent = target.judul;
+    a.style.display = "inline-block";
+    a.style.padding = "10px 20px";
+    a.style.margin = "5px";
+    a.style.background = "#222";
+    a.style.color = "white";
+    a.style.border = "1px solid #b00020";
+    a.style.borderRadius = "5px";
+    a.style.textDecoration = "none";
+    a.style.cursor = "pointer";
+
+    result.appendChild(a);
+  } else {
+    result.innerHTML = `<p>Chapter ${input} tidak ditemukan.</p>`;
+  }
   }
 </script>
 </body>
