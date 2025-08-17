@@ -283,5 +283,26 @@ if (current) {
         }
       });
   </script>
+  <script>
+  const header = document.querySelector("header");
+  const navbar = document.querySelector("nav");
+  let isVisible = true;
+
+  // Sembunyikan saat scroll
+  window.addEventListener("scroll", () => {
+    if (isVisible) {
+      header.classList.add("header-hidden");
+      navbar.classList.add("navbar-hidden");
+      isVisible = false;
+    }
+  });
+
+  // Tampilkan lagi saat ketuk layar
+  document.addEventListener("click", () => {
+    header.classList.remove("header-hidden");
+    navbar.classList.remove("navbar-hidden");
+    isVisible = true;
+  });
+                            </script>
 </body>
 </html>
