@@ -225,6 +225,56 @@
         "total": 11
       },
       {
+        "judul": "Chapter 41",
+        "folder": "assets1/komik/have/41",
+        "total": 13
+      },
+{
+        "judul": "Chapter 42",
+        "folder": "assets1/komik/have/42",
+        "total": 11
+      },
+{
+        "judul": "Chapter 43",
+        "folder": "assets1/komik/have/43",
+        "total": 12
+      },
+{
+        "judul": "Chapter 44",
+        "folder": "assets1/komik/have/44",
+        "total": 13
+      },
+{
+        "judul": "Chapter 45",
+        "folder": "assets1/komik/have/45",
+        "total": 11
+      },
+{
+        "judul": "Chapter 46",
+        "folder": "assets1/komik/have/46",
+        "total": 12
+      },
+{
+        "judul": "Chapter 47",
+        "folder": "assets1/komik/have/47",
+        "total": 12
+      },
+{
+        "judul": "Chapter 48",
+        "folder": "assets1/komik/have/48",
+        "total": 12
+      },
+{
+        "judul": "Chapter 49",
+        "folder": "assets1/komik/have/49",
+        "total": 12
+      },
+{
+        "judul": "Chapter 50",
+        "folder": "assets1/komik/have/50",
+        "total": 12
+      },
+      {
         "judul": "Chapter 51",
         "folder": "assets1/komik/have/51",
         "total": 14
@@ -373,6 +423,11 @@
         "judul": "Chapter 80",
         "folder": "assets1/komik/have/80",
         "total": 8
+      },
+      {
+        "judul": "Chapter 81",
+        "folder": "assets1/komik/have/81",
+        "total": 15
       }
     ]
   }
