@@ -55,7 +55,17 @@
         "judul": "Chapter 8",
         "folder": "assets1/komik/Demonic Sect Master/8",
         "total": 6
-      }
+      },
+        {
+        "judul": "Chapter 9",
+        "folder": "assets1/komik/Demonic Sect Master/9",
+        "total": 12
+        },
+        {
+        "judul": "Chapter 10",
+        "folder": "assets1/komik/Demonic Sect Master/10",
+        "total": 9
+        }
     ]
   }
 ]
