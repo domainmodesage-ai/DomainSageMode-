@@ -350,13 +350,13 @@
   result.innerHTML = ""; // reset hasil lama
 
   if (!input) {
-    alert("Masukkan nomor Chapter dulu!");
+    alert("Masukkan nomor chapter dulu!");
     return;
   }
 
   // cari berdasarkan judul chapter (misalnya "Chapter 50")
   const target = semuaChapter.find((ch, i) => {
-    return ch.judul.toLowerCase() === "Chapter " + input.toLowerCase();
+    return ch.judul.toLowerCase() === "chapter " + input.toLowerCase();
   });
 
   if (target) {
