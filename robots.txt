@@ -1,4 +1,7 @@
 User-agent: *
+Allow: /assets/
+Allow: /data/
+Allow: /assets1/
 Allow: /
 
 Sitemap: https://domainsagemode.xyz/sitemap.xml
