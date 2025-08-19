@@ -20,6 +20,11 @@
         "folder": "assets1/komik/s rank/0",
         "total": 25
       },
+        {
+        "judul": "Chapter 1",
+        "folder": "assets1/komik/s rank/1",
+        "total": 59
+      },
       {
         "judul": "Chapter 2",
         "folder": "assets1/komik/s rank/2",
@@ -49,6 +54,16 @@
         "judul": "Chapter 7",
         "folder": "assets1/komik/s rank/7",
         "total": 40
+      },
+        {
+        "judul": "Chapter 8",
+        "folder": "assets1/komik/s rank/8",
+        "total": 41
+      },
+        {
+        "judul": "Chapter 9",
+        "folder": "assets1/komik/s rank/9",
+        "total": 39
       }
     ]
   }
