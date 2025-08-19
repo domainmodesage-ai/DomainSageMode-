@@ -264,5 +264,26 @@
     },
     "latestChapter": "Chapter 27",
     "totalChapters": 28
+  },
+  {
+    "id": "harem-ou-no-isekai-press-manyuuki",
+    "judul": "Harem Ou no Isekai Press Manyuuki",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Harem",
+      "Fantasy",
+      "Isekai",
+      "Comedy"
+    ],
+    "cover": "assets1/komik/harem-ou-no-isekai-press-manyuuki/cover.jpg",
+    "lastUpdate": "2025-08-19T16:12:37.548Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 17",
+    "totalChapters": 17
   }
 ]
