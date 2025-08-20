@@ -285,5 +285,25 @@
     },
     "latestChapter": "Chapter 17",
     "totalChapters": 17
+  },
+  {
+    "id": "a-record-of-a-mortal-s-journey-to-immortality",
+    "judul": "A Record of a Mortal's Journey to Immortality",
+    "format": "Manhua",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Drama",
+      "Martial Arts"
+    ],
+    "cover": "assets1/komik/a-record-of-a-mortal-s-journey-to-immortality/cover.jpg",
+    "lastUpdate": "2025-08-20T07:32:53.043Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 301",
+    "totalChapters": 1
   }
 ]
