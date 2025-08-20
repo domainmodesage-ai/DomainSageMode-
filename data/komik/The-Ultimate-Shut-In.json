@@ -198,7 +198,32 @@
         "judul": "Chapter 37",
         "folder": "assets1/komik/The-Ultimate-Shut-In/37",
         "total": 38
-}
+},
+        {
+        "judul": "Chapter 38",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/38",
+        "total": 47
+},
+{
+        "judul": "Chapter 39",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/39",
+        "total": 53
+},
+{
+        "judul": "Chapter 40",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/40",
+        "total": 48
+},
+{
+        "judul": "Chapter 41",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/41",
+        "total": 30
+},
+     {
+        "judul": "Chapter 43",
+        "folder": "assets1/komik/The-Ultimate-Shut-In/43",
+        "total": 53
+      }
     ]
   }
 ]
