@@ -1,0 +1,21 @@
+ [
+ {
+    "id": "a-record-of-a-mortal-s-journey-to-immortality",
+    "judul": "A Record of a Mortal's Journey to Immortality",
+"format": "Manhua",
+    "genre": ["Action", "Adventure", "Fantasy", "Drama", "Martial Arts"],
+"author": "Wang Yu",
+"artist": "蛋糕月,Hehe",
+    "status": "Ongoing",
+    "sinopsis": "Seorang anak laki-laki miskin dan biasa dari sebuah desa bergabung dengan sekte kecil di Jiang Hu dan menjadi Murid Tidak Resmi secara kebetulan. Bagaimana Han Li, orang biasa sejak lahir, membangun pijakan untuk dirinya sendiri di sektenya? Dengan bakatnya yang biasa-biasa saja, bagaimana dia akan berhasil melintasi jalur kultivasi dan menjadi Immortal? Ini adalah kisah tentang seorang manusia biasa yang, melawan segala rintangan, bentrok dengan iblis jahat dan makhluk surgawi kuno untuk menemukan jalannya sendiri menuju keImmortalan.",
+    "cover": "assets1/komik/a-record-of-a-mortal-s-journey-to-immortality/cover.jpg",
+    "lastUpdate": "2025-08-20T06:00:00Z",
+    "chapter": [
+      {
+        "judul": "Chapter 301",
+        "folder": "assets1/komik/a-record-of-a-mortal-s-journey-to-immortality/301",
+        "total": 17
+      }
+    ]
+  }
+ ]
