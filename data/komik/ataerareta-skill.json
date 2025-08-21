@@ -1,0 +1,41 @@
+ [
+ {
+    "id": "ataerareta-skill",
+    "judul": "Ataerareta Skill wo Tsukatte Kasei de Isekai Bijotachi to Ichaicha shitai",
+"format": "Manga",
+    "genre": ["Action", "Adventure", "Fantasy", "Harem", "Ecchi", "Isekai"],
+"author": "RENKI Shun",
+"artist": "Inomoto Rikako",
+    "status": "Ongoing",
+    "sinopsis": "Hari itu, Ichita Yamada bekerja paruh waktu seperti biasa. Ketika dia membuka pintu belakang setelah menyelesaikan pekerjaan paruh waktunya, dia menemukan ruang kosong dan seseorang yang menyebut dirinya Tuhan. Secara kebetulan dia dipilih oleh Tuhan untuk pergi ke dunia lain. Dia bingung, tetapi memutuskan untuk tetap hidup. Berpikir tentang bagaimana bertahan hidup di dunia lain ini menggunakan keterampilan yang dia terima dari Tuhan, dia mencoba yang terbaik untuk memiliki hubungan fisik dengan seorang wanita cantik di dunia lain ini.",
+    "cover": "assets1/komik/ataerareta-skill/cover.jpg",
+    "lastUpdate": "2025-08-22T06:00:00Z",
+    "chapter": [
+      {
+        "judul": "Chapter 1",
+        "folder": "assets1/komik/ataerareta-skill/1",
+        "total": 30
+      },
+ {
+        "judul": "Chapter 2",
+        "folder": "assets1/komik/ataerareta-skill/2",
+        "total": 30
+      },
+ {
+        "judul": "Chapter 3",
+        "folder": "assets1/komik/ataerareta-skill/3",
+        "total": 28
+      },
+     {
+        "judul": "Chapter 4",
+        "folder": "assets1/komik/ataerareta-skill/4",
+        "total": 30
+      },
+      {
+        "judul": "Chapter 5",
+        "folder": "assets1/komik/ataerareta-skill/5",
+        "total": 32
+      }
+    ]
+  }
+ ]
