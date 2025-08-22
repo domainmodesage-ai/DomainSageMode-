@@ -344,5 +344,24 @@
     },
     "latestChapter": "Chapter 6",
     "totalChapters": 7
+  },
+  {
+    "id": "ryuu-to-ayumu-nariagari-boukensha-dou",
+    "judul": "Ryuu to Ayumu Nariagari Boukensha-dou: Youzumi Toshite S-Rank Party kara Tsuihou Sareta Kaifuku Majutsushi, Suterareta Saki de Saikyou no Shinryuu o Fukkatsu Sasete Shimau",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Ecchi"
+    ],
+    "cover": "assets1/komik/ryuu-to-ayumu-nariagari-boukensha-dou/cover.jpg",
+    "lastUpdate": "2025-08-22T16:31:21.305Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 8",
+    "totalChapters": 8
   }
 ]
