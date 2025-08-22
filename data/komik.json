@@ -309,15 +309,22 @@
   {
     "id": "ataerareta-skill",
     "judul": "Ataerareta Skill wo Tsukatte Kasei de Isekai Bijotachi to Ichaicha shitai",
-"format": "Manga",
-    "genre": ["Action", "Adventure", "Fantasy", "Harem", "Ecchi", "Isekai"],
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Harem",
+      "Ecchi",
+      "Isekai"
+    ],
     "cover": "assets1/komik/ataerareta-skill/cover.jpg",
-    "lastUpdate": "2025-08-22T03:02:19.842Z",
+    "lastUpdate": "2025-08-22T02:26:29.751Z",
     "rating": {
       "total": 0,
       "count": 0
     },
-    "latestChapter": "Chapter 5",
-    "totalChapters": 5
+    "latestChapter": "Chapter 6",
+    "totalChapters": 6
   }
 ]
