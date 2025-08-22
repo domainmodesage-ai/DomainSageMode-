@@ -35,7 +35,12 @@
         "judul": "Chapter 5",
         "folder": "assets1/komik/ataerareta-skill/5",
         "total": 32
-      }
+      },
+     {
+  "judul": "Chapter 6",
+  "folder": "https://res.cloudinary.com/dh1suepxl/image/upload/ataerareta-skill/6",
+  "total": 30
+     }
     ]
   }
  ]
