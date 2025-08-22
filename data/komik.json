@@ -363,5 +363,26 @@
     },
     "latestChapter": "Chapter 8",
     "totalChapters": 8
+  },
+  {
+    "id": "isekai-h-eiyuuden",
+    "judul": "Villains",
+    "format": "Isekai H Eiyuuden ~Bishoujo Senshi-tachi wa Saikyou Gunshi no Muchana Onegai ni Sakaraenai~",
+    "genre": [
+      "Action",
+      "Fantasy",
+      "Comedy",
+      "Isekai",
+      "Ecchi",
+      "Harem"
+    ],
+    "cover": "assets1/komik/isekai-h-eiyuuden/cover.jpg",
+    "lastUpdate": "2025-08-22T18:49:11.214Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 1",
+    "totalChapters": 1
   }
 ]
