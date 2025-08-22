@@ -326,5 +326,23 @@
     },
     "latestChapter": "Chapter 7",
     "totalChapters": 7
+  },
+  {
+    "id": "i-use-a-top-tier-system",
+    "judul": "I Use a Top-Tier System to Reshape the World",
+    "format": "Manhua",
+    "genre": [
+      "Action",
+      "Drama",
+      "Fantasy"
+    ],
+    "cover": "assets1/komik/i-use-a-top-tier-system/cover.jpg",
+    "lastUpdate": "2025-08-22T13:20:42.911Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 6",
+    "totalChapters": 7
   }
 ]
