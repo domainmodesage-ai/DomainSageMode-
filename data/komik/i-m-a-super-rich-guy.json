@@ -44,6 +44,11 @@
         "judul": "Chapter 6",
         "folder": "assets1/komik/i-m-a-super-rich-guy/6",
         "total": 16
+      },
+      {
+        "judul": "Chapter 7",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/i-m-a-super-rich-guy/7",
+        "total": 15
       }
     ]
   }
