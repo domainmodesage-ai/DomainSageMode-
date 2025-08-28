@@ -1,0 +1,21 @@
+[
+{
+    "id": "motokano-tachi",
+    "judul": "Motokano-tachi to YaReNaoshi!?",
+"format": "Manga",
+    "genre": ["Harem", "Ecchi", "Romance"],
+"author": "Shinonome Ryu",
+"artist": "Shinonome Ryu",
+    "status": "Ongoing",
+    "sinopsis": "Minato Haginouchi, pewaris perusahaan manisan ternama Haginouchi, dipindahkan ke kantor pusat pada tahun ketiganya untuk memulai pelatihan sebagai penerus. Namun, di sebuah pesta perusahaan, ayahnya secara terbuka mengumumkan bahwa Minato adalah presiden berikutnya, sambil menyatakan bahwa siapa pun wanita yang ingin menjadi istri presiden dipersilakan untuk mendekatinya. Tiba-tiba, di tempat kerja yang sudah dipenuhi mantan pacarnya, Minato pun menjadi sasaran tanpa kehendak dari gempuran mereka yang tak kenal henti!?",
+    "cover": "assets1/komik/motokano-tachi/cover.jpg",
+    "lastUpdate": "2025-08-28T06:00:00Z",
+    "chapter": [
+      {
+        "judul": "Chapter 1",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/motokano-tachi/1",
+        "total": 27
+      }
+    ]
+  }
+]
