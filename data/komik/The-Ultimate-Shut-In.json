@@ -223,7 +223,12 @@
         "judul": "Chapter 43",
         "folder": "assets1/komik/The-Ultimate-Shut-In/43",
         "total": 51
-      }
+      },
+        {
+        "judul": "Chapter 44",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/The-Ultimate-Shut-In/44",
+        "total": 43
+        }
     ]
   }
 ]
