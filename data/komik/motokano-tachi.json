@@ -15,7 +15,12 @@
         "judul": "Chapter 1",
         "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/motokano-tachi/1",
         "total": 27
-      }
+      },
+        {
+        "judul": "Chapter 2",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/motokano-tachi/2",
+        "total": 25
+        }
     ]
   }
 ]
