@@ -150,7 +150,17 @@
         "judul": "Chapter 27",
         "folder": "assets1/komik/yuru-fuwa-noka-no-moji-bake-skill/27",
         "total": 40
-      }
+      },
+        {
+        "judul": "Chapter 28.1",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/yuru-fuwa-noka-no-moji-bake-skill/28.1",
+        "total": 14
+      },
+{
+        "judul": "Chapter 28.2",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/yuru-fuwa-noka-no-moji-bake-skill/28.2",
+        "total": 20
+}
     ]
  }
 ]
