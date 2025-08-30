@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
   <title>Daftar / Login - Domain Sage Mode</title>
-  <!-- Favicon -->
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="manifest" href="manifest.json">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/auth.css">
@@ -29,8 +27,9 @@
 </nav>
 
 <main class="auth-container">
+
   <!-- FORM LOGIN/REGISTER -->
-  <div id="authForm" class="form-box" style="display:none;">
+  <div id="authForm" class="form-box">
     <h2 id="formTitle">Buat Akun</h2>
     <input type="text" id="username" placeholder="Username" />
     <input type="email" id="email" placeholder="Email" />
@@ -55,7 +54,6 @@
     <p><strong>ID:</strong> <span id="detailId"></span></p>
 
     <button onclick="showEdit()">Edit Akun</button>
-    <button onclick="window.location.href='chat.html'">Obrolan</button>
     <button onclick="logout()">Logout</button>
   </div>
 
@@ -69,31 +67,33 @@
     <button onclick="cancelEdit()">Batal</button>
   </div>
 </main>
-  <footer>
-    <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
-  </footer>
 
-<script>
-  function getUsers() {
-    return JSON.parse(localStorage.getItem("users") || "[]");
-  }
+<footer>
+  <p>&copy; 2025 Domain Sage Mode. Semua hak cipta komik adalah milik aslinya.</p>
+</footer>
 
-  function saveUsers(users) {
-    localStorage.setItem("users", JSON.stringify(users));
-  }
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updatePassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-  function getCurrentUser() {
-    return JSON.parse(localStorage.getItem("currentUser") || "null");
-  }
+  const firebaseConfig = {
+    apiKey: "AIzaSyCLNAy5hq67QmITgG1yHM_yhtxAQDBF3Gc",
+    authDomain: "domainsagemode.firebaseapp.com",
+    databaseURL: "https://domainsagemode-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "domainsagemode",
+    storageBucket: "domainsagemode.appspot.com",
+    messagingSenderId: "849850359664",
+    appId: "1:849850359664:web:1d08e70a318c02d9ec79b5"
+  };
 
-  function generateUserId() {
-    const users = getUsers();
-    if (users.length === 0) return "0001";
-    const maxId = Math.max(...users.map(u => parseInt(u.id, 10)));
-    return String(maxId + 1).padStart(4, "0");
-  }
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
 
-  function register() {
+  // REGISTER
+  async function register() {
     const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -103,38 +103,100 @@
       return;
     }
 
-    let users = getUsers();
-    if (users.find(u => u.email === email)) {
-      alert("Email sudah terdaftar!");
-      return;
-    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-    const id = generateUserId();
-    const newUser = { username, email, password, photo: "assets/default-avatar.png", id, friends: [] };
-    users.push(newUser);
-    saveUsers(users);
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-    alert("Pendaftaran berhasil!");
-    loadPage();
+      await set(ref(db, "users/" + user.uid), {
+        username: username,
+        email: email,
+        photo: "assets/default-avatar.png"
+      });
+
+      alert("Pendaftaran berhasil!");
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
-  function login() {
+  // LOGIN
+  async function login() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    const users = getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (!user) {
-      alert("Email atau password salah!");
-      return;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login berhasil!");
+    } catch (error) {
+      alert(error.message);
     }
-
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    alert("Login berhasil!");
-    loadPage();
   }
 
+  // LOGOUT
+  function logout() {
+    signOut(auth);
+  }
+
+  // UPDATE AKUN
+  async function updateAccount() {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const newUsername = document.getElementById("editUsername").value.trim();
+    const newEmail = document.getElementById("editEmail").value.trim();
+    const newPassword = document.getElementById("editPassword").value.trim();
+
+    await update(ref(db, "users/" + user.uid), {
+      username: newUsername,
+      email: newEmail
+    });
+
+    if (newPassword) {
+      await updatePassword(user, newPassword);
+    }
+
+    alert("Akun berhasil diperbarui!");
+  }
+
+  // UPDATE FOTO PROFIL
+  function updatePhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+      const base64 = e.target.result;
+      const user = auth.currentUser;
+      if (!user) return;
+
+      await update(ref(db, "users/" + user.uid), { photo: base64 });
+      document.getElementById("profileImage").src = base64;
+      alert("Foto profil berhasil diubah!");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // TAMPILKAN EDIT FORM
+  function showEdit() {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    get(ref(db, "users/" + user.uid)).then(snapshot => {
+      const data = snapshot.val();
+      document.getElementById("editUsername").value = data.username;
+      document.getElementById("editEmail").value = data.email;
+    });
+
+    document.getElementById("accountDetail").style.display = "none";
+    document.getElementById("editForm").style.display = "block";
+  }
+
+  function cancelEdit() {
+    document.getElementById("editForm").style.display = "none";
+    document.getElementById("accountDetail").style.display = "block";
+  }
+
+  // TOGGLE LOGIN/REGISTER FORM
   function showLogin() {
     document.getElementById("formTitle").textContent = "Login";
     document.getElementById("authButton").textContent = "Login";
@@ -151,89 +213,38 @@
     document.getElementById("toggleForm").innerHTML = `Sudah punya akun? <a href="#" onclick="showLogin()">Login</a>`;
   }
 
-  function logout() {
-    localStorage.removeItem("currentUser");
-    loadPage();
-  }
+  // CEK STATUS LOGIN
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const snapshot = await get(ref(db, "users/" + user.uid));
+      const data = snapshot.val();
 
-  function showEdit() {
-    const user = getCurrentUser();
-    document.getElementById("editUsername").value = user.username;
-    document.getElementById("editEmail").value = user.email;
-    document.getElementById("editPassword").value = "";
+      document.getElementById("authForm").style.display = "none";
+      document.getElementById("accountDetail").style.display = "block";
+      document.getElementById("editForm").style.display = "none";
 
-    document.getElementById("accountDetail").style.display = "none";
-    document.getElementById("editForm").style.display = "block";
-  }
-
-  function cancelEdit() {
-    document.getElementById("editForm").style.display = "none";
-    document.getElementById("accountDetail").style.display = "block";
-  }
-
-  function updateAccount() {
-    const user = getCurrentUser();
-    const newUsername = document.getElementById("editUsername").value.trim();
-    const newEmail = document.getElementById("editEmail").value.trim();
-    const newPassword = document.getElementById("editPassword").value.trim();
-
-    if (!newUsername || !newEmail) {
-      alert("Nama dan email tidak boleh kosong!");
-      return;
-    }
-
-    let users = getUsers();
-    const index = users.findIndex(u => u.email === user.email);
-
-    users[index].username = newUsername;
-    users[index].email = newEmail;
-    if (newPassword) users[index].password = newPassword;
-
-    saveUsers(users);
-    localStorage.setItem("currentUser", JSON.stringify(users[index]));
-    alert("Akun berhasil diperbarui!");
-    loadPage();
-  }
-
-  function updatePhoto(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const base64 = e.target.result;
-      const user = getCurrentUser();
-      let users = getUsers();
-
-      const index = users.findIndex(u => u.email === user.email);
-      users[index].photo = base64;
-      saveUsers(users);
-      localStorage.setItem("currentUser", JSON.stringify(users[index]));
-
-      document.getElementById("profileImage").src = base64;
-      alert("Foto profil berhasil diubah!");
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function loadPage() {
-    const currentUser = getCurrentUser();
-
-    document.getElementById("authForm").style.display = currentUser ? "none" : "block";
-    document.getElementById("accountDetail").style.display = currentUser ? "block" : "none";
-    document.getElementById("editForm").style.display = "none";
-
-    if (currentUser) {
-      document.getElementById("detailUsername").textContent = currentUser.username;
-      document.getElementById("detailEmail").textContent = currentUser.email;
-      document.getElementById("detailId").textContent = currentUser.id;
-      document.getElementById("profileImage").src = currentUser.photo || "assets/default-avatar.png";
+      document.getElementById("detailUsername").textContent = data.username;
+      document.getElementById("detailEmail").textContent = data.email;
+      document.getElementById("detailId").textContent = user.uid;
+      document.getElementById("profileImage").src = data.photo || "assets/default-avatar.png";
     } else {
+      document.getElementById("authForm").style.display = "block";
+      document.getElementById("accountDetail").style.display = "none";
+      document.getElementById("editForm").style.display = "none";
       showRegister();
     }
-  }
+  });
 
-  loadPage();
+  // expose functions
+  window.register = register;
+  window.login = login;
+  window.logout = logout;
+  window.updateAccount = updateAccount;
+  window.updatePhoto = updatePhoto;
+  window.showLogin = showLogin;
+  window.showRegister = showRegister;
+  window.showEdit = showEdit;
+  window.cancelEdit = cancelEdit;
 </script>
 </body>
-</html>
+  </html>
