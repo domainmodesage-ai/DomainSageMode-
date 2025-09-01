@@ -1,0 +1,26 @@
+[
+{
+    "id": "mai-chan-daily-life",
+    "judul": "Mai-chan no Nichijou~Mai-Chan's Daily Life~",
+"format": "Manga",
+    "genre": ["Tragedi", "Seksual Violence", "Gore", "Horor"],
+"author": "Uziga Waita",
+"artist": "Uziga Waita",
+    "status": "Completed",
+    "sinopsis": "Berkisah tentang gadis berusia 17 tahun bernama Mai-chan, yang memiliki kemampuan untuk pulih dengan cepat dari cedera, seberat apa pun. Bekerja sebagai pembantu, ia juga dijual kepada sejumlah klien yang dapat melakukan apa pun yang mereka inginkan, sekejam atau menyakitkan apa pun, hanya untuk memuaskan hasrat mereka.",
+    "cover": "assets1/komik/mai-chan-daily-life/cover.jpg",
+    "lastUpdate": "2025-09-01T06:00:00Z",
+    "chapter": [
+      {
+        "judul": "Chapter 0",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/mai-chan-daily-life/0",
+        "total": 10
+      },
+ {
+        "judul": "Chapter 1",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/mai-chan-daily-life/1",
+        "total": 17
+}
+    ]
+  }
+]
