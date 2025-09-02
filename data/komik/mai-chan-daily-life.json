@@ -20,7 +20,12 @@
         "judul": "Chapter 1",
         "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/mai-chan-daily-life/1",
         "total": 17
-}
+},
+        {
+        "judul": "Chapter 2",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/mai-chan-daily-life/2",
+        "total": 15
+      }
     ]
   }
 ]
