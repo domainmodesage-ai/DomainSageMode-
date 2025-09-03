@@ -421,5 +421,25 @@
     },
     "latestChapter": "Chapter 2",
     "totalChapters": 3
+  },
+  {
+    "id": "rosen-garten-saga",
+    "judul": "Rosen Garten Saga",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Seksual Violence",
+      "Ecchi",
+      "Comedy"
+    ],
+    "cover": "assets1/komik/rosen-garten-saga/cover.jpg",
+    "lastUpdate": "2025-09-03T06:52:53.763Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 4",
+    "totalChapters": 4
   }
 ]
