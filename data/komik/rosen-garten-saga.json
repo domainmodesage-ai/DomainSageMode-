@@ -1,0 +1,36 @@
+[
+{
+    "id": "rosen-garten-saga",
+    "judul": "Rosen Garten Saga",
+"format": "Manga",
+    "genre": ["Action", "Adventure", "Seksual Violence", "Ecchi", "Comedy"],
+"author": "Sakimori Fuji",
+"artist": "Tonooka Bakotsu",
+    "status": "Ongoing",
+    "sinopsis": "Desa Lynn yang diserang oleh bandit tidak membuatnya terpuruk dalam waktu lama! Mengambil pedang yang menampung orang cabul yang luar biasa... Maksudku pahlawan, Siegfried, dia memulai perjalanan banyak pertarungan dengan berbagai degenerasi... ahem, pahlawan!.",
+    "cover": "assets1/komik/rosen-garten-saga/cover.jpg",
+    "lastUpdate": "2025-09-03T06:00:00Z",
+    "chapter": [
+      {
+        "judul": "Chapter 1",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/rosen-garten-saga/1",
+        "total": 52
+      },
+ {
+        "judul": "Chapter 2",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/rosen-garten-saga/2",
+        "total": 35
+},
+ {
+        "judul": "Chapter 3",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/rosen-garten-saga/3",
+        "total": 40
+},
+ {
+        "judul": "Chapter 4",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/rosen-garten-saga/4",
+        "total": 31
+}
+    ]
+  }
+]
