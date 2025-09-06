@@ -3,43 +3,43 @@
 
   <url>
     <loc>https://domainsagemode.xyz/</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/index.html</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/cari.html</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/bookmark-history.html</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/donasi.html</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/register.html</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://domainsagemode.xyz/chat.html</loc>
-    <lastmod>2025-09-06T17:50:24.341Z</lastmod>
+    <lastmod>2025-09-06T18:08:03.354Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
   </url>
@@ -178,6 +178,12 @@
   <url>
     <loc>https://domainsagemode.xyz/komik.html?id=rosen-garten-saga</loc>
     <lastmod>2025-09-03T06:52:53.763Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://domainsagemode.xyz/komik.html?id=isekai-ni-shoukan</loc>
+    <lastmod>2025-09-06T18:08:03.302Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

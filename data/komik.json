@@ -441,5 +441,25 @@
     },
     "latestChapter": "Chapter 4",
     "totalChapters": 4
+  },
+  {
+    "id": "isekai-ni-shoukan",
+    "judul": "Isekai ni Shoukan Saretan da kedo, Nandemo Kireteshimau Kennou o Te ni Ireta no de Easy Mode deshita.",
+    "format": "Manga",
+    "genre": [
+      "Action",
+      "Adventure",
+      "Erotika",
+      "Ecchi",
+      "Comedy"
+    ],
+    "cover": "assets1/komik/isekai-ni-shoukan/cover.jpg",
+    "lastUpdate": "2025-09-06T18:08:03.302Z",
+    "rating": {
+      "total": 0,
+      "count": 0
+    },
+    "latestChapter": "Chapter 1",
+    "totalChapters": 1
   }
 ]
