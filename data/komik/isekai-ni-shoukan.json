@@ -1,0 +1,21 @@
+[
+{
+    "id": "isekai-ni-shoukan",
+    "judul": "Isekai ni Shoukan Saretan da kedo, Nandemo Kireteshimau Kennou o Te ni Ireta no de Easy Mode deshita.",
+"format": "Manga",
+    "genre": ["Action", "Adventure", "Erotika", "Ecchi", "Comedy"],
+"author": "Kamishiroke Kachou",
+"artist": "Yameta Takashi",
+    "status": "Ongoing",
+    "sinopsis": "Haruki Ito, bersama semua teman sekelasnya, dipanggil ke dunia lain. Suatu hari setelah pemanggilan itu, Haruki menemukan kekuatan yang telah dianugerahkan kepadanya...?! Baca aja sisanya sendiri intinya MC-Nya gak naif.",
+    "cover": "assets1/komik/isekai-ni-shoukan/cover.jpg",
+    "lastUpdate": "2025-10-07T06:00:00Z",
+    "chapter": [
+      {
+        "judul": "Chapter 1",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/isekai-ni-shoukan/1",
+        "total": 48
+      }
+    ]
+  }
+]
