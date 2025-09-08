@@ -15,7 +15,12 @@
         "judul": "Chapter 1",
         "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/isekai-ni-shoukan/1",
         "total": 48
-      }
+      },
+        {
+        "judul": "Chapter 2",
+        "folder": "https://raw.githubusercontent.com/domainmodesage-ai/komik1/main/isekai-ni-shoukan/2",
+        "total": 18
+        }
     ]
   }
 ]
